@@ -1,7 +1,6 @@
-# 240424  TW  New script to analyse Edge, Chrome, etc. bookmarks html file
+# 240424  TW  New script to analyse Edge bookmarks html file
 
-# $ awk -f bookmarks.awk Edge_favourites_23_04_2024.html > Edge_favourites_23_04_2024.txt
-# $ awk -f bookmarks.awk Chrome_bookmarks_25_04_2024.html > Chrome_bookmarks_25_04_2024.txt
+# $ awk -f bookmarks.awk Edge_favourites_23_04_2024.html > bookmarks.txt
 
 /H3 ADD_DATE=/ {
 	# Datestamp
@@ -10,7 +9,7 @@
 	datestamp=strftime("%Y-%m-%d %H:%M:%S", datestamp);
 	
 	# Title
-	match($0, /">[^</H3>]*/);
+	match($0, /">[^</]*/);
 	title=substr($0, RSTART+2, RLENGTH-2);
 	
 	print "FOLDER" "\t" datestamp "\t" title "\t";
@@ -27,7 +26,7 @@
 	datestamp=strftime("%Y-%m-%d %H:%M:%S", datestamp);
 	
 	# Title
-	match($0, /">[^</A>]*/);
+	match($0, /">[^</]*/);
 	title=substr($0, RSTART+2, RLENGTH-2);
 	
 	print "BOOKMARK" "\t" datestamp "\t" title "\t" url;
