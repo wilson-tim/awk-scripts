@@ -1,0 +1,239 @@
+
+usage()
+{
+echo
+echo "Purpose: To dump the contents of a specified table/s into the 'dump_dir'"
+echo "         directory within \$DBPATH, along with the SQL statements for"
+echo "         inserting the data into an SQL database."
+echo
+echo "Usage:   $0 [-b binary] [-d directory] [table1 table2 ...]"
+echo
+echo "where:   If no tables are given, then ALL tables in the"
+echo "         current database will be dumped."
+echo
+echo "         If -b is specified then the data will be loaded from binary"
+echo "         files rather than ascii."
+echo
+echo "         If -d is specified (followed by a directory path) then"
+echo "         the directory specified will take the place of the normal"
+echo "         dump directory ('dump_dir')."
+echo
+echo "         NOTE: Certain variables can be set in the shell environment"
+echo "         (and exported) prior to running $0. This informs $0"
+echo "         about particular start conditions. These are :-"
+echo
+echo "         TPSIZE      - The size of chunks of records dumped. This is"
+echo "                       useful when the amount of memory is limited."
+echo
+echo "         LMPROMO     - The number of record locks needed to upgrade"
+echo "                       to a table lock. When = 0, never upgrades. "
+echo "                       In this case, it is unlikely to successfully"
+echo "                       tdump any large tables. Set LMPROMO to 100"
+echo "                       in the file.cf."
+echo
+echo "See also: dbload, dbdel, dbaddvol"
+echo "Author: William Wragg (27-03-2000)"
+echo "Change History:" 
+echo "12-06-2000   William Wragg   Added the removal of nulls from the data,"
+echo "                             for ascii only, as this was causing a few"
+echo "                             problems with pharaoh."
+echo "27-02-2001   William Wragg   Ammended the null removal section, and "
+echo "                             corrected the record count for records "
+echo "                             with multiline text fields."
+exit
+}
+
+if test "$1" = "-"
+then
+    usage
+fi
+
+
+# Check the PHABASE variable
+if test "$PHABASE" = ""
+then
+    echo "ERROR: The PHABASE shell variable is not set !\007"
+    echo "       This needs to be correctly set in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+# Check the PHABASE directory exists
+if test ! -d "$PHABASE"
+then
+    echo "ERROR: The PHABASE directory $PHABASE does not exist !\007"
+    echo "       This needs to be corrected in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+if test "$BINDIR" = ""
+then
+    echo "ERROR: The BINDIR shell variable is not set !\007"
+    echo "       This needs to be correctly set in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+
+# Check that the user is super
+ID=`id | sed -e "s/ .*//"`
+if test "$ID" != "uid=0(root)"
+then
+    echo "ERROR: You must be root or super-user to run this utility !"
+    exit
+fi
+
+
+# Setting the switches up.
+if test "$1" = "-b"; then shift; OUTPUT_TYPE="binary"; fi
+if test "$1" = "-d"; then shift; DUMPDIR="$1"; shift; fi
+if test "$1" = "-b"; then shift; OUTPUT_TYPE="binary"; fi
+
+# What type of output file extension? Binary ("bin"), or Ascii ("asc")
+if test "$OUTPUT_TYPE" = ""
+then
+    OUTPUT_EXT="asc"
+else
+    OUTPUT_EXT="bin"
+fi
+
+# Set the path of where the data is to be dumped, default is $DUMPDIR
+if test "$DUMPDIR" = ""
+then
+    # Go to the database directory
+    cd $DBPATH
+    # Make a dump directory to put all the extracted data into
+    if test ! -d dump_dir
+    then
+        mkdir dump_dir
+    fi
+    cd dump_dir
+    DUMPDIR=$DBPATH/dump_dir
+else
+    # Check that the supplied dump directory exists
+    if test ! -d $DUMPDIR
+    then
+        echo "ERROR: $DUMPDIR is not an existing directory !"
+        exit
+    else
+        # Confirm the dump directory name and go there
+        cd $DUMPDIR
+    fi
+fi
+
+# Set the NULL char shell variables, so that we can substitute nulls
+# with their appropriate values (zeros and spaces etc)
+NULLCH="~"; export NULLCH
+NUMNULLCH="~"; export NUMNULLCH
+AMTNULLCH="~"; export AMTNULLCH
+FLTNULLCH="~"; export FLTNULLCH
+STRNULLCH=" "; export STRNULLCH
+TIMNULLCH=":"; export TIMNULLCH
+DATNULLCH="*"; export DATNULLCH
+TXTNULLCH="@"; export TXTNULLCH
+ERRCH="?"; export ERRCH
+
+# If no table names supplied, then do all the tables.
+if test $# = 0
+then
+    # The list of tables that are selected from.
+    TABLES=`tblstats -s PUBLIC | egrep "PUBLIC|Option" | sed -e "
+        /Option/s/\$//" | tr -d '\12' | tr '\1' '\12' | sed -e "
+        /Sql view/d
+        s/Option:.*//
+        s/^.*PUBLIC\.//
+        " | sort`
+else
+    TABLES=$*
+fi
+
+echo "STARTING DUMP AT: \c"
+date
+echo "DUMPING TABLES FROM DATABASE: "$DBPATH
+echo "================================================================================"
+echo
+
+for TABLE in $TABLES
+do
+    # Creating the sql file $TABLE.sql that has all the sql statements in it.
+    echo "lines 0;" > $DUMPDIR/$TABLE.sql$OUTPUT_EXT
+    echo "select * from "$TABLE" INTO "$OUTPUT_TYPE" '"$DUMPDIR/$TABLE"."$OUTPUT_EXT"';" >> $DUMPDIR/$TABLE.sql$OUTPUT_EXT
+
+    # Creating the specification file $TABLE.spe that has the tables field
+    # names and order in it, ready for dbld to use.
+    # Add pipes to the end of the field names.
+    # Set up the write field or column command
+    echo "columns $TABLE;" > $DUMPDIR/$TABLE_temp.sql
+
+    SQL $DUMPDIR/$TABLE_temp.sql | awk 'BEGIN { ORS="|" ; field=""}
+                                        NR > 2 {if (field == "") {field=$1}
+                                                else {print field; field=$1}}
+                                        END{ORS="\n"; print field}' > $DUMPDIR/$TABLE.spe
+
+    rm -f $DUMPDIR/$TABLE_temp.sql
+
+    # Now perform the SQL dumping statements
+    echo "DUMPING TABLE: "$TABLE" ... THIS MAY TAKE SOME TIME ..."
+
+    #Delete any previous data files of the type being created, if they exist.
+    if test -f "$TABLE.$OUTPUT_EXT"
+    then
+        rm -f $DUMPDIR/$TABLE.$OUTPUT_EXT
+    fi
+
+    SQL -m 1000 $DUMPDIR/$TABLE.sql$OUTPUT_EXT
+
+    # If ascii output then remove nulls (except date nulls) from the output
+    if test "$OUTPUT_TYPE" = ""
+    then
+        echo "STRIPPING OFF NULLS FROM DATA ... THIS MAY TAKE SOME TIME ..."
+        # Now substitute the NULL chars with their appropriate values
+        # (zeros and spaces)
+        sed -e "
+s/||/| |/g
+s/|~~*|/|0|/g
+s/^~~*|/0|/g
+s/|~~*$/|0/g
+s/|@@*|/| |/g
+s/^@@*|/ |/g
+s/|@@*$/| /g
+s/|:::::|/|00:00|/g
+s/^:::::|/00:00|/g
+s/|:::::$/|00:00/g
+" < $DUMPDIR/$TABLE.$OUTPUT_EXT | sed -e "
+s/||/| |/g
+s/|~~*|/|0|/g
+s/^~~*|/0|/g
+s/|~~*$/|0/g
+s/|@@*|/| |/g
+s/^@@*|/ |/g
+s/|@@*$/| /g
+s/|:::::|/|00:00|/g
+s/^:::::|/00:00|/g
+s/|:::::$/|00:00/g
+" > $DUMPDIR/$TABLE.tmp$OUTPUT_EXT
+
+        mv $DUMPDIR/$TABLE.tmp$OUTPUT_EXT $DUMPDIR/$TABLE.$OUTPUT_EXT
+        echo "STRIPPING OFF NULLS FROM DATA IS COMPLETE."
+    fi
+
+    echo "DUMPING OF TABLE: "$TABLE" IS COMPLETE. \c"
+
+
+    if test "$OUTPUT_TYPE" = ""
+    then
+        echo `cat $DUMPDIR/$TABLE.$OUTPUT_EXT | awk 'BEGIN {rcount = 0}
+                                                    {if($0 !~ /\\\\$/) rcount++}
+                                                     END {print rcount}'` "RECORDS DUMPED."
+    else
+        echo
+    fi
+    echo
+done
+
+echo
+echo "================================================================================"
+echo "DUMPING TABLES FROM DATABASE: "$DBPATH
+echo "FINISHED AT: \c"
+date

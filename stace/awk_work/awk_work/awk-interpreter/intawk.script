@@ -1,0 +1,6 @@
+BEGIN { lets_test = "yes" }
+{ if (lets_test == "yes"){
+      print "YES"}
+  else {
+      print "NO"}
+  lets_test = "no" }

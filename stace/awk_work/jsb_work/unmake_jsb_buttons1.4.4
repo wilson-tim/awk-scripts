@@ -1,0 +1,88 @@
+
+usage()
+{
+echo
+echo "Purpose: " 
+echo 
+echo "         This script updates a pharaoh database's formdef table with"
+echo "         the original pharoah text, this will allow a clean install of"
+echo "         a new version of JSB to navigate the menus via buttons."
+echo          
+echo "Usage:   unmake_jsb_buttons"
+echo "Where:   "
+echo "Notes: "
+echo "See also: "
+echo "Author: William Wragg (12-03-2001)"
+echo "Change History: "
+}
+
+
+if test "$1" = "-"
+then
+    usage
+fi
+
+# Check the PHABASE variable
+if test "$PHABASE" = ""
+then
+    echo "ERROR: The PHABASE shell variable is not set !\007"
+    echo "       This needs to be correctly set in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+# Check the PHABASE directory exists
+if test ! -d "$PHABASE"
+then
+    echo "ERROR: The PHABASE directory $PHABASE does not exist !\007"
+    echo "This needs to be corrected in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+if test "$BINDIR" = ""
+then
+    echo "ERROR: The BINDIR shell variable is not set !\007"
+    echo "This needs to be correctly set in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+# Check that the user is super
+ID=`id | sed -e "s/ .*//"`
+if test "$ID" != "uid=0(root)"
+then
+    echo "ERROR: You must be root or super-user to run this utility !"
+    exit
+fi
+
+# Make a backup of the original formdef, by dumping it into dump_dir.
+dbdump formdef
+
+# Dump an ordered formdef. Ordered by menu_name, position.
+echo "lines 0;" > $PHABASE/tmp/menu_level.tmp3
+echo "select * from formdef order by menu_name, position into '"$PHABASE"/tmp/menu_level.tmp4';" >> $PHABASE/tmp/menu_level.tmp3
+
+SQL $PHABASE/tmp/menu_level.tmp3
+rm $PHABASE/tmp/menu_level.tmp3
+
+# Order the formdef correctly
+awk '
+BEGIN {FS="|"; OFS="|"}
+
+{sub(/^[A-Z][1-9|-]--/,"",$5)
+ print $0}' $PHABASE/tmp/menu_level.tmp4 > $PHABASE/tmp/menu_level.tmp5
+
+rm $PHABASE/tmp/menu_level.tmp4
+
+# Delete the old formdef
+dbdel formdef
+
+# Load in the ordered formdef
+echo "insert into formdef values from '"$PHABASE"/tmp/menu_level.tmp5';" > $PHABASE/tmp/menu_level.tmp3
+
+echo
+echo "Loading cleaned forms ..."
+SQL $PHABASE/tmp/menu_level.tmp3
+rm $PHABASE/tmp/menu_level.tmp3 $PHABASE/tmp/menu_level.tmp5
+echo

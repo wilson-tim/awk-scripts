@@ -1,0 +1,4 @@
+        echo `cat hlp_info2.asc | awk 'BEGIN {rcount = 0}
+                                       {if($0 !~ /\\\\$/) {rcount++}}
+                                       END {print rcount}'` "RECORDS DUMPED."
+

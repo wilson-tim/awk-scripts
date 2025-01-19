@@ -1,0 +1,63 @@
+pwtestkey,pwtestdesc,pwtestunits,pwtestpcx
+C002,Escherichia coli (E.coli),No. 100/ml,0
+C003,Enterococci (Confirmed) ,No. 100/ml,0
+C002B,Escherichia coli (E.coli-bottles or containers),No. 250/ml,0
+C003B,Enterococci (Bottles or containers) ,No. 250/ml,0
+C005,Pseudomonas aeruginosa (Bottles or containers) ,No.250/ml,0
+C007,Colony Counts 3 days @ 22°C (Bottles or containers) ,No. /ml,100
+C013,Colony Counts 37°C (Bottles or containers) ,No. /ml,20
+F008,Acrylamide,ug/l,0.1
+B008A,Antimony,ug/l,5
+B001A,Arsenic (Total),ug/l/AS,10
+F002,Benzene (Total),ug/l ,1
+D007,Benzo[a]Pyrene (Total),ug/l ,0.01
+D005A,Boron,mg/l B,1
+F003,Bromate,ug/l BrO3,10
+B002,Cadmium (Total),ug/l  Cd,5
+B004,Chromium (Total),ug/l  Cr,50
+A024A,Copper (Total),mg/l Cu,2
+B003,Cyanide (Total),ug/l  CN,50
+F001,1 2-Dichloroethane (Total),ug/l ,3
+F010,Epichlorohydrin,ug/l (Product Spec),0.1
+A027,Fluoride (Total),mg/l F,1.5
+B007A,Lead (Total - 25),ug/l  Pb,25
+B007B,Lead (10 - will apply 25.12.2013),ug/l  Pb,10
+B005,Mercury (Total),ug/l  Hg,1
+B006A,Nickel (Total),ug/l  Ni,20
+A012,Nitrate,mg/l  NO3,50
+A013A,Nitrite - Consumers Taps,mg/l  NO2,0.5
+A013B,Nitrite - Treatment Works,mg/l  NO2,0.1
+A013C,Nitrite/Nitrate formula,mg/l,< or =1
+P002,Aldrin,ug/l ,0.03
+P028,Dieldrin (Total) ,ug/l ,0.03
+P043,Heptachlor (Total),ug/l ,0.03
+P044,Heptachlor Epoxide - Total,ug/l ,0.03
+P000,other Pesticides,ug/l ,0.1
+B010,Pesticides (Total by Calculation),ug/l ,0.5
+B011F,Polycyclic Aromatic Hydrocarbons (Total by Calculation),ug/l ,0.1
+B009,Selenium (Total),ug/l  Se,10
+D009B,Trichloroethene & Tetrachloroethene - Sum Of 2 Substances (Total by Calculation),ug/l ,10
+D011,Trihalomethanes (Total by Calculation),ug/l ,100
+F009,Vinyl Chloride,ug/l (Product Spec),0.5
+A021,Aluminium (Total),ug/l Al,200
+A001,Colour,mg/l Pt/Co,20
+A022,Iron (Total),ug/l  Fe,200
+A023,Manganese (Total),ug/l  Mn,50
+A003,Odour,No.,Acceptable to consumers and no abnormal change.
+A009,Sodium (Total),mg/l Na,200
+A004,Taste (Taste Quant),No.,Acceptable to consumers and no abnormal change.
+D008,Tetrachloromethane (Total),ug/l ,3
+A002,Turbidity,NTU,4
+A014,Ammonium (Total),mg/l  NH4,0.5
+D002A,Chloride,mg/l C,250
+C004A,Clostridium perfringens (including spores),No. 100/ml,0
+C001A,Coliform Bacteria (Indicator),No. 100/ml,0
+C007,Colony Counts 22°C (Indicator),Count ,No abnormal change 
+C013,Colony Counts 37°C (Indicator),Count ,No abnormal change 
+D001,Conductivity (Electrical Conductivity),uS/cm @ 20°C,2500
+A006,Hydrogen ion (pH) - Indicator (Hydrogen ion) (Ph),PH value,9.5 (Maximum) 6.5 (Minimum) (in the case of still water put into bottles or containers the minimum is 4.5)
+A007,Sulphate,mg/l  SO4,250
+F007,Total indicative dose (for radioactivity),mSv/year,0.1
+A017,Total Organic Carbon,mg/l C,No abnormal change
+F006,Tritium,Bq/l,100
+A002A,Turbidity - Indicator,NTU,1 (Surface water or groundwater that has been influenced by surface water).

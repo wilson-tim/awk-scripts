@@ -1,0 +1,27 @@
+#!/usr/bin/awk -f 
+
+BEGIN {FS = "\\"; last_line = ""}
+
+$1 ~ /^ / && $1 !~ / $/ && $0 !~ /)\\$/ && $0 ~ /\\$/ {
+     $0 = "##_S_##" $0} 
+
+$0 ~ /^[ ]*\\$/ {
+     $0 = "##_S_##" $0}
+
+$1 !~ / $/ && $0 !~ /)\\$/ && $0 !~ /^##_S_##\\$/ &&  $0 ~ /\\$/ {
+     $0 = $1 "##_P_##\\"}
+
+{if ($0 ~ /^ / && last_line ~ /##_P_##\\$/) {
+    gsub(/##_P_##\\/,"##_P_## ##_S_##\\", last_line)}
+
+ if (last_line ~ /#ifdef 0/) {
+    gsub(/#ifdef 0/,"#ifdef this_is_an_undef_var", last_line)}
+ else if (last_line ~ /#ifdef false/) {
+    gsub(/#ifdef false/,"#ifdef this_is_an_undef_var", last_line)}
+ else if (last_line ~ /#ifdef/) {
+    gsub(/#ifdef/,"#ifdef this_is_an_undef_var", last_line)}
+
+ print last_line
+ last_line = $0}
+
+END {print last_line}

@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<eShopContenderIntegration>
+	<createdDate>03/09/2002</createdDate>
+	<processedDate>01/10/2002</processedDate>
+	<eShopOut>
+		<complaintRecords>
+			<complaint>
+				<complaintId>91164</complaintId>
+				<eShopIncidentid>1123</eShopIncidentid>
+				<UPRN>20201907S</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>03/09/2002</rectifyDate>
+				<service>CLEANS</service>
+				<faultCode>EPAD</faultCode>
+				<description>EPA: AREA AT GRADE D</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35957</customerId>
+						<eShopCustomerId>34</eShopCustomerId>
+						<firstName>PHRED</firstName>
+						<lastName>GROVES</lastName>
+						<customerUPRN>202020869</customerUPRN>
+						<address1>5</address1>
+						<address2/>
+						<address3>BROADFIELDS WAY</address3>
+						<address4>POPLAR COURT</address4>
+						<address5>CHURCH END</address5>
+						<city/>
+						<postCode>NW10 1RQ</postCode>
+						<telephone>8871-1222</telephone>
+						<email>phred@datapro.co.uk</email>
+					</customer>
+				</customers>
+				<importStatus>success</importStatus>
+				<importStatusDescription>success</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91164</complaintId>
+				<eShopIncidentid>1123</eShopIncidentid>
+				<UPRN>20201907S</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>03/09/2002</rectifyDate>
+				<service>CLEANS</service>
+				<faultCode>EPAD</faultCode>
+				<description>EPA: AREA AT GRADE D</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35958</customerId>
+						<eShopCustomerId>23</eShopCustomerId>
+						<firstName>BOB</firstName>
+						<lastName>LANGHORNE</lastName>
+						<customerUPRN>202006801</customerUPRN>
+						<address1>53</address1>
+						<address2>BLUE ROOM BAR &amp; RESTAURANT</address2>
+						<address3>WEMBLEY HILL ROAD</address3>
+						<address4/>
+						<address5>TOKYNGTON</address5>
+						<city/>
+						<postCode>HA9 8BE</postCode>
+						<telephone>8871-1222</telephone>
+						<email>bob@datapro.co.uk</email>
+					</customer>
+				</customers>
+				<importStatus>success</importStatus>
+				<importStatusDescription>success</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91165</complaintId>
+				<eShopIncidentid/>
+				<UPRN>20200079S</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>03/09/2002</rectifyDate>
+				<service>AV</service>
+				<faultCode>AV</faultCode>
+				<description>ABANDONED VEHICLE</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35959</customerId>
+						<eShopCustomerId/>
+						<firstName>ANDREW</firstName>
+						<lastName>JONES</lastName>
+						<customerUPRN>202091751</customerUPRN>
+						<address1>12</address1>
+						<address2/>
+						<address3>GROVE PARK</address3>
+						<address4/>
+						<address5>ROE GREEN</address5>
+						<city/>
+						<postCode>NW9 0JX</postCode>
+						<telephone>871211</telephone>
+						<email/>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid product</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91166</complaintId>
+				<eShopIncidentid/>
+				<UPRN>20202759S</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>03/09/2002</rectifyDate>
+				<service>AV</service>
+				<faultCode>AV</faultCode>
+				<description>ABANDONED VEHICLE</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35960</customerId>
+						<eShopCustomerId/>
+						<firstName/>
+						<lastName>KING</lastName>
+						<customerUPRN>202073657</customerUPRN>
+						<address1>1</address1>
+						<address2/>
+						<address3>LONDON ROAD</address3>
+						<address4/>
+						<address5>WEMBLEY CENTRAL</address5>
+						<city/>
+						<postCode>HA9 7EP</postCode>
+						<telephone>8871-1211</telephone>
+						<email/>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid product</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91166</complaintId>
+				<eShopIncidentid/>
+				<UPRN>20202759S</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>03/09/2002</rectifyDate>
+				<service>AV</service>
+				<faultCode>AV</faultCode>
+				<description>ABANDONED VEHICLE</description>
+				<statusDescription>closed</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35942</customerId>
+						<eShopCustomerId/>
+						<firstName>KATY</firstName>
+						<lastName>LONGER</lastName>
+						<customerUPRN>202074400</customerUPRN>
+						<address1>11</address1>
+						<address2/>
+						<address3>LINDEN AVENUE</address3>
+						<address4/>
+						<address5>TOKYNGTON</address5>
+						<city/>
+						<postCode>HA9 8BB</postCode>
+						<telephone>01257 928374</telephone>
+						<email>klonger@village.co.uk</email>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid status code</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91166</complaintId>
+				<eShopIncidentid/>
+				<UPRN>20202759S</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>03/09/2002</rectifyDate>
+				<service>AV</service>
+				<faultCode>AV</faultCode>
+				<description>ABANDONED VEHICLE</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35961</customerId>
+						<eShopCustomerId/>
+						<firstName/>
+						<lastName>PATON</lastName>
+						<customerUPRN>202073654</customerUPRN>
+						<address1>3</address1>
+						<address2/>
+						<address3>LONDON ROAD</address3>
+						<address4/>
+						<address5>WEMBLEY CENTRAL</address5>
+						<city/>
+						<postCode>HA9 7EP</postCode>
+						<telephone>N/A</telephone>
+						<email/>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid product</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91161</complaintId>
+				<eShopIncidentid/>
+				<UPRN>20200139S</UPRN>
+				<dateRaised>29/08/2002</dateRaised>
+				<rectifyDate>30/08/2002</rectifyDate>
+				<service>CLEANS</service>
+				<faultCode>EPAD</faultCode>
+				<description>EPA: AREA AT GRADE D</description>
+				<statusDescription>closed</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35931</customerId>
+						<eShopCustomerId/>
+						<firstName>TERRY</firstName>
+						<lastName>JONES</lastName>
+						<customerUPRN>202074410</customerUPRN>
+						<address1>3</address1>
+						<address2/>
+						<address3>LINDEN AVENUE</address3>
+						<address4/>
+						<address5>TOKYNGTON</address5>
+						<city/>
+						<postCode>HA9 8BB</postCode>
+						<telephone>01234 7766567</telephone>
+						<email/>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid status code</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91161</complaintId>
+				<eShopIncidentid/>
+				<UPRN>20200139S</UPRN>
+				<dateRaised>29/08/2002</dateRaised>
+				<rectifyDate>30/08/2002</rectifyDate>
+				<service>CLEANS</service>
+				<faultCode>EPAD</faultCode>
+				<description>EPA: AREA AT GRADE D</description>
+				<statusDescription>pending</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35962</customerId>
+						<eShopCustomerId/>
+						<firstName/>
+						<lastName>KNOWLES</lastName>
+						<customerUPRN>202110913</customerUPRN>
+						<address1>3</address1>
+						<address2>JOAN BARRY</address2>
+						<address3>CRAVEN PARK ROAD</address3>
+						<address4/>
+						<address5>HARLESDEN</address5>
+						<city/>
+						<postCode>NW10 8SE</postCode>
+						<telephone/>
+						<email/>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid status code</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91167</complaintId>
+				<eShopIncidentid>1124</eShopIncidentid>
+				<UPRN>202074405</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>09/09/2002</rectifyDate>
+				<service>CLEANS</service>
+				<faultCode>B01</faultCode>
+				<description>SPECIAL: BULKY WASTE-NO FRIDGE INCLUDED</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35963</customerId>
+						<eShopCustomerId>54</eShopCustomerId>
+						<firstName/>
+						<lastName>JAMES</lastName>
+						<customerUPRN>202074405</customerUPRN>
+						<address1>7</address1>
+						<address2/>
+						<address3>LINDEN AVENUE</address3>
+						<address4/>
+						<address5>TOKYNGTON</address5>
+						<city/>
+						<postCode>HA9 8BB</postCode>
+						<telephone>8871-1222</telephone>
+						<email/>
+					</customer>
+				</customers>
+				<importStatus>success</importStatus>
+				<importStatusDescription>success</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91168</complaintId>
+				<eShopIncidentid/>
+				<UPRN>202107563</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>09/09/2002</rectifyDate>
+				<service>AV</service>
+				<faultCode>AV</faultCode>
+				<description>ABANDONED VEHICLE</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35964</customerId>
+						<eShopCustomerId/>
+						<firstName/>
+						<lastName>CROWN</lastName>
+						<customerUPRN>202107563</customerUPRN>
+						<address1>8</address1>
+						<address2/>
+						<address3>DAGMAR AVENUE</address3>
+						<address4/>
+						<address5>TOKYNGTON</address5>
+						<city/>
+						<postCode>HA9 8DE</postCode>
+						<telephone>8871-1222</telephone>
+						<email/>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid product</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91168</complaintId>
+				<eShopIncidentid/>
+				<UPRN>202107563</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>09/09/2002</rectifyDate>
+				<service>AV</service>
+				<faultCode>AV</faultCode>
+				<description>ABANDONED VEHICLE</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35965</customerId>
+						<eShopCustomerId/>
+						<firstName/>
+						<lastName>CODDINGTON</lastName>
+						<customerUPRN>202112153</customerUPRN>
+						<address1>5</address1>
+						<address2/>
+						<address3>CONISTON GARDENS</address3>
+						<address4/>
+						<address5>PRESTON</address5>
+						<city/>
+						<postCode>HA9 8SE</postCode>
+						<telephone>8871-1222</telephone>
+						<email/>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid product</importStatusDescription>
+			</complaint>
+			<complaint>
+				<complaintId>91168</complaintId>
+				<eShopIncidentid/>
+				<UPRN>202107563</UPRN>
+				<dateRaised>03/09/2002</dateRaised>
+				<rectifyDate>09/09/2002</rectifyDate>
+				<service>AV</service>
+				<faultCode>AV</faultCode>
+				<description>ABANDONED VEHICLE</description>
+				<statusDescription>open</statusDescription>
+				<customers>
+					<customer>
+						<customerId>35966</customerId>
+						<eShopCustomerId/>
+						<firstName>JAMES</firstName>
+						<lastName>DEAN</lastName>
+						<customerUPRN/>
+						<address1>34</address1>
+						<address2/>
+						<address3>KINGSTON DRIVE</address3>
+						<address4>SOUTHAMPTON</address4>
+						<address5>HANTS</address5>
+						<city/>
+						<postCode>SO12 8JH</postCode>
+						<telephone>8871-1222</telephone>
+						<email>jamesdean@legends.com</email>
+					</customer>
+				</customers>
+				<importStatus>failure</importStatus>
+				<importStatusDescription>invalid product</importStatusDescription>
+			</complaint>
+		</complaintRecords>
+	</eShopOut>
+</eShopContenderIntegration>
+

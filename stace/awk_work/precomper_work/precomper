@@ -1,0 +1,29 @@
+# These are the programs required for precompilation on SCO:
+# prepre
+# precomper
+# postpre
+
+# NOTE:
+# 'precomper' runs 'prepre' then the usual 'precomper' sections and then runs
+# 'postpre'. To run 'precomper' the ACPLPP shell variable must be set to point
+# to where 'precomper' resides, eg. $PHABASE/bin/precomper
+# 'prepre' might need to be run on the lib files. This is because they are not
+# touched by 'precomper' but are handled directly by the system precompilation
+# program. The only lib files that seem to need this though are 'wims.h' and
+# 'pharaoh.h'. The original files that have not been run through 'prepre'
+# first are held in 'wims.h.no_prepre' and 'pharaoh.h.no_prepre' respectively.
+
+echo "    ACPLPP precomper"
+if test $# = 3
+then
+    shift
+fi
+if test $# = 2
+then
+
+    cat $1 | prepre | /lib/cpp -P -S4000000 | split | postpre | sed "s/NULLDATE/str_to_date\$('**\/**\/**')/g" > $2
+
+else
+    echo "ERROR: expecting 2 parameters, not $# !"
+fi
+

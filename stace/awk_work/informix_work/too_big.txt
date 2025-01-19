@@ -1,0 +1,37 @@
+-- 11/06/2001: control    - added field "accruals_entered_yn" char (1)
+	last_capital_asset_tx_no	integer,
+	accruals_entered_yn	char	(1));
+	capital_sub_asset_no	integer	not null,
+	indexed_replacement_cost	money,
+	depreciation_to_date	money,
+	prev_capital_asset_code	char	(21),
+	prev_capital_sub_asset_no	integer,
+	apportionment_count	integer,
+	primary key (capital_asset_code,capital_sub_asset_no));
+	productivity_target	money	(5),
+	attendance_activity	char	(1),
+	capital_sub_asset_code	integer	not null,
+	primary key (capital_asset_code,capital_sub_asset_code,effective_date));
+	capital_sub_asset_code	integer,
+	quotation_requested	char	(1),
+	committee_or_division	char	(4));
+	committee_or_division	char	(4));
+	committee_or_division	char	(4)	not null primary key,
+	capital_sub_asset_no	integer,
+	leasehold_covenants	text,
+	other_lease_details	text,
+	current_annual_rent	money,
+	capital_sub_asset_no	integer	not null,
+	indexed_replacement_cost	money,
+	depreciation_to_date	money,
+	prev_capital_asset_code	char	(21),
+	prev_capital_sub_asset_no	integer,
+	apportionment_count	integer,
+	primary key (capital_asset_code,capital_sub_asset_no));
+	delay_date_act_resp	date,
+	capital_sub_asset_no	integer	not null,
+	primary key (capital_asset_code,capital_sub_asset_no,run_type));
+	capital_sub_asset_no	integer,
+	indexed_replacement_cost	money,
+	capital_sub_asset_code	integer	not null,
+	primary key (capital_asset_code,capital_sub_asset_code,division,management_unit,cost_centre,account_code,donated));

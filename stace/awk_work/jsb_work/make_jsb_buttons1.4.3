@@ -1,0 +1,270 @@
+
+usage()
+{
+echo
+echo "Purpose: " 
+echo 
+echo "         This script updates a pharaoh database's formdef table with"
+echo "         the text that will allow JSB to navigate the menus via buttons."
+echo          
+echo "Usage:   make_jsb_buttons"
+echo "Where:   "
+echo "Notes: "
+echo "See also: "
+echo "Author: William Wragg (24-05-2000)"
+echo "Change History: "
+echo "Added by William Wragg on 26/06/2000, the correct ordering and nameing"
+echo "of the forms in formdef."
+}
+
+
+# Updates the formdef record with the JSB button.
+# menu_update() called with three arguments;
+# form_name(string), menu_name(string), level(number)
+menu_update()
+{
+# Initializing the three variables used in the function
+menu_text=""
+menu_text_save=""
+menu_position=0
+menu_button=""
+
+# Retreiving the menu_text
+echo "lines 0;" > $PHABASE/tmp/menu_update.tmp
+echo "select menu_text from formdef where form_nam='"$1"' and menu_name='"$2"';">> $PHABASE/tmp/menu_update.tmp
+menu_text=`SQL $PHABASE/tmp/menu_update.tmp`
+rm $PHABASE/tmp/menu_update.tmp
+
+# Retreiving the menu position
+echo "lines 0;" > $PHABASE/tmp/menu_update.tmp
+echo "select position from formdef where form_nam='"$1"' and menu_name='"$2"';" >> $PHABASE/tmp/menu_update.tmp
+menu_position=`SQL $PHABASE/tmp/menu_update.tmp`
+rm $PHABASE/tmp/menu_update.tmp
+
+# Creating the first part of the JSB button, from the position information
+if test $menu_position -eq 1
+then
+    menu_button="A"
+elif test $menu_position -eq 2
+then
+    menu_button="B"
+elif test $menu_position -eq 3
+then
+    menu_button="C"
+elif test $menu_position -eq 4
+then
+    menu_button="D"
+elif test $menu_position -eq 5
+then
+    menu_button="E"
+elif test $menu_position -eq 6
+then
+    menu_button="F"
+elif test $menu_position -eq 7
+then
+    menu_button="G"
+elif test $menu_position -eq 8
+then
+    menu_button="H"
+elif test $menu_position -eq 9
+then
+    menu_button="I"
+elif test $menu_position -eq 10
+then
+    menu_button="J"
+elif test $menu_position -eq 11
+then
+    menu_button="K"
+elif test $menu_position -eq 12
+then
+    menu_button="L"
+elif test $menu_position -eq 13
+then
+    menu_button="M"
+elif test $menu_position -eq 14
+then
+    menu_button="N"
+elif test $menu_position -eq 15
+then
+    menu_button="O"
+elif test $menu_position -eq 16
+then
+    menu_button="P"
+fi
+
+# Amending the menu_text if length > 31 characters or other problems with the
+# text.
+menu_text_save=$menu_text
+
+menu_text=`
+echo "Alternative Block Details Search 2 |Alternative Block Dets Search 2
+Create Next Year's Budgets         |Create Next Years Budgets
+Alternative Block Details Search 3 |Alternative Block Dets Search 3
+Alternative Site 3 Search Criteria |Alt. Site 3 Search Criteria
+Alternative Site II Search Criteria|Alt. Site II Search Criteria
+Amend Site/Assets (Property Module)|Amend Site/Assets (Prop. Mod.)
+Asset Costs Annual History Report  |Asset Costs Annual Hist. Report
+Asset Operational Administration   |Asset Operational Admin
+Attachment Level (Property Module) |Attachment Level (Prop. Mod.)
+Building Apportionment Maintenance |Building Apportionment Maint.
+Create & Delete Financial Periods  |Create & Del. Financial Periods
+FYI Line details (Property Module) |FYI Line details (Prop. Mod.)
+Financial Control Administration   |Financial Control Admin
+Financial Period View & Maintain   |Financial Period View & Maint.
+Issue and Print Authorised Orders  |Issue & Print Authorised Orders
+Lettings & Decoration Liabilities  |Lettings & Decor Liabilities
+Maintenance Analysis - Exceptions  |Maint. Analysis - Exceptions
+Maintenance Analysis - Trade/Type  |Maint. Analysis - Trade/Type
+Occupying Department Maintenance   |Occupying Department Maint.
+Order Transaction Details Report   |Order Transaction Dets Report
+Output Accounts Batches (For Stock)|Output Accounts Batches - Stock
+Planning Applications/Permissions  |Planning Appls/Permissions
+Pro Unit Levels (Property Module)  |Pro Unit Levels (Pro. Mod.)
+Raise and Approve Purchase Requests|Raise & Approve Purch. Requests
+Transfer Due Jobs to Current Work  |Transfer Due Jobs to C.W.
+Transfer Single Job to Current Work|Transfer Single Job to C.W." | awk -v menu_text="$menu_text" -F"|" '$1 == menu_text {print $2}'`
+
+if test "$menu_text" = ""
+then
+   menu_text=$menu_text_save
+fi
+
+# Updating the formdef record with the text for the JSB buttons
+echo "lines 0;" > $PHABASE/tmp/menu_update.tmp
+echo "update formdef set menu_text='"$menu_button$3"--"$menu_text"' where form_nam='"$1"' and menu_name='"$2"';" >> $PHABASE/tmp/menu_update.tmp
+SQL $PHABASE/tmp/menu_update.tmp
+rm $PHABASE/tmp/menu_update.tmp
+}
+
+
+# menu_level() called with three arguments;
+# form_name(string), menu_name(string), level(number)
+menu_level()
+{
+if test -n "`echo $1 | sed '/^me_/d'`" -a -n "`echo $1 | sed '/^menu_/d'`"
+then
+   echo "$1 $2 $3"
+   menu_update $1 $2 $3
+else
+   echo "$1 $2 $3"
+   menu_update $1 $2 $3
+   level_ls=`expr $3 + 1`
+
+   # create the forms list, as the form_name is a menu
+   # create the sql file
+   echo "lines 0;" > $PHABASE/tmp/menu_level.tmp
+   echo "select form_nam from formdef where menu_name = '"$1"';" >> $PHABASE/tmp/menu_level.tmp
+   form_list=`SQL $PHABASE/tmp/menu_level.tmp`
+   rm $PHABASE/tmp/menu_level.tmp
+
+   for form in $form_list
+   do
+      menu_level $form $1 $level_ls
+
+      #This is to correct the non local scoping of $level_ls
+      level_ls=`expr $3 + 1`
+   done
+fi
+}
+
+
+if test "$1" = "-"
+then
+    usage
+fi
+
+# Check the PHABASE variable
+if test "$PHABASE" = ""
+then
+    echo "ERROR: The PHABASE shell variable is not set !\007"
+    echo "       This needs to be correctly set in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+# Check the PHABASE directory exists
+if test ! -d "$PHABASE"
+then
+    echo "ERROR: The PHABASE directory $PHABASE does not exist !\007"
+    echo "This needs to be corrected in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+if test "$BINDIR" = ""
+then
+    echo "ERROR: The BINDIR shell variable is not set !\007"
+    echo "This needs to be correctly set in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+# Check that the user is super
+ID=`id | sed -e "s/ .*//"`
+if test "$ID" != "uid=0(root)"
+then
+    echo "ERROR: You must be root or super-user to run this utility !"
+    exit
+fi
+
+# Make a backup of the original formdef, by dumping it into dump_dir.
+dbdump formdef
+
+# Dump an ordered formdef. Ordered by menu_name, position.
+echo "lines 0;" > $PHABASE/tmp/menu_level.tmp3
+echo "select * from formdef order by menu_name, position into '"$PHABASE"/tmp/menu_level.tmp4';" >> $PHABASE/tmp/menu_level.tmp3
+
+SQL $PHABASE/tmp/menu_level.tmp3
+rm $PHABASE/tmp/menu_level.tmp3
+
+# Order the formdef correctly
+awk '
+BEGIN {FS="|"; OFS="|"; first_record=true; counter=1; old_menu_name=""}
+
+{if(first_record) {first_record=false}
+ else if(old_menu_name != $1) {counter=1}}
+
+{print $1,$2,counter,$4,$5
+ counter++
+ old_menu_name=$1}' $PHABASE/tmp/menu_level.tmp4 > $PHABASE/tmp/menu_level.tmp5
+
+rm $PHABASE/tmp/menu_level.tmp4
+
+# Delete the old formdef
+dbdel formdef
+
+# Load in the ordered formdef
+echo "insert into formdef values from '"$PHABASE"/tmp/menu_level.tmp5';" > $PHABASE/tmp/menu_level.tmp3
+
+echo
+echo "Ordering the forms ..."
+SQL $PHABASE/tmp/menu_level.tmp3
+rm $PHABASE/tmp/menu_level.tmp3 $PHABASE/tmp/menu_level.tmp5
+echo
+ 
+# Do the updating to create the JSB menu buttons
+for menu1 in menu_sa menu_ao menu_cc menu_fc menu_pr menu_hd
+do 
+   echo "lines 0;" > $PHABASE/tmp/menu_level.tmp1
+   echo "select form_nam from formdef where menu_name = '"$menu1"';" >> $PHABASE/tmp/menu_level.tmp1
+   form_list1=`SQL $PHABASE/tmp/menu_level.tmp1`
+   rm $PHABASE/tmp/menu_level.tmp1
+
+   for form1 in $form_list1
+   do
+      menu_level $form1 $menu1 1
+   done
+done
+
+# Do the updating to create the front end JSB menu buttons.
+echo "lines 0;" > $PHABASE/tmp/menu_level.tmp2
+echo "select form_nam from formdef where menu_name = 'menu_com';" >> $PHABASE/tmp/menu_level.tmp2
+form_list2=`SQL $PHABASE/tmp/menu_level.tmp2`
+rm $PHABASE/tmp/menu_level.tmp2
+
+for form2 in $form_list2
+do
+    echo $form2 "menu_com" "-"
+    menu_update $form2 "menu_com" "-"
+done
+

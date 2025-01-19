@@ -1,0 +1,12 @@
+BEGIN{ FS=","}
+
+# load acronyms file into array "acro"
+FILENAME == "species01.csv" {
+	split($0, entry, "|")
+	acro[entry[1]] = entry[2]
+	print entry[1], entry[2]
+	next
+}
+
+
+END{}

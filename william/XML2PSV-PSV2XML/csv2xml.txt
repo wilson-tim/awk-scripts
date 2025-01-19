@@ -1,0 +1,185 @@
+/*
+ * CSVToXML.java
+ *
+ * Created on 18 December 2000, 23:09
+ * @author  Danny Ayers
+ * @version 0.0001
+
+*** Usage :
+
+java CSVToXML [properties file] [source] [destination]
+
+*** Sample properties file (save as text) :
+
+header=<?xml version=\"1.0\"?>
+delimiter=,
+columns=3
+rootname=table
+recordname=record
+elementname=item
+
+*** sample source file (text) :
+123, 234, 345,
+890, 678, 456,
+234, 456, 567,
+123, 567, 689
+
+*** the output from the above samples (text file) :
+
+<?xml version="1.0"?>
+<table>
+	<record0>
+		<item>123</item>
+		<item>234</item>
+		<item>345</item>
+	</record0>
+	<record1>
+		<item>890</item>
+		<item>678</item>
+		<item>456</item>
+	</record1>
+	<record2>
+		<item>234</item>
+		<item>456</item>
+		<item>567</item>
+	</record2>
+	<record3>
+		<item>123</item>
+		<item>567</item>
+		<item>689</item>
+	</record3>
+</table>
+
+ */
+
+import java.util.*;
+import java.io.*;
+
+public class CSVToXML {
+       
+    private static final String BEGIN_PRE = "<";
+    private static final String BEGIN_POST = "</";
+    private static final String END = ">";
+    private static final String NEWLINE = "\n";   
+    private static final String TAB = "\t";   
+
+    /**
+    * @param args the command line arguments
+    */
+    public static void main (String args[]) {
+        if (args.length != 3) {
+            System.out.println("java CSVToXML [properties file] [source] [destination]");
+            System.exit(1);
+        }
+        new CSVToXML(args);
+    }
+            
+    public CSVToXML(String args[]) {
+        Properties props = loadProperties(args[0]);
+        String source = loadString(args[1]);
+        String outFile = args[2];
+        String output = convert(props, source);
+        saveString(outFile, output);
+    }
+
+    public String convert(Properties prop, String input){ 
+        StringBuffer output = new StringBuffer(prop.getProperty("header"));
+        output.append(NEWLINE);
+        output.append(BEGIN_PRE + prop.getProperty("rootname") + END);
+        output.append(NEWLINE);
+        String delimiter = prop.getProperty("delimiter");
+        String c = prop.getProperty("columns");
+        Integer itemp = new Integer(prop.getProperty("columns"));
+        int columns = itemp.intValue();
+        String elementname = prop.getProperty("elementname");
+        String columnname = prop.getProperty("recordname");
+        ArrayList tokens = stringToArrayList(input, delimiter);
+        
+        int rows = tokens.size()/columns; 
+        			// if there are an inappropriate number of values, it will screw up
+			        
+        Iterator i = tokens.iterator();
+        String element = null;
+			for(int rowcount = 0;rowcount < rows;rowcount++){
+   			output.append(TAB + BEGIN_PRE + columnname + rowcount + END + NEWLINE);
+
+			
+				for(int colcount = 0;colcount < columns; colcount++){     
+					output.append(TAB + TAB + BEGIN_PRE + elementname + END);
+					element = (String)i.next();
+														// strip leading spaces, newline etc.
+					while(Character.isWhitespace(element.charAt(0))) // not very neat!
+					element = element.substring(1, element.length());
+				output.append(element);                    
+				output.append(BEGIN_POST + elementname + END +NEWLINE);    
+			}
+
+		  output.append(TAB + BEGIN_POST + columnname + rowcount + END);               
+        output.append(NEWLINE);    
+        			}    
+        output.append(BEGIN_POST + prop.getProperty("rootname") + END);
+        output.append(NEWLINE);
+        return new String(output);
+    }
+    
+    public Properties loadProperties(String filename){
+        Properties props = new Properties();
+        try{
+            FileInputStream in = new FileInputStream(filename);
+            props.load(in);
+            in.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return props;
+    }
+    
+    private String loadString(String filename){
+    	String string = new String();
+        FileInputStream in;
+        int readInt;
+        char c;
+        File inputFile = new File(filename);   
+        try{
+            in = new FileInputStream(inputFile);
+            while((readInt = in.read()) != -1){
+                c = (char)readInt;              
+                string += c;          
+            }
+            in.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return string;
+    }
+    
+    private void saveString(String filename, String string){
+        File outputFile = new File(filename);
+        int c;
+        int length;
+        byte[] bytes;
+        try{
+            FileOutputStream out = new FileOutputStream(outputFile);
+            bytes = string.getBytes();
+            length = string.length();
+            for(int i=0;i<length;i++){	
+                out.write(bytes[i]);
+            }
+            out.close();
+        }catch(Exception e){
+            System.out.println(e);
+            }
+    }
+        
+    public ArrayList stringToArrayList(String s, String delim){
+        ArrayList al = new ArrayList();
+        String word = null;   
+        StringTokenizer st = new StringTokenizer(s,delim);
+        while (st.hasMoreTokens()) {
+            word = st.nextToken();
+            al.add(word);
+        }
+        return al;
+   }
+}
+

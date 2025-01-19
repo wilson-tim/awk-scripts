@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+  - <crm_export_file>
+ - <export_record>
+ <transaction_ref>000000000002001</transaction_ref>
+  <transaction_source>E</transaction_source>
+ <transaction_type>C</transaction_type>
+  <transaction_date>02/11/2007 14:56</transaction_date>
+ <incident_service>CLEANS</incident_service>
+  <incident_ext_id>191111</incident_ext_id>
+  <contender_id/>
+  <date_raised>02/11/2007 14:56</date_raised>
+  <username>Valerie Wilson</username>
+  <incidentUPRN>22602118S</incidentUPRN>
+  <item_ref>ZONE-3</item_ref>
+  <exact_location/>
+  <fault_code></fault_code>
+  <incident_notes>£55 Paid.</incident_notes>
+  <rectify_date/>
+  <case_closed/>
+  <vehicle_make/>
+  <vehicle_model/>
+  <vehicle_colour/>
+  <vehicle_class/>
+  <vehicle_condition/>
+  <vehicle_reg_no/>
+  <vin/>
+  <road_fund_flag/>
+  <road_fund_valid/>
+  <customer_ext</customer_ext_id>
+  <customer</customer_no>
+  <cust_business/>
+  <cust_title>Mr</cust_title>
+  <cust_forename>S</cust_forename>
+  <cust_surname>Pointing</cust_surname>
+  <customerUPRN>5870036078</customerUPRN>
+  <cust_address1>61</cust_address1>
+  <cust_address2/>
+  <cust_address3>Beulah Road</cust_address3>
+  <cust_address4>Sutton</cust_address4>
+  <cust_address5/>
+  <cust_postcode>SM1 2QG</cust_postcode>
+  <cust_home_tel>.</cust_home_tel>
+  <cust_work_tel/>
+  <cust_fax_tel/>
+  <cust_mobile_tel/>
+  <cust_email>unknown</cust_email>
+  </export_record>
+ </crm_export_file> 

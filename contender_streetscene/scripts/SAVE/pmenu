@@ -1,0 +1,11 @@
+echo "\033[0y\c"
+tput clear
+echo
+echo "    Password Maintenance Menu"
+echo "    ========================="
+echo
+passwd
+echo "\n\nPress Enter to return to main session\c"
+read foo
+echo "\033[1y\c"
+exit

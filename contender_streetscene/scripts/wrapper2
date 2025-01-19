@@ -1,0 +1,5 @@
+C_PIPE=$1
+shift
+rundev $*
+echo Done > $C_PIPE
+

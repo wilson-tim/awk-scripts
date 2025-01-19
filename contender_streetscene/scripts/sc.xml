@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Transactions JobId="060404171652281">
+<Transaction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="G65437">
+  <TransactionType Id="106649" Process="106649" Category="A">Street Cleaning Request</TransactionType>
+  <TransactionChannel Id="INTER">Customer Portal</TransactionChannel>
+  <TransactionAuthority Id="16" Division="StreetCare">Brent Council</TransactionAuthority>
+  <Location Id="254820" Reference="202136725">0 Agave Road
+London
+NW2</Location>
+  <Applicant1>
+    <Name>Bloomfield</Name>
+    <Forename1>Mike</Forename1>
+    <Email>mike@datapro.co.uk</Email>
+    <businessPhone>01273886003</businessPhone>
+    <homePhone xsi:nil="true" />
+    <mobilePhone xsi:nil="true" />
+  </Applicant1>
+  <Location.Details>WHOLE ROAD</Location.Details>
+  <Comments>DATAPRO SOFTWARE TEST</Comments>
+  <Ethnic_Group>British</Ethnic_Group>
+  <Age>56-65</Age>
+  <Gender>M</Gender>
+  <Illness_Or_Disability xsi:nil="true" />
+  <Activities_Limited xsi:nil="true" />
+</Transaction></Transactions>

@@ -1,0 +1,3210 @@
+*ac_dets - 'Account Codes - All'*
+KEY account_code	char (15) KEY
+    descript	char (24)
+
+*ac_type - 'Access type codes - AO'*
+KEY access_code	char (1) KEY
+    descript	char (24)
+
+*activity - 'Activity Codes - AO'*
+KEY activity_code	char (4) KEY
+    account_code	char (15)
+    attached_to_job	char (1)
+    attendance_activity	char (1)
+    cost_centre	char (4)
+    descript	char (24)
+    paid_time	char (1)
+    payment_factor	amount (5)
+    reporting_category	numeric (2)
+
+*add_inf - 'additional information - AO'*
+KEY asset_id	char (6) KEY
+    descript_1	char (50)
+    descript_2	char (50)
+    descript_3	char (50)
+    descript_4	char (50)
+    descript_5	char (50)
+    descript_6	char (50)
+    descript_7	char (50)
+
+*adv_note - 'Advice Note Details - AO'*
+KEY advice_note	char (15) KEY
+    advice_text	text 
+
+*ag_type - 'Agreement Types - PM'*
+KEY agree_type	char (1) KEY
+    descript	char (30)
+
+*aliases - 'Trim Aliases - SYS/P'*
+KEY alias_code	char (30) KEY
+KEY system_type	char (3) KEY
+    trim_descript	char (50)
+
+*alt_st_dts - 'Alternative Site Details - PM'*
+KEY property_id	numeric (9) KEY
+    address_number	char (4)
+    car_park_area	huge amount
+    county	char (20)
+    date_of_survey	huge date
+    disp_land_area	huge amount
+    district_valuer	char (8)
+    dr_arrangement	text 
+    dr_auth_l_office	char (8)
+    elec_serv_dets	text 
+    elec_sup_l_office	char (8)
+    exist_consent	text 
+    exist_consent_exp	huge date
+    exist_use_des	text 
+    gas_service_dets	text 
+    gas_sup_l_office	char (8)
+    h_way_authority	char (8)
+    hard_area_hect	huge amount
+    hlth_sfe_l_office	char (8)
+    land_area_hect	huge amount
+    land_val_pot_use	huge amount
+    land_val_pres_use	huge amount
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    listed_building	char (8)
+    loc_plan_officer	char (8)
+    locality	char (30)
+    no_of_spaces	numeric (5)
+    non_dom_date	huge date
+    non_domestic_rv	huge amount
+    oth_sup_dets_1	text 
+    oth_sup_dets_2	text 
+    oth_sup_name_1	char (8)
+    oth_sup_name_2	char (8)
+    other	char (8)
+    post_code	char (8)
+    pot_use_date	huge date
+    pot_use_desig	text 
+    present_use_dt	huge date
+    river_authority	char (8)
+    road	char (30)
+    site_desc	text 
+    site_name	char (40)
+    soft_area_hect	huge amount
+    surv_name	char (30)
+    surveyed_by	char (8)
+    telecom_det	text 
+    telecom_provider	char (8)
+    terr_plan_no	char (8)
+    town	char (25)
+    water_serv_dets	text 
+    water_sup_l_office	char (8)
+
+*alt_val - 'Alternative Valuation - PM'*
+KEY property_id	numeric (9) KEY
+    area_of_land	float (64)
+    asset_category	char (2)
+    basis_of_val	char (5)
+    comments	text 
+    date_val_carr_out	huge date
+    eff_val_date	huge date
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    method_of_val	char (3)
+    total_value	numeric (9)
+    valuer_code	char (4)
+
+*ap_dels - 'Deleted Apportionment Details - CC'*
+KEY account_code	char (15) KEY
+KEY capital_asset_code	char (21) KEY
+KEY capital_sub_asset_code	numeric (4) KEY
+KEY cost_centre	char (4) KEY
+KEY division	char (4) KEY
+KEY donated	char (1) KEY
+KEY management_unit	char (4) KEY
+    percentage	amount (3)
+
+*ap_dets - 'Apportionment - CC'*
+KEY account_code	char (15) KEY
+KEY cap_asset_code	char (21) KEY
+KEY cap_asset_sub	numeric (4) KEY
+KEY cost_centre	char (4) KEY
+KEY division	char (4) KEY
+KEY donated	char (1) KEY
+KEY management_unit	char (4) KEY
+    percentage	amount (3)
+
+*ap_hist - 'Apportionment History - CC'*
+KEY capital_asset_code	char (21) KEY
+KEY capital_sub_asset_code	numeric (4) KEY
+KEY effective_date	huge date KEY
+    account_code	char (15)
+    cost_centre	char (4)
+    division	char (4)
+    donated	char (1)
+    management_unit	char (4)
+    percentage	amount (3)
+
+*art_works - 'Works of Art - PM'*
+KEY l_f_s_code	char (7) KEY
+KEY property_id	numeric (9) KEY
+KEY sequence_no	numeric (4) KEY
+    art_category	char (1)
+    artist_name	char (30)
+    condition_code	char (4)
+    condition_desc	text 
+    date_created	huge date
+    date_visited	huge date
+    descript	text 
+    dimensions	char (30)
+    grid_ref	char (12)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    live_flag	char (1)
+    live_flag_date	huge date
+    locat_block	char (1)
+    locat_desc	text 
+    obvious_damage	text 
+    provenance	text 
+    visitor	char (20)
+    work_name	text 
+
+*as_costs - 'Asset Costs History - AO'*
+KEY asset_id	char (6) KEY
+KEY year	char (4) KEY
+    asset_number	char (6)
+    building_code	char (3)
+    contr_costs_ytd	amount (9)
+    hours_ytd	amount (7)
+    labour_costs_ytd	amount (9)
+    locat_code	char (6)
+    management_unit	char (4)
+    mat_costs_ytd	amount (9)
+    purch_costs_ytd	amount (9)
+    site	char (3)
+    sub_asset_number	char (3)
+
+*as_dels - 'Deleted Assets - AO'*
+KEY asset_id	char (6) KEY
+    acceptance_date	huge date
+    account_code	char (15)
+    asset_name	char (24)
+    asset_no	char (6)
+    asset_no_bt1	numeric (6)
+    asset_no_bt2	numeric (6)
+    asset_type	char (6)
+    bms_ref_fld	char (8)
+    building_code	char (3)
+    building_code_bt	numeric (6)
+    charg_cost_cent	char (4)
+    contract_cost_pr	amount (9)
+    contract_cost_yt	amount (9)
+    contract_pm_job	char (1)
+    cost_centre	char (4)
+    date_last_comp	huge date
+    date_next_due	huge date
+    del_pm_job_flag	char (1)
+    down_serv_level	char (2)
+    down_time	amount (8)
+    est_replace_year	char (4)
+    hours_run_per_wk	numeric (3)
+    indexed_rep_cost	numeric (7)
+    labour_cost_pr	amount (9)
+    labour_cost_yt	amount (9)
+    locat_bt1	numeric (6)
+    locat_bt2	numeric (6)
+    locat_code	char (6)
+    locat_ref	char (13)
+    maintenance_plan	char (2)
+    management_unit	char (4)
+    manufacturer	char (8)
+    material_cost_pr	amount (9)
+    material_cost_yt	amount (9)
+    model_no	char (20)
+    no_failures	numeric (5)
+    order_no	numeric (8)
+    price	numeric (7)
+    price_index_type	char (3)
+    priority_code	char (2)
+    purchase_cost_pr	amount (9)
+    purchase_cost_yt	amount (9)
+    rely_stats_req	char (1)
+    repair_time	amount (8)
+    resp_serv_level	char (2)
+    serial_no	char (12)
+    site_code	char (3)
+    site_code_bt	numeric (6)
+    start_date	huge date
+    statutory_item	char (1)
+    sub_asset_no	char (3)
+    sub_asset_no_bt	numeric (6)
+    supplier_code	char (8)
+    utilisation_cat	char (3)
+    warranty_expiry	char (7)
+    workshop	char (3)
+
+*as_dets - 'Asset details - AO'*
+KEY asset_id	char (6) KEY
+    acceptance_date	huge date
+    account_code	char (15)
+    asset_name	char (24)
+    asset_no	char (6)
+    asset_no_bt1	numeric (6)
+    asset_no_bt2	numeric (6)
+    asset_type	char (6)
+    bms_ref_fld	char (8)
+    building_code	char (3)
+    building_code_bt	numeric (6)
+    charg_cost_cent	char (4)
+    contract_cost_pr	amount (9)
+    contract_cost_yt	amount (9)
+    contract_pm_job	char (1)
+    cost_centre	char (4)
+    date_last_comp	huge date
+    date_next_due	huge date
+    del_pm_job_flag	char (1)
+    down_serv_level	char (2)
+    down_time	amount (8)
+    est_replace_year	char (4)
+    hours_run_per_wk	numeric (3)
+    indexed_rep_cost	numeric (7)
+    labour_cost_pr	amount (9)
+    labour_cost_yt	amount (9)
+    locat_bt1	numeric (6)
+    locat_bt2	numeric (6)
+    locat_code	char (6)
+    locat_ref	char (13)
+    maintenance_plan	char (2)
+    management_unit	char (4)
+    manufacturer	char (8)
+    material_cost_pr	amount (9)
+    material_cost_yt	amount (9)
+    model_no	char (20)
+    no_failures	numeric (5)
+    order_no	numeric (8)
+    phoenix_code	char (6)
+    price	numeric (7)
+    price_index_type	char (3)
+    priority_code	char (2)
+    purchase_cost_pr	amount (9)
+    purchase_cost_yt	amount (9)
+    rely_stats_req	char (1)
+    repair_time	amount (8)
+    resp_serv_level	char (2)
+    serial_no	char (12)
+    site_code	char (3)
+    site_code_bt	numeric (6)
+    start_date	huge date
+    statutory_item	char (1)
+    sub_asset_no	char (3)
+    sub_asset_no_bt	numeric (6)
+    supplier_code	char (8)
+    utilisation_cat	char (3)
+    warranty_expiry	char (7)
+    workshop	char (3)
+
+*as_group - 'Asset Group - CC'*
+KEY group_code	char (3) KEY
+    account_code	char (15)
+    cost_centre	char (4)
+    descript	char (24)
+
+*as_invy - 'Asset Inventory - AO'*
+KEY asset_id	char (6) KEY
+KEY inv_code	char (8) KEY
+    descript	char (24)
+    price	amount (9)
+    quantity	numeric (3)
+    serial_no	char (20)
+
+*as_locs - 'Asset locations - AO'*
+KEY asset_id	char (6) KEY
+KEY identifier	char (10) KEY
+
+*as_spare - 'Asset Spares - AO'*
+KEY asset_id	char (6) KEY
+KEY stock_code	char (10) KEY
+    descript_1	char (40)
+    descript_2	char (40)
+
+*as_type - 'Asset type codes - AO'*
+KEY asset_type_code	char (6) KEY
+    descript	char (24)
+
+*asbestos - 'Asbestos Information - PM'*
+KEY property_id	numeric (9) KEY
+    actioned_by	char (40)
+    asbestos_found	char (1)
+    date_completed	huge date
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    lfs_code	char (7)
+    next_survey	huge date
+    survey_cost	numeric (9)
+    survey_date	huge date
+    surveyed_by	char (40)
+    urgency_number	char (1)
+    work_order_no	char (12)
+
+*ass_con - 'Asset Contract Link Table - AO'*
+KEY asset_id	char (6) KEY
+KEY contract_code	char (6) KEY
+
+*ass_dets - 'Asset Details - PM'*
+KEY property_id	numeric (9) KEY
+    asset_category	char (2)
+    basis_of_val	char (5)
+    land_and_build	char (1)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    method_of_val	char (3)
+    type_of_prop	char (1)
+
+*asset_pro - 'Asset Protection - PM'*
+KEY property_id	numeric (9) KEY
+    adverse_use_det	text 
+    adverse_use_oth	char (1)
+    boundary_issue	char (1)
+    conclusion	char (1)
+    date_commenced	huge date
+    date_inspected	huge date
+    date_resolved	huge date
+    encroachment	char (1)
+    hcc_land_misuse	char (1)
+    hcc_plan_misuse	char (1)
+    how_resolved	text 
+    illegal_dumping	text 
+    inspected_by	char (30)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    overhead_cables	char (1)
+    r_of_way_obstr	char (1)
+    right_of_way	char (1)
+    rights_of_light	char (1)
+
+*au_limit - 'Authorisation Limits - FC'*
+KEY contract_type	char (3) KEY
+KEY grade	char (3) KEY
+    maximum_val_fld	amount (9)
+    minimum_val_fld	amount (9)
+
+*aud_trans - 'Auditing Transactions Details - FC'*
+KEY aud_trans_key	numeric (9) KEY
+    action_type	char (1)
+    aud_date	huge date
+    aud_reason	text 
+    aud_time	time 
+    author	char (10)
+    fld_name	char (30)
+    fld_trim	char (78)
+    from_val	char (50)
+    rec_key	char (78)
+    tab_name	char (10)
+    to_val	char (50)
+
+*auth_grd - 'Authorisation Grades - FC'*
+KEY auth_grade	char (3) KEY
+    descript	char (24)
+
+*b_drc_dets - 'Block DRC Details - PM'*
+KEY property_id	numeric (9) KEY
+    age_of_block	numeric (4)
+    asset_category	char (2)
+    asset_value	numeric (9)
+    condition_of_block	char (4)
+    date_val_carr_out	huge date
+    drc_for_block	numeric (9)
+    eco_obs_factor	numeric (3)
+    eff_val_date	huge date
+    environment_factor	numeric (3)
+    func_obs_factor	numeric (3)
+    grs_int_flr_area	numeric (7)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    life_of_block	numeric (2)
+    valuer_code	char (4)
+
+*b_val_dets - 'Block Value Details - PM'*
+KEY property_id	numeric (9) KEY
+    asset_category	char (2)
+    basis_of_val	char (5)
+    block_value	numeric (9)
+    comments	text 
+    date_val_carr_out	huge date
+    eff_val_date	huge date
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    method_of_val	char (3)
+    valuer_code	char (4)
+
+*bc_dets - 'Cost Centre - All'*
+KEY cost_centre_code	char (4) KEY
+    committee_or_division	char (4)
+    descript	char (24)
+    management_unit	char (4)
+
+*bcis_dets - 'BCIS Details - PM'*
+KEY bcis_code	char (5) KEY
+    bcis_descript	char (40)
+    cap_acctg_cost	amount (9)
+    demolition_perc	amount (7)
+    ext_works_perc	amount (7)
+    fees_perc	amount (7)
+    insurance_cost	amount (9)
+
+*bcis_dets2 - 'Building Inflation Factor - PM'*
+KEY sub_value	numeric (9) KEY
+    inflation	amount (5)
+    rebuild_period	numeric (2)
+
+*bdg_dets - 'Building details - AO'*
+KEY building_code	char (3) KEY
+KEY site_code	char (3) KEY
+    building_name	char (24)
+    phoenix_code	char (6)
+    property_id	numeric (9)
+
+*blck_appt - 'Survey Apportionments - PM'*
+KEY block_ref	char (2) KEY
+KEY business_unit	char (4) KEY
+KEY department	char (4) KEY
+KEY division	char (4) KEY
+KEY property_id	numeric (9) KEY
+    apport_percent	amount (6)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+
+*blck_dets - 'Building Block Code Details - PM'*
+KEY block_ref	char (2) KEY
+KEY property_id	numeric (9) KEY
+    approx_flag	char (1)
+    area_x_cost	numeric (9)
+    bal_area_sqm	huge amount
+    bcis_index	char (5)
+    blck_text	text 
+    block_usage1	char (5)
+    block_usage2	char (5)
+    block_usage3	char (5)
+    block_usage4	char (5)
+    block_usage5	char (5)
+    block_usage6	char (5)
+    block_usage_all	char (42)
+    const_type	char (4)
+    construct_year	char (4)
+    demolition_cost	numeric (9)
+    demolition_date	huge date
+    disabled_access	text 
+    ext_works_ind	amount (7)
+    fees_index	amount (7)
+    fire_date	huge date
+    fire_rein_val	numeric (9)
+    g_ext_b_area_m	numeric (5)
+    g_ext_flr_sq_m	huge amount
+    g_int_flr_sq_m	huge amount
+    gross_int_sq_m1	numeric (4)
+    gross_int_sq_m2	numeric (4)
+    gross_int_sq_m3	numeric (4)
+    gross_int_sq_m4	numeric (4)
+    gross_int_sq_m5	numeric (4)
+    gross_int_sq_m6	numeric (4)
+    gross_int_sq_m7	numeric (4)
+    gross_int_sq_m8	numeric (4)
+    gross_vol_cu_m	huge amount
+    handover_date	huge date
+    heated_vol_cum	huge amount
+    l_ins_renw_date	huge date
+    l_mkt_valuation	huge amount
+    l_survey_date	huge date
+    l_upgrade_date	huge date
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    listed_build	char (1)
+    listed_grade	char (5)
+    listing_desc	text 
+    max_flrs_no	numeric (2)
+    net_flr_meas	char (1)
+    net_flr_sq_m1	numeric (4)
+    net_flr_sq_m2	numeric (4)
+    net_flr_sq_m3	numeric (4)
+    net_flr_sq_m4	numeric (4)
+    net_flr_sq_m5	numeric (4)
+    net_flr_sq_m6	numeric (4)
+    net_flr_sq_m7	numeric (4)
+    net_flr_sq_m8	numeric (4)
+    net_int_area	huge amount
+    net_int_sqm	huge amount
+    net_let_area	huge amount
+    net_space_sqm	huge amount
+    no_of_rooms	numeric (9)
+    number_of_floors	numeric (3)
+    nxt_survey_date	huge date
+    other_area	huge amount
+    other_date	huge date
+    other_val	huge amount
+    overall_blck_cond	char (4)
+    p_mrkt_value	huge amount
+    potential_date	huge date
+    present_date	huge date
+    remaining_life	numeric (9)
+    room_area_sqm	huge amount
+    room_count_src	char (1)
+    survey_source	char (1)
+    temp_construct	char (1)
+    total_area_rms	numeric (5)
+    total_usable_rms	numeric (5)
+    upgrade_text	text 
+    usable_rms_no_1	numeric (3)
+    usable_rms_no_2	numeric (3)
+    usable_rms_no_3	numeric (3)
+    usable_rms_no_4	numeric (3)
+    usable_rms_no_5	numeric (3)
+    usable_rms_no_6	numeric (3)
+    usable_rms_no_7	numeric (3)
+    usable_rms_no_8	numeric (3)
+
+*bld_appt - 'Building Apportionments - FC'*
+KEY building_code	char (3) KEY
+KEY occupy_dept	char (3) KEY
+KEY site_code	char (3) KEY
+    percentage	amount (5)
+
+*bld_opcost - 'Building operating costs - PM'*
+KEY cost_date	huge date KEY
+KEY property_id	numeric (9) KEY
+    a_clean_cost	huge amount
+    a_elec_cost	huge amount
+    a_fuel_oil_cost	huge amount
+    a_gas_cost	huge amount
+    a_gnd_maint_cost	huge amount
+    a_maint_cost	huge amount
+    a_rates_cost	huge amount
+    a_rent_cost	huge amount
+    a_sec_cost	huge amount
+    a_water_cost	huge amount
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    other_a_cost	huge amount
+    tot_a_cost	huge amount
+
+*bu_rec - 'Budget Record - FC'*
+KEY account_code	char (15) KEY
+KEY cost_centre	char (4) KEY
+KEY financial_year	char (4) KEY
+    annual_budget	numeric (8)
+    budget_group	char (4)
+    budget_period_1	numeric (8)
+    budget_period_10	numeric (8)
+    budget_period_11	numeric (8)
+    budget_period_12	numeric (8)
+    budget_period_13	numeric (8)
+    budget_period_2	numeric (8)
+    budget_period_3	numeric (8)
+    budget_period_4	numeric (8)
+    budget_period_5	numeric (8)
+    budget_period_6	numeric (8)
+    budget_period_7	numeric (8)
+    budget_period_8	numeric (8)
+    budget_period_9	numeric (8)
+    commt_period_1	huge amount
+    commt_period_10	huge amount
+    commt_period_11	huge amount
+    commt_period_12	huge amount
+    commt_period_13	huge amount
+    commt_period_2	huge amount
+    commt_period_3	huge amount
+    commt_period_4	huge amount
+    commt_period_5	huge amount
+    commt_period_6	huge amount
+    commt_period_7	huge amount
+    commt_period_8	huge amount
+    commt_period_9	huge amount
+    dummy_period	numeric (2)
+    estimated_actual	numeric (8)
+    expend_period_1	huge amount
+    expend_period_10	huge amount
+    expend_period_11	huge amount
+    expend_period_12	huge amount
+    expend_period_13	huge amount
+    expend_period_2	huge amount
+    expend_period_3	huge amount
+    expend_period_4	huge amount
+    expend_period_5	huge amount
+    expend_period_6	huge amount
+    expend_period_7	huge amount
+    expend_period_8	huge amount
+    expend_period_9	huge amount
+    last_year_actual	huge amount
+    management_unit	char (4)
+    same_each_period	char (1)
+
+*ca_dels - 'Deleted capital charging details - CC'*
+KEY capital_asset_code	char (21) KEY
+KEY capital_sub_asset_no	numeric (4) KEY
+    acceptance_date	huge date
+    account_code	char (15)
+    apportionment_count	numeric (4)
+    asset_id	char (6)
+    charge_type	char (6)
+    cost_centre	char (4)
+    depreciation_to_date	huge amount
+    division	char (4)
+    indexed_replacement_cost	huge amount
+    int_type	char (2)
+    interest	huge amount
+    last_charged	char (6)
+    management_unit	char (4)
+    net_book_val_fld	huge amount
+    notes	char (50)
+    notes_extra	char (50)
+    pr_index_type	char (3)
+    prev_capital_asset_code	char (21)
+    prev_capital_sub_asset_no	numeric (4)
+    property_id	numeric (9)
+    purchase_price	huge amount
+    purchase_type	char (1)
+    remaining_life	numeric (4)
+    replacement_date	huge date
+    residual_val_fld	huge amount
+
+*ca_dets - 'capital charging details - CC'*
+KEY capital_asset_code	char (21) KEY
+KEY capital_sub_asset_no	numeric (4) KEY
+    acceptance_date	huge date
+    account_code	char (15)
+    apportionment_count	numeric (4)
+    asset_id	char (6)
+    asset_status	char (2)
+    charge_type	char (6)
+    cost_centre	char (4)
+    depreciation_to_date	huge amount
+    division	char (4)
+    indexed_replacement_cost	huge amount
+    int_type	char (2)
+    interest	huge amount
+    last_charged	char (6)
+    management_unit	char (4)
+    net_book_val_fld	huge amount
+    notes	char (50)
+    notes_extra	char (50)
+    pr_index_type	char (3)
+    prev_capital_asset_code	char (21)
+    prev_capital_sub_asset_no	numeric (4)
+    property_id	numeric (9)
+    purchase_price	huge amount
+    purchase_type	char (1)
+    remaining_life	numeric (4)
+    replacement_date	huge date
+    residual_val_fld	huge amount
+
+*calendar - 'Working day calendar - AO'*
+KEY calendar_date	huge date KEY
+    calendar_day	char (3)
+    hours_worked	amount (4)
+    start_time	time 
+
+*cc_dets - 'Clock card details - AO'*
+KEY clock_card_no	char (6) KEY
+    basic_hours	amount (5)
+    cost_centre	char (4)
+    date_joined	huge date
+    date_left	huge date
+    grade	char (3)
+    name	char (24)
+    team_id	char (6)
+    trade	char (1)
+    workshop	char (3)
+
+*cc_phist - 'Clock Card Permanent Hist - AO'*
+KEY uniquifier	numeric (6) KEY
+    activity_code	char (4)
+    clock_card_no	char (6)
+    date_recorded	huge date
+    docket_number	char (6)
+    entered_by	char (8)
+    entered_date	huge date
+    entered_time	time 
+    hourly_rate	amount (4)
+    hours	amount (5)
+    name	char (24)
+    rep_category	numeric (2)
+    team_id	char (6)
+    time_factor	amount (4)
+
+*ccouncils - 'County Council Codes - PM'*
+KEY ccoun_code	char (8) KEY
+    ccoun_descript	char (40)
+
+*cd_dets - 'Contract details - AO'*
+KEY contract_code	char (6) KEY
+    budget	numeric (8)
+    contract_type	char (3)
+    date_completed	huge date
+    descript	char (24)
+    live_flag	char (1)
+    payment_method	char (2)
+    period_months	numeric (2)
+    purchase_ordno	numeric (8)
+    renewal_date	huge date
+    start_date	huge date
+    sup_contract_ref	char (8)
+    supplier_code	char (8)
+    termin_period	numeric (4)
+
+*ch_hist - 'Charges History - CC'*
+KEY cap_ass_code	char (21) KEY
+KEY cap_ass_sub	numeric (4) KEY
+KEY charge_period	char (6) KEY
+    asset_group	char (3)
+    dep_this_per	huge amount
+    dep_to_date	huge amount
+    ind_rep_cost	huge amount
+    int_this_per	huge amount
+    residual_val_fld	huge amount
+
+*ch_type - 'Charge type - CC'*
+KEY charge_code	char (6) KEY
+    asset_group	char (3)
+    basis_of_valuation	char (24)
+    classification	char (1)
+    depreciation_type	char (1)
+    descript	char (24)
+    life	numeric (3)
+
+*compl_dets - 'Compliance with acts - PM'*
+KEY act_name	char (30) KEY
+KEY property_id	numeric (9) KEY
+    compliance	char (1)
+    date_insp	huge date
+    detail	text 
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+
+*con_det - 'contract details - AO'*
+KEY contract_code	char (6) KEY
+    descript_1	char (50)
+    descript_2	char (50)
+    descript_3	char (50)
+    descript_4	char (50)
+    descript_5	char (50)
+    descript_6	char (50)
+    descript_7	char (50)
+
+*condition - 'Condition Survey Element Descriptions - PM'*
+KEY condition	char (4) KEY
+    descript	char (24)
+
+*constit - 'Constituency Codes - PM'*
+KEY constit_code	char (6) KEY
+    constit_descript	char (40)
+
+*construct - 'Construction - PM'*
+KEY construct	char (4) KEY
+    descript	char (24)
+
+*control - 'Control - AO/FC/PM/P'*
+KEY current_pm_year	char (4) KEY
+    ac_transfer_flag	char (1)
+    accruals_entered_yn	char (1)
+    accruals_yn	char (1)
+    adjust_budgets	char (1)
+    allowed_backdate	numeric (3)
+    business_unit	char (4)
+    company_name	char (35)
+    control_acc_code	char (15)
+    county	char (30)
+    curr_fin_period	numeric (2)
+    curr_fin_year	char (4)
+    days_lag	numeric (2)
+    def_account_code	char (15)
+    def_cost_centre	char (4)
+    def_job_type	char (2)
+    def_trade	char (1)
+    default_inv_addr	char (8)
+    default_spooler	char (20)
+    department	char (4)
+    division	char (4)
+    docket_type	char (1)
+    dte_last_per_end	huge date
+    gen_asset_ids	char (1)
+    hoc_percentage	amount (5)
+    hol_percentage	amount (5)
+    invy_stock_type	char (1)
+    jobbing_limit	amount (9)
+    l_use_login	char (1)
+    last_asset_id	char (6)
+    last_capital_asset_tx_no	numeric (6)
+    last_cw_job_id	char (6)
+    last_docket_no	char (6)
+    last_phist_id	char (6)
+    last_pm_job_id	char (6)
+    last_proj_code	char (6)
+    last_week_trans	numeric (2)
+    link_ao_to_ca	char (1)
+    link_lnp_sites	char (1)
+    mand_projects	char (1)
+    mod_date_time	char (1)
+    modify_priority	char (1)
+    n_use_login	char (1)
+    p_use_login	char (1)
+    perform_man	char (1)
+    s_use_login	char (1)
+    stand_work_hrs	amount (4)
+    stat_bar_mode	char (1)
+    stock_asset_id	char (6)
+    stores_issue_acc	char (15)
+    system_type	char (3)
+    tol_neg_var_perc	amount (5)
+    tol_pos_var_perc	amount (5)
+    validate_cc_ac	char (1)
+    write_off_acc	char (15)
+
+*cost_hist - 'Job Cost History - AO'*
+KEY docket_number	char (6) KEY
+KEY uniquifier	numeric (6) KEY
+    cost	amount (8)
+    cost_ref	char (30)
+    cost_type	char (1)
+
+*ct_type - 'contract type file - AO'*
+KEY contract_type	char (3) KEY
+    auth_required	char (1)
+    descript	char (24)
+
+*cw_dets - 'CW Job Text - AO'*
+KEY cw_dets_job_id	char (6) KEY
+    detail_1	char (50)
+    detail_2	char (50)
+    detail_3	char (50)
+    detail_4	char (50)
+    detail_5	char (50)
+    detail_6	char (50)
+    detail_7	char (50)
+
+*cw_job - 'Current Job File - AO'*
+KEY cw_job_id	char (6) KEY
+    access_code	char (1)
+    account_code	char (15)
+    allowce_time_hrs	amount (5)
+    asset_cost_cent	char (4)
+    asset_id	char (6)
+    asset_name	char (24)
+    asset_no	char (6)
+    asset_no_bt1	numeric (6)
+    asset_no_bt2	numeric (6)
+    asset_type	char (6)
+    building_code	char (3)
+    building_code_bt	numeric (6)
+    category	char (2)
+    charg_cost_cent	char (4)
+    comp_date_plan	huge date
+    comp_time_plan	time 
+    contract_code	char (6)
+    contract_type	char (3)
+    date_act_resp	huge date
+    date_reported	huge date
+    date_to_comp_ex	huge date
+    dckt_iss_yn	char (1)
+    delay_date_act_resp	huge date
+    delay_date_comp	huge date
+    delay_time_comp	time 
+    delay_time_comp_a	amount (5)
+    delay_time_resp	time 
+    delay_time_resp_a	amount (5)
+    docket_no	char (6)
+    dorc_flag	char (1)
+    down_serv_level	char (2)
+    downtime_hours	amount (5)
+    estimated_cost	amount (8)
+    estimated_hrs	amount (5)
+    failure_yn	char (1)
+    fault_code	char (3)
+    frequency	numeric (3)
+    grade_1	char (3)
+    grade_2	char (3)
+    grade_3	char (3)
+    grade_4	char (3)
+    job_id_req_no	char (6)
+    job_type_code	char (2)
+    labour_cost	amount (9)
+    locat_bt1	numeric (6)
+    locat_bt2	numeric (6)
+    locat_code	char (6)
+    log_date	huge date
+    log_time	time 
+    logged_by	char (10)
+    maintenance_plan	char (2)
+    management_unit	char (4)
+    materials_cost	amount (9)
+    out_of_seq_flag	char (1)
+    phoenix_code	char (6)
+    priority_code	char (2)
+    project_code	char (6)
+    purch_order_flag	char (1)
+    quantity_1	numeric (1)
+    quantity_2	numeric (1)
+    quantity_3	numeric (1)
+    quantity_4	numeric (1)
+    reason_for_delay	char (1)
+    reported_by	char (24)
+    resp_date_plan	huge date
+    resp_serv_level	char (2)
+    resp_time_plan	time 
+    rev_allow_time	amount (5)
+    rev_wk_cont_time	amount (5)
+    safety_permit_yn	char (1)
+    series	numeric (1)
+    site_code	char (3)
+    site_code_bt	numeric (6)
+    status_flag	char (1)
+    statutory_job	char (1)
+    sub_asset_no	char (3)
+    sub_asset_no_bt	numeric (6)
+    time_reported	time 
+    time_resp	time 
+    time_resp_a	amount (5)
+    time_to_repr_hrs	amount (5)
+    tot_hours_compl	amount (5)
+    trade	char (1)
+    usr_ref_fld	char (12)
+    week_planned	char (7)
+    wk_cont_time_hrs	amount (5)
+    work_type	char (1)
+    workshop	char (3)
+    wrk_done_summary	char (24)
+
+*cw_safety_permit - 'CW Saftey Permit - AO'*
+KEY cw_job_id	char (6) KEY
+    permit_det1	char (24)
+    permit_det2	char (24)
+    permit_det3	char (24)
+    permit_det4	char (24)
+    permit_det5	char (24)
+
+*cx_dets - 'Capital Asset Transactions - CC'*
+KEY sequence_number	numeric (6) KEY
+    account_code	char (15)
+    capital_asset_code	char (21)
+    capital_sub_asset_code	numeric (4)
+    cost_centre	char (4)
+    division	char (6)
+    effective_date	huge date
+    effective_period	char (6)
+    management_unit	char (4)
+    new_val_fld	char (25)
+    old_val_fld	char (25)
+    originator	char (15)
+    reason	char (24)
+    transaction_date	huge date
+    transaction_time	time 
+    transaction_type	char (3)
+
+*dec_l_let - 'Decoration Liabilities Lettings - PM'*
+KEY deed_packet_ref	char (12) KEY
+KEY lfs_code	char (7) KEY
+KEY property_id	numeric (9) KEY
+KEY seq_no_let	numeric (2) KEY
+KEY seq_no_this	numeric (2) KEY
+    interest	char (1)
+    l_lord_ext_yr	char (4)
+    l_lord_int_yr	char (4)
+    live_flag	char (1)
+    live_flag_date	huge date
+    tenant_ext_yr	char (4)
+    tenant_int_yr	char (4)
+
+*dec_l_own - 'Decoration Liabilities Owners - PM'*
+KEY deed_packet_ref	char (12) KEY
+KEY property_id	numeric (9) KEY
+KEY sequence_no	numeric (2) KEY
+    interest	char (1)
+    l_lord_ext_yr	char (4)
+    l_lord_int_yr	char (4)
+    live_flag	char (1)
+    live_flag_date	huge date
+    tenant_ext_yr	char (4)
+    tenant_int_yr	char (4)
+
+*deed_dets - 'Deed Details - PM'*
+KEY deed_packet_ref	char (12) KEY
+KEY interest	char (1) KEY
+KEY property_id	numeric (9) KEY
+    active_service	char (1)
+    addr_no_prop	char (4)
+    addr_own_no	char (4)
+    agree_s_date	huge date
+    agree_ter_days	numeric (3)
+    agree_ter_mnths	numeric (3)
+    agree_ter_yrs	numeric (3)
+    agreement_type	char (1)
+    alien_clse_type	char (1)
+    alien_clse_w_p	char (1)
+    break_clause	char (4)
+    clause_descript	text 
+    cost_centre	char (4)
+    county_own	char (20)
+    county_prop	char (20)
+    current_rent	amount (8)
+    department	char (4)
+    est_expend	numeric (9)
+    est_income	numeric (9)
+    exten_opt_days	numeric (3)
+    exten_opt_mnths	numeric (3)
+    exten_opt_yrs	numeric (3)
+    hold_committee	char (4)
+    inc_exc	char (1)
+    l_lord_tenant_ex	char (1)
+    land_use_code	char (5)
+    landlord_repair	text 
+    late_pay_int	char (1)
+    locality_own	char (30)
+    locality_prop	char (30)
+    man_committee	char (4)
+    management_unit	char (4)
+    name_of_prop	char (40)
+    ownr_organ_add	char (40)
+    pay_period	char (10)
+    post_code_own	char (8)
+    post_code_prop	char (8)
+    purpose_held	char (1)
+    renew_date_all	char (117)
+    rent_abate	huge amount
+    rent_renew_date_1	huge date
+    rent_renew_date_2	huge date
+    rent_renew_date_3	huge date
+    rent_renew_date_4	huge date
+    rent_renew_date_5	huge date
+    rent_renew_date_6	huge date
+    rent_renew_date_7	huge date
+    rent_renew_date_8	huge date
+    rent_renew_date_9	huge date
+    rent_rev_basis	char (1)
+    rent_rev_desc	text 
+    review_per_mth	numeric (9)
+    review_per_yr	numeric (9)
+    road_own	char (30)
+    road_prop	char (30)
+    service_chg	huge amount
+    sub_let_desc	text 
+    sub_let_to	char (40)
+    tenancy_doc_cde	char (4)
+    tenant_repair	text 
+    time_critical	char (1)
+    title_nat_desc	text 
+    town_own	char (25)
+    town_prop	char (25)
+    usr_clause	char (1)
+    usr_clause_desc	text 
+
+*deeds - 'Deeds Information - PM'*
+KEY deed_packet_ref	char (12) KEY
+KEY interest	char (1) KEY
+KEY property_id	numeric (9) KEY
+    comments	text 
+    enc_ben	char (1)
+    hold_committee1	char (4)
+    hold_committee2	char (4)
+    hold_committee3	char (4)
+    hold_committee4	char (4)
+    hold_committee5	char (4)
+    interest_p_a	char (1)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    lfs_code	char (7)
+    no_deeds_in_pack	numeric (5)
+    owner_quality	char (10)
+
+*department - 'Department Codes - PM'*
+KEY dept_code	char (5) KEY
+    dept_descript	char (40)
+
+*deployment - 'Deployment Codes - PM'*
+KEY depl_code	char (1) KEY
+    depl_descript	char (40)
+
+*disabl - 'Disabled Access & Mobility Information - PM'*
+KEY property_id	numeric (9) KEY
+    alarms_flashing	char (1)
+    danger_signed	char (1)
+    disabled_entry	char (1)
+    disabled_hlp	char (1)
+    disabled_toilet	char (1)
+    door_width	numeric (8)
+    doors_obstructed	char (1)
+    doors_open_i_o	char (1)
+    entry_distance	numeric (9)
+    frame_openable	char (1)
+    ind_meet_rooms	char (1)
+    int_chg_floors	char (1)
+    int_floor_ramps	char (1)
+    l_ctrls_braille	char (1)
+    l_ctrls_w_chair	char (1)
+    l_tap_cloak_rms	char (1)
+    l_tap_dble_rms	char (1)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    lift_1_5_area	char (1)
+    lift_present	char (1)
+    light_n_handles	char (1)
+    map_braille	char (1)
+    no_car_spaces	numeric (4)
+    no_dble_entrys	numeric (3)
+    no_disabled_wc	numeric (3)
+    ramps_h_rail	char (1)
+    routes_coloured	char (1)
+    signs_braille	char (1)
+    signs_visible	char (1)
+    solid_bay_entry	char (1)
+    stair_h_rail	char (1)
+    steps_h_rail	char (1)
+    survey_date	huge date
+    voice_message	char (1)
+    w_chair_basin	char (1)
+    w_chair_drier	char (1)
+    w_chair_entry	char (1)
+    w_chair_flush	char (1)
+    w_chair_openable	char (1)
+    w_chair_wc	char (1)
+    wc_alarm	char (1)
+
+*dist_plan - 'District Plans - PM'*
+KEY property_id	numeric (9) KEY
+    airfield_nearby	char (1)
+    anct_monument	char (1)
+    arch_interest	char (1)
+    conserv_area	char (1)
+    date_adopted	huge date
+    dist_adopt_plan	char (1)
+    educ_policy	char (1)
+    emp_area_spec_res	char (1)
+    flood_plain	char (1)
+    green_belt	char (1)
+    green_settle	char (1)
+    implic_detail_1	text 
+    l_conserv_area	char (1)
+    l_develop_area	char (1)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    nature_reserve	char (1)
+    o_head_lines	char (1)
+    o_nat_beau_area	char (1)
+    oil_line	char (1)
+    other_desc	text 
+    other_policy	char (1)
+    p_build_policy	char (1)
+    plan_title	text 
+    rec_policy	char (1)
+    regional_park	char (1)
+    res_area_spec_res	char (1)
+    rural_area	char (1)
+    rural_settle	char (1)
+    sewers_below	char (1)
+    shop_policy	char (1)
+    site_implic	char (1)
+    soc_policy	char (1)
+    specif_settle	char (1)
+    sssi	char (1)
+    tour_policy	char (1)
+    town_plan	char (1)
+    town_policy	char (1)
+    trans_policy	char (1)
+    tree_pres_order	char (1)
+    util_policy	char (1)
+    waste_policy	char (1)
+
+*districts - 'District Codes - PM'*
+KEY dist_code	char (8) KEY
+    dist_descript	char (40)
+
+*div_dets - 'Committee or Division Code - CC/PM'*
+KEY committee_or_division	char (4) KEY
+    descript	char (24)
+
+*doc_type - 'Document Types - FC'*
+KEY document_type	char (2) KEY
+    descript	char (24)
+    external_code	char (8)
+    last_used_number	numeric (6)
+    maximum_val_fld	numeric (6)
+    minimum_val_fld	numeric (6)
+    warning_level	numeric (3)
+
+*ele_dets - 'Element Type - PM'*
+KEY element_code	char (10) KEY
+    area_required	char (1)
+    descript	char (30)
+    element_type	char (2)
+    height_required	char (1)
+    length_required	char (1)
+    quantity_required	char (1)
+    survey_interval	numeric (5)
+    upgrade_interval	numeric (5)
+    width_required	char (1)
+
+*ele_types - 'Element Types - PM'*
+KEY element_type	char (2) KEY
+    element_descript	char (38)
+
+*ele_yrs - 'Element Years - PM'*
+KEY element_code	char (10) KEY
+KEY element_type	char (2) KEY
+KEY instance	numeric (2) KEY
+KEY property_id	numeric (9) KEY
+KEY year	char (4) KEY
+    actual_cost_yr	huge amount
+    condition	char (4)
+    est_cost_yr	huge amount
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    priority	char (4)
+
+*elect_divs - 'Electoral Divisions - PM'*
+KEY elect_code	char (3) KEY
+    elect_descript	char (40)
+
+*en_perform - 'Energy Performance Codes - PM'*
+KEY energy_per	char (4) KEY
+    descript	char (24)
+
+*enc_ben - 'Encumberances and Benefits Codes - PM'*
+KEY enc_ben_code	char (2) KEY
+KEY enc_or_ben	char (1) KEY
+    enc_ben_descript	char (30)
+
+*encumber - 'Encumberances & Benefits - PM'*
+KEY deed_packet_ref	char (12) KEY
+KEY encum_benefit_cde	char (2) KEY
+KEY property_id	numeric (9) KEY
+KEY record_type	char (1) KEY
+    descript	text 
+
+*energy_cat - 'Energy Category Codes - PM'*
+KEY energy_cat	char (4) KEY
+    descript	char (24)
+
+*energy_per - 'Energy Performance Details - PM'*
+KEY property_id	numeric (9) KEY
+    date_of_survey	huge date
+    energy_pe	char (4)
+    engineer_en	char (4)
+    engineer_up	numeric (9)
+    fabric_en	char (4)
+    fabric_up	numeric (9)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    surv_nam	char (8)
+    surveyor	char (30)
+
+*ex_type - 'Exception Status - FC'*
+KEY exception_status	char (2) KEY
+    descript	char (24)
+
+*fin_pers - 'Financial Periods - FC'*
+KEY no_of_periods	numeric (2) KEY
+KEY period	char (6) KEY
+    charges_run_date	huge date
+    end_date	huge date
+    index_y_or_n	char (1)
+    minimus	huge amount
+    start_date	huge date
+
+*fit_code - 'Fitness Code - PM'*
+KEY fit_code	char (4) KEY
+    descript	char (24)
+
+*fitness - 'Fitness for Purpose - PM'*
+KEY property_id	numeric (9) KEY
+    amenity	char (4)
+    cost_to_rep	huge amount
+    cost_to_upg	huge amount
+    date_or_surv	huge date
+    environment	char (4)
+    facilities	char (4)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    locat	char (4)
+    other	char (4)
+    overall	char (4)
+    space_rel	char (4)
+    surveyed_by	char (30)
+    surveyor	char (8)
+
+*formdef - 'Form Definitions - SYS/P'*
+KEY form_nam	char (10) KEY
+KEY menu_name	char (10) KEY
+    available	char (1)
+    menu_text	char (35)
+    position	numeric (2)
+
+*ft_type - 'Fault type codes - AO'*
+KEY fault_code	char (3) KEY
+    descript	char (24)
+
+*fx_dets - 'Financial Transactions - FC'*
+KEY transaction_no	numeric (8) KEY
+    account_code	char (15)
+    asset_job_no	char (8)
+    comm_or_expend	char (1)
+    cost	amount (8)
+    cost_centre	char (4)
+    financial_period	numeric (2)
+    financial_year	char (4)
+    fx_date	huge date
+    fx_time	time 
+    hours_completed	numeric (5)
+    invoice_number	char (12)
+    management_unit	char (4)
+    order_line_no	numeric (3)
+    order_number	numeric (8)
+    percent_complete	numeric (3)
+    quantity	numeric (5)
+    ref_fld_number	char (12)
+    stock_code	char (10)
+    stock_loc_code	numeric (2)
+    transaction_type	char (1)
+    usr	char (8)
+
+*fye_dets - 'Financial Year Code - FC/P'*
+KEY financial_year	char (4) KEY
+    descript	char (24)
+    no_periods_in_yr	numeric (2)
+
+*fyi_lines - 'FYI Lines - SYS/P'*
+KEY frm_name	char (10) KEY
+KEY fyi_identifier	char (28) KEY
+    fyi_line	char (77)
+
+*gd_type - 'Grade type codes - AO'*
+KEY grade_code	char (3) KEY
+    descript	char (24)
+    hourly_rate	amount (4)
+
+*grn_dets - 'Goods Received Notes - FC'*
+KEY grn_number	char (10) KEY
+    account_code	char (15)
+    batch_number	numeric (6)
+    cost_centre	char (4)
+    del_note_no	char (8)
+    document_number	numeric (6)
+    document_type	char (2)
+    entered_by	char (8)
+    entered_on	huge date
+    financial_period	numeric (2)
+    financial_year	char (4)
+    grn_date	huge date
+    include_in_batch	char (1)
+    invoice_date	huge date
+    invoice_number	char (12)
+    invoice_period	numeric (2)
+    invoice_year	char (4)
+    invoiced_qty	numeric (5)
+    invoiced_val_fld	amount (9)
+    locat	numeric (2)
+    order_line_no	numeric (3)
+    order_number	numeric (8)
+    received_qty	numeric (5)
+    received_val_fld	amount (9)
+    stock_part_code	char (10)
+    stock_yn_flag	char (1)
+    supplier	char (8)
+    vat_val_fld	amount (9)
+
+*helpdesk - 'Help desk details - AO'*
+KEY cw_job_id	char (6) KEY
+    date_completed	huge date
+    time_completed	time 
+    work_done	char (40)
+
+*hlp_info - 'Help text details for fields - SYS/P'*
+KEY fld_name	char (44) KEY
+KEY frm_name	char (44) KEY
+KEY hlp_level	char (1) KEY
+KEY instance	numeric (4) KEY
+    hlp_line	char (40)
+
+*hlp_info2 - 'User Defined Help Text - SYS/P'*
+KEY fld_name	char (44) KEY
+KEY frm_name	char (44) KEY
+KEY hlp_level	char (1) KEY
+    hlp_text	text 
+
+*hold_comm - 'Holding Committtee Descriptions - PM'*
+KEY hold_comm_code	char (4) KEY
+    hold_comm_descript	char (24)
+
+*hrs_wrkd - 'hours worked file - AO'*
+KEY uniquifier	numeric (6) KEY
+    activity_code	char (4)
+    clock_card_no	char (6)
+    date_recorded	huge date
+    docket_number	char (6)
+    entered_by	char (8)
+    entered_date	huge date
+    entered_time	time 
+    hours	amount (5)
+    rep_category	numeric (2)
+    team_id	char (6)
+    time_factor	amount (4)
+
+*int_rate - 'Interest Rates - CC/P'*
+KEY fin_year	char (4) KEY
+KEY int_type	char (2) KEY
+    descript	char (24)
+    interest	amount (6)
+
+*jb_costs - 'Job Costs - A0'*
+KEY uniquifier	numeric (6) KEY
+    cost	amount (8)
+    cost_ref	char (30)
+    cost_type	char (1)
+    docket_number	char (6)
+
+*jb_type - 'Job type codes - AO'*
+KEY job_type_code	char (2) KEY
+    descript	char (24)
+
+*jc_type - 'Job category codes - AO'*
+KEY job_category	char (2) KEY
+    descript	char (24)
+
+*job_audt - 'Job Audit Trail - AO'*
+KEY job_id	char (6) KEY
+    date_cancelled	huge date
+    pm_job_no_req_no	char (6)
+    reason	char (24)
+    ref_login_name	char (14)
+
+*land_surv - 'Land Survey - PM'*
+KEY property_id	numeric (9) KEY
+KEY survey_date	huge date KEY
+    build_comments	text 
+    car_park_area	numeric (5)
+    date_measured	huge date
+    dev_factors	text 
+    electricity	char (1)
+    fencing_cond	char (4)
+    foul_water_mains	char (1)
+    foul_water_plant	char (1)
+    gas	char (1)
+    gen_comments	text 
+    land_cond_code1	char (1)
+    land_cond_code2	char (1)
+    land_cond_code3	char (1)
+    land_cond_code4	char (1)
+    land_cond_code5	char (1)
+    land_cond_code6	char (1)
+    land_desc	text 
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    measurer	char (20)
+    no_car_spaces	numeric (4)
+    oil_heating	char (1)
+    ped_access	char (1)
+    ped_access_desc	text 
+    phland_code	char (6)
+    site_area	float (64)
+    site_desc	text 
+    surveyor_name	char (20)
+    telephone	char (1)
+    veh_access_desc	text 
+    vehicle_access	char (1)
+    water	char (1)
+
+*land_use - 'Land Use Codes - PM'*
+KEY land_use_code	char (5) KEY
+    land_use_descript	text 
+
+*land_val - 'Land Value Details - PM'*
+KEY property_id	numeric (9) KEY
+    comments	text 
+    date_val_carr_out	huge date
+    eff_val_date	huge date
+    end_adjustment	numeric (9)
+    hard_surf_area	float (64)
+    hsa_pnds_per_hect	numeric (9)
+    hsa_value	numeric (9)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    method_of_val	char (3)
+    open_surf_area	float (64)
+    osa_pnds_per_hect	numeric (9)
+    osa_value	numeric (9)
+    total_land_area	float (64)
+    total_value	numeric (9)
+    valuer_code	char (4)
+
+*lettings - 'Lettings - PM'*
+KEY deed_packet_ref	char (12) KEY
+KEY lfs_code	char (7) KEY
+KEY occurrence_s_d_i	numeric (2) KEY
+KEY property_id	numeric (9) KEY
+    active_service	char (1)
+    agree_term_days	numeric (3)
+    agree_term_mths	numeric (3)
+    agree_term_yrs	numeric (3)
+    agreement_date	huge date
+    agreement_type	char (1)
+    alien_clause	char (1)
+    alien_clause_desc	text 
+    alien_clause_type	char (1)
+    break_clause	char (4)
+    business_unit	char (4)
+    current_rent	huge amount
+    department	char (4)
+    division	char (4)
+    essence_time	char (1)
+    est_expend	numeric (9)
+    est_income	numeric (9)
+    exten_opt_days	numeric (3)
+    exten_opt_mths	numeric (3)
+    exten_opt_yrs	numeric (3)
+    hold_committee	char (4)
+    include_exclude	char (1)
+    insured_by	char (1)
+    interest	char (1)
+    l_lord_ten_excl	char (1)
+    land_use_code	char (5)
+    landlord_repair	text 
+    late_payment	char (1)
+    live_flag	char (1)
+    live_flag_date	huge date
+    man_committee	char (4)
+    ownr_address_no	char (4)
+    ownr_county	char (20)
+    ownr_locality	char (30)
+    ownr_organ_add	char (40)
+    ownr_post_code	char (8)
+    ownr_road	char (30)
+    ownr_town	char (25)
+    pay_period	char (10)
+    purpose_held	char (1)
+    renew_date_all	char (99)
+    rent_abate	huge amount
+    rent_basis	char (1)
+    rent_basis_desc	text 
+    rent_renew_date_1	huge date
+    rent_renew_date_2	huge date
+    rent_renew_date_3	huge date
+    rent_renew_date_4	huge date
+    rent_renew_date_5	huge date
+    rent_renew_date_6	huge date
+    rent_renew_date_7	huge date
+    rent_renew_date_8	huge date
+    rent_renew_date_9	huge date
+    review_per_mths	numeric (3)
+    review_per_yrs	numeric (3)
+    service_charges	char (1)
+    service_chg	huge amount
+    sub_let_desc	text 
+    sub_let_to	char (40)
+    tenancy_doc_cde	char (10)
+    tenant_repair	text 
+    term_indicator	char (1)
+    usr_clause	char (1)
+    usr_desc	text 
+
+*level_menu - 'Level of Attachment Menu - SYS/P'*
+KEY form_nam	char (10) KEY
+    lev_attach_1	char (1)
+    lev_attach_2	char (1)
+    lev_attach_3	char (1)
+    lev_attach_4	char (1)
+    lev_attach_5	char (1)
+    lev_attach_6	char (1)
+    lev_attach_7	char (1)
+
+*ln_type - 'Order Line Status - FC/P'*
+KEY order_line_stat	char (1) KEY
+    descript	char (24)
+
+*lo_dets - 'Stock Locations - FC'*
+KEY stock_loc_code	numeric (2) KEY
+    address_code	char (8)
+    b_fwd_grn_qty	numeric (7)
+    b_fwd_grn_val_fld	amount (9)
+    cost_centre	char (4)
+    descript	char (24)
+
+*loc_dets - 'Location details - AO'*
+KEY building_code	char (3) KEY
+KEY locat_code	char (6) KEY
+KEY site_code	char (3) KEY
+    descript	char (24)
+
+*ls_dets - 'Local Stock Levels - FC'*
+KEY stock_code	char (10) KEY
+KEY stock_loc_code	numeric (2) KEY
+    b_fwd_arch_qty	numeric (5)
+    b_fwd_arch_val	amount (8)
+    b_fwd_wip_qty	numeric (5)
+    b_fwd_wip_val	amount (8)
+    bin_ref_fld	char (10)
+    brought_fwd_qty	numeric (5)
+    brought_fwd_val	amount (8)
+    date_last_issued	huge date
+    grn_counter	numeric (2)
+    his_annual_usage	numeric (5)
+    max_stock_level	numeric (5)
+    min_stock_level	numeric (5)
+    on_order_balance	numeric (5)
+    on_order_ord_no	numeric (8)
+    quotation_requested	char (1)
+    re_order_level	numeric (5)
+    stock_balance	numeric (5)
+    stock_val_fld	amount (9)
+    usage_this_year	numeric (5)
+
+*lse_o_acq - 'Leasehold Licence Other Acquisitions - PM'*
+KEY acq_app_sale_date	huge date KEY
+KEY deed_packet_ref	char (12) KEY
+KEY property_id	numeric (9) KEY
+KEY record_type	char (4) KEY
+KEY seq_no	numeric (3) KEY
+KEY type_flag	char (1) KEY
+    acreage	float (64)
+    area_other	float (64)
+    expiry_date	huge date
+    initial_capital	numeric (8)
+    secondary_terr_ref	char (7)
+    val_in	numeric (9)
+    yearly_rate	numeric (8)
+
+*main_pln - 'Maintenance Plan - AO'*
+KEY main_plan_code	char (2) KEY
+    descript	char (24)
+
+*mu_dets - 'Managment Unit details - All'*
+KEY management_unit	char (4) KEY
+    address_line_1	char (25)
+    address_line_2	char (25)
+    address_line_3	char (25)
+    address_line_4	char (15)
+    committee_or_division	char (4)
+    descript	char (24)
+    locat	char (16)
+    manager_name	char (24)
+    telephone_ext	char (8)
+    telephone_no	char (15)
+
+*nam_adds - 'Name and addresses - AO/FC/PM'*
+KEY name_and_address	char (8) KEY
+    address_line_1	char (30)
+    address_line_2	char (30)
+    address_line_3	char (30)
+    address_line_4	char (30)
+    apprv_contractor	char (1)
+    buyer_text_1	char (40)
+    buyer_text_2	char (40)
+    buyer_text_3	char (40)
+    buyer_text_4	char (40)
+    buyer_text_5	char (40)
+    buyer_text_6	char (40)
+    buyer_text_7	char (40)
+    buyer_text_8	char (40)
+    contact_name	char (24)
+    date_approved	huge date
+    delivery_charge	char (1)
+    discount	char (1)
+    extension	char (6)
+    fax_number	char (15)
+    lead_time	numeric (3)
+    max_order_val_fld	numeric (9)
+    min_order_val_fld	numeric (9)
+    name	char (30)
+    on_cg_apprv_list	char (1)
+    payment_indic	char (2)
+    post_code	char (15)
+    supplier_type	char (2)
+    supplier_type2	char (2)
+    supplier_type3	char (2)
+    supplier_type4	char (2)
+    supplier_type5	char (2)
+    supplier_type6	char (2)
+    telephone_no	char (15)
+    telex_no	char (15)
+
+*nhs_sup - 'NHS Supplies Transactions - FC/AO'*
+KEY transaction_no	numeric (8) KEY
+    batch_id	huge date
+    cost	amount (9)
+    date_issued	huge date
+    docket_no	char (6)
+    quantity_issued	numeric (5)
+    stock_description	char (40)
+    stock_no	char (10)
+    transferred	char (1)
+
+*occ_dept - 'Occupying Departments - FC'*
+KEY occ_department	char (3) KEY
+    occ_descript	char (24)
+
+*occupancy - 'Occupancy details - PM'*
+KEY property_id	numeric (9) KEY
+    add_no	char (4)
+    address1	char (30)
+    address2	char (30)
+    address3	char (30)
+    address4	char (30)
+    area_empty	char (8)
+    current_annual_rent	huge amount
+    date_rent_set	huge date
+    date_vacated	huge date
+    lease_expiry_date	huge date
+    leasehold_covenants	text 
+    length_of_lease	numeric (6)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    name	char (40)
+    other_lease_details	text 
+    post_code	char (12)
+    rent_due_date	huge date
+    rent_review_date	huge date
+
+*oh_dets - 'Order Header - FC'*
+KEY purchase_req_no	numeric (8) KEY
+    authorised_ref	char (8)
+    cost_centre	char (4)
+    date_authorised	huge date
+    delivery_address	char (8)
+    financial_period	numeric (2)
+    financial_year	char (4)
+    invoice_address	char (8)
+    management_unit	char (4)
+    order_date	huge date
+    order_desc	char (40)
+    order_number	numeric (8)
+    order_or_credit	char (1)
+    order_status	char (1)
+    order_type	char (1)
+    orig_order_no	char (8)
+    print_yn_flag	char (1)
+    purch_req_date	huge date
+    special_instrs	char (40)
+    stock_locat	numeric (2)
+    supplier_code	char (8)
+    validated_date	huge date
+    validated_ref	char (8)
+
+*ol_dets - 'Order Line - FC'*
+KEY order_line_no	numeric (3) KEY
+KEY purchase_req_no	numeric (8) KEY
+    account_code	char (15)
+    asset_id	char (6)
+    consumable	char (1)
+    contract_type	char (3)
+    contrt_quote_ref	char (6)
+    cost_centre	char (4)
+    date_originated	huge date
+    date_validated	huge date
+    desc_line_1	char (40)
+    desc_line_10	char (40)
+    desc_line_2	char (40)
+    desc_line_3	char (40)
+    desc_line_4	char (40)
+    desc_line_5	char (40)
+    desc_line_6	char (40)
+    desc_line_7	char (40)
+    desc_line_8	char (40)
+    desc_line_9	char (40)
+    exception_status	char (2)
+    exp_delivery	huge date
+    expenditure	amount (8)
+    financial_period	numeric (2)
+    financial_year	char (4)
+    job_id	char (6)
+    job_type	char (1)
+    line_status	char (1)
+    management_unit	char (4)
+    order_number	numeric (8)
+    originator_ref	char (8)
+    part_number	char (10)
+    part_price	amount (8)
+    percent_complete	numeric (3)
+    percent_invoiced	numeric (3)
+    prev_years_exp	huge amount
+    project_code	char (6)
+    qty_invoiced	numeric (5)
+    qty_ordered	numeric (5)
+    qty_rec_to_date	numeric (5)
+    rem_commitment	amount (8)
+    requisition_no	char (6)
+    supplier_ref	char (15)
+    total_est_cost	amount (8)
+    unit_of_supply	char (6)
+    val_fld_received	huge amount
+    validated_ref	char (8)
+    vat_est_cost	amount (8)
+
+*os_type - 'Order Status - FC/P'*
+KEY order_stat_code	char (1) KEY
+    descript	char (24)
+
+*ot_type - 'Order Type - FC/P'*
+KEY order_type_code	char (1) KEY
+    descript	char (24)
+
+*pcouncils - 'Parish Council Codes - PM'*
+KEY pcoun_code	char (8) KEY
+    pcoun_descript	char (40)
+
+*perm_plan - 'Permanent Planning - PM'*
+KEY plan_ref_code	char (20) KEY
+KEY property_id	numeric (9) KEY
+    descript	text 
+    granted_date	huge date
+    perm_stat	char (1)
+    rescind_date	huge date
+    submit_date	huge date
+
+*ph_hist - 'Permanent History File - FC/AO'*
+KEY perm_history_id	char (6) KEY
+    account_code	char (15)
+    allowce_time_hrs	amount (5)
+    asset_cost_cent	char (4)
+    asset_id	char (6)
+    asset_name	char (24)
+    asset_no	char (6)
+    asset_no_bt1	numeric (6)
+    asset_no_bt2	numeric (6)
+    asset_type	char (6)
+    building_code	char (3)
+    building_code_bt	numeric (6)
+    category	char (2)
+    charg_cost_cent	char (4)
+    comp_date_plan	huge date
+    comp_time_plan	time 
+    contract_code	char (6)
+    contract_cost	amount (9)
+    contract_type	char (3)
+    curr_job_file_id	char (6)
+    date_act_comp	huge date
+    date_act_resp	huge date
+    date_reported	huge date
+    date_to_comp_ex	huge date
+    docket_no	char (6)
+    dorc_flag	char (1)
+    down_serv_level	char (2)
+    estimated_cost	amount (8)
+    fault_code	char (3)
+    financial_year	char (4)
+    frequency	numeric (3)
+    job_type_code	char (2)
+    labour_cost	amount (9)
+    locat_bt1	numeric (6)
+    locat_bt2	numeric (6)
+    locat_code	char (6)
+    log_date	huge date
+    log_time	time 
+    logged_by	char (10)
+    maintenance_plan	char (2)
+    management_unit	char (4)
+    materials_cost	amount (9)
+    out_of_seq_flag	char (1)
+    period	numeric (2)
+    phoenix_code	char (6)
+    pm_job_no_req_no	char (6)
+    priority_code	char (2)
+    project_code	char (6)
+    purchase_cost	amount (9)
+    reason_for_delay	char (24)
+    ref_fld	char (12)
+    reported_by	char (24)
+    resp_date_plan	huge date
+    resp_serv_level	char (2)
+    resp_time_plan	time 
+    rev_allow_time	amount (5)
+    rev_wk_cont_time	amount (5)
+    safety_permit_yn	char (1)
+    series	numeric (1)
+    site_code	char (3)
+    site_code_bt	numeric (6)
+    status_flag	char (1)
+    sub_asset_no	char (3)
+    sub_asset_no_bt	numeric (6)
+    time_comp	time 
+    time_comp_a	amount (4)
+    time_resp	time 
+    time_resp_a	amount (4)
+    tot_hours_comp	amount (6)
+    tot_hours_resp	amount (6)
+    total_actual_hrs	amount (5)
+    trade	char (1)
+    week_planned	char (7)
+    wk_cont_time_hrs	amount (5)
+    work_type	char (1)
+    workshop	char (3)
+    wrk_done_summary	char (24)
+
+*ph_j_det - 'Permanent hist. job dets. - AO'*
+KEY job_dets_id	char (6) KEY
+    detail_1	char (50)
+    detail_2	char (50)
+    detail_3	char (50)
+    detail_4	char (50)
+    detail_5	char (50)
+    detail_6	char (50)
+    detail_7	char (50)
+
+*ph_safety_permit - 'PH Saftey Permit - AO'*
+KEY perm_history_id	char (6) KEY
+    permit_det1	char (24)
+    permit_det2	char (24)
+    permit_det3	char (24)
+    permit_det4	char (24)
+    permit_det5	char (24)
+
+*ph_spare - 'Spares Permanent History - AO'*
+KEY docket_no	char (6) KEY
+KEY locat_code	numeric (2) KEY
+KEY stock_no	char (10) KEY
+    cost	amount (9)
+    quantity_used	numeric (5)
+    stock_desc_1	char (40)
+    stock_desc_2	char (40)
+
+*ph_w_don - 'Permanent hist. work done - AO'*
+KEY work_done_id	char (6) KEY
+    detail_1	char (50)
+    detail_2	char (50)
+    detail_3	char (50)
+    detail_4	char (50)
+    detail_5	char (50)
+    detail_6	char (50)
+    detail_7	char (50)
+
+*phys_land - 'Physical Land Description Codes - PM'*
+KEY phland_code	char (1) KEY
+    phland_descript	char (30)
+
+*pi_dets - 'Payment Indicators - FC'*
+KEY payment_indic	char (2) KEY
+    descript	char (24)
+
+*pi_index - 'Price Index - CC'*
+KEY history_number	numeric (3) KEY
+KEY index_code	char (3) KEY
+    descript	char (24)
+    effective_date	huge date
+    last_updated	huge date
+    new_val_fld	amount (6)
+    old_val_fld	amount (6)
+
+*pj_dets - 'Project details - FC/AO'*
+KEY project_code	char (6) KEY
+    account_code	char (15)
+    budget	numeric (8)
+    date_completed	huge date
+    descript	char (24)
+    estimated_comp	huge date
+    forecast_future	huge amount
+    forecast_ny	huge amount
+    forecast_ny_1	huge amount
+    forecast_ny_2	huge amount
+    forecast_ny_3	huge amount
+    forecast_ny_4	huge amount
+    forecast_ny_5	huge amount
+    forecast_total	huge amount
+    job_manager	char (8)
+    latest_approved	huge amount
+    latest_estimated	huge amount
+    live_flag	char (1)
+    management_unit	char (4)
+    orig_approved	huge amount
+    paid_prev_years	huge amount
+    programme_est	huge amount
+    req_by_cost_cent	char (4)
+    start_date	huge date
+
+*pj_sched - 'Project Schedules - FC/AO'*
+KEY line_number	numeric (2) KEY
+KEY project_code	char (6) KEY
+    actual_date	huge date
+    forecast_date	huge date
+    percent_complete	char (3)
+    target_date	huge date
+
+*pj_stage - 'Project Stages - FC/AO/P'*
+KEY line_number	numeric (2) KEY
+    descript	char (24)
+    fill_percentage	char (1)
+
+*pl_dets - 'Peripheral Location Dets. - PM/P'*
+KEY pl_name	char (10) KEY
+    pl_locn	char (30)
+    pl_plen	numeric (3)
+
+*plan_appl - 'Planning Application - PM'*
+KEY property_id	numeric (9) KEY
+KEY sequence_no	numeric (9) KEY
+    decision_date	huge date
+    descript	text 
+    granted_flag	char (1)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    plan_stat	char (1)
+    planning_applic	char (20)
+    submit_date	huge date
+    temp_or_perm	char (1)
+
+*plan_stat - 'Planning Status - PM'*
+KEY pl_stat	char (1) KEY
+KEY property_id	numeric (9) KEY
+KEY sequence_no	numeric (9) KEY
+KEY usage_type	char (1) KEY
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    usage_code	char (5)
+
+*pm_dets - 'PM Job Text - AO'*
+KEY pm_dets_job_id	char (6) KEY
+    detail_1	char (50)
+    detail_2	char (50)
+    detail_3	char (50)
+    detail_4	char (50)
+    detail_5	char (50)
+    detail_6	char (50)
+    detail_7	char (50)
+
+*pm_job - 'PM Job File - AO'*
+KEY pm_job_id	char (6) KEY
+    access_code	char (1)
+    account_code	char (15)
+    allowce_time_hrs	amount (5)
+    asset_cost_cent	char (4)
+    asset_id	char (6)
+    category	char (2)
+    charg_cost_cent	char (4)
+    contract_code	char (6)
+    contract_type	char (3)
+    date_last_compl	huge date
+    dorc_flag	char (1)
+    estimated_cost	amount (8)
+    frequency_weeks	numeric (3)
+    grade_1	char (3)
+    grade_2	char (3)
+    grade_3	char (3)
+    grade_4	char (3)
+    job_type_code	char (2)
+    last_wk_transfer	char (7)
+    next_wk_sched	char (7)
+    next_wk_sched_n	numeric (6)
+    no_of_omissions	numeric (2)
+    priority_code	char (2)
+    quantity_1	numeric (1)
+    quantity_2	numeric (1)
+    quantity_3	numeric (1)
+    quantity_4	numeric (1)
+    safety_permit_yn	char (1)
+    series_no	numeric (1)
+    skip_flag	char (1)
+    statutory_job	char (1)
+    suspend	char (1)
+    trade	char (1)
+    wk_cont_time_hrs	amount (5)
+
+*pm_safety_permit - 'PM Saftey Permit - AO'*
+KEY pm_job_id	char (6) KEY
+    permit_det1	char (24)
+    permit_det2	char (24)
+    permit_det3	char (24)
+    permit_det4	char (24)
+    permit_det5	char (24)
+
+*pm_spare - 'PM Spares - AO'*
+KEY pm_job_id	char (6) KEY
+KEY stock_number	char (10) KEY
+    cost	amount (9)
+    quantity	numeric (5)
+
+*pr_index - 'Price index file - AO'*
+KEY price_index_type	char (3) KEY
+    amended_val_fld	numeric (3)
+    date_last_update	huge date
+    descript	char (24)
+    original_val_fld	numeric (3)
+
+*pr_type - 'Priority type codes - AO'*
+KEY priority_code	char (2) KEY
+    descript	char (24)
+
+*prem_loc - 'Premises location - PM'*
+KEY loc_fin_sys_code	char (7) KEY
+KEY property_id	numeric (9) KEY
+
+*premises - 'Premises - PM'*
+KEY loc_fin_sys_code	char (7) KEY
+    address_no	char (4)
+    alloc_bus_unit	char (4)
+    alloc_depart	char (4)
+    alloc_div	char (4)
+    alloc_hold_com	char (4)
+    alloc_pur_code1	char (5)
+    alloc_pur_code2	char (5)
+    alloc_pur_code3	char (5)
+    alloc_pur_code4	char (5)
+    alloc_pur_code5	char (5)
+    alloc_pur_concat	char (35)
+    alloc_serv_dept	char (5)
+    alt_premis_desc	char (40)
+    alt_premis_name	char (40)
+    alt_tel_no	char (20)
+    area	float (64)
+    cons_area	char (1)
+    county	char (20)
+    county_usr	char (8)
+    deployment_use	char (1)
+    dist_council_code	char (8)
+    elect_div	char (3)
+    gross_int_floor	numeric (6)
+    link_let_id	char (12)
+    link_let_interest	char (1)
+    link_let_seq_no	numeric (9)
+    listed_building	char (5)
+    live_flag	char (1)
+    live_flag_date	huge date
+    locality	char (30)
+    log_acknowl_date	huge date
+    log_issued_date	huge date
+    max_hrs_use_pw	amount (6)
+    nat_grid_ref	char (12)
+    occ_start_date	huge date
+    oth_agree_cap_cl	huge amount
+    oth_agree_cap_stf	huge amount
+    oth_cur_ft_clien	huge amount
+    oth_cur_ft_equiv	huge amount
+    oth_cur_ft_staff	huge amount
+    oth_cur_pt_clien	huge amount
+    oth_cur_pt_staff	huge amount
+    oth_des_cap_cl	huge amount
+    oth_des_cap_stf	huge amount
+    other_cap	huge amount
+    post_code	char (8)
+    premis_name	char (40)
+    premises_notes	text 
+    road	char (30)
+    s_serv_team_bound1	char (1)
+    s_serv_team_bound2	char (2)
+    s_serv_team_bound3	char (1)
+    tel_no	char (20)
+    third_pty_occup	char (8)
+    town	char (25)
+    usage_bus_unit	char (4)
+    usage_code1	char (5)
+    usage_code2	char (5)
+    usage_code3	char (5)
+    usage_code4	char (5)
+    usage_code5	char (5)
+    usage_concat	char (35)
+    usage_depart	char (4)
+    usage_division	char (4)
+    usage_manag_com	char (4)
+    usage_serv_dept	char (5)
+    ward	char (4)
+
+*prin_func - 'Principal Functions - PM'*
+KEY principal_funct	char (5) KEY
+    descript	char (24)
+
+*priority - 'Priority Codes - PM'*
+KEY priority	char (1) KEY
+    descript	char (24)
+
+*prj_det - 'project details - FC/AO'*
+KEY project_code	char (6) KEY
+    descript_1	char (50)
+    descript_2	char (50)
+    descript_3	char (50)
+    descript_4	char (50)
+    descript_5	char (50)
+    descript_6	char (50)
+    descript_7	char (50)
+
+*pro_levs - 'Property Level Table - PM/P'*
+KEY level_number	numeric (1) KEY
+    level_code_length	numeric (2)
+    level_name	char (24)
+
+*pro_unit - 'Property Units - PM'*
+KEY property_id	numeric (9) KEY
+    address_code	char (8)
+    alternative_ref	char (15)
+    asset_id	char (6)
+    capital_asset_code	char (21)
+    capital_sub_asset_no	numeric (4)
+    committee_div	char (6)
+    cost_centre	char (4)
+    hist_code_ref	char (15)
+    land_reg_till_no	char (15)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    management_unit	char (4)
+    principal_funct	char (24)
+    pro_unit_alt_desc	char (75)
+    pro_unit_desc	char (75)
+    uniq_prop_ref_no	char (15)
+
+*prop_type - 'Property Types - PM'*
+KEY property_type	char (3) KEY
+    descript	char (24)
+
+*pu_type - 'Purchase type - CC/P'*
+KEY purchase_type	char (1) KEY
+    descript	char (24)
+
+*purpose - 'Purpose Help Codes - PM'*
+KEY purp_code	char (1) KEY
+    purp_descript	char (30)
+
+*pw_dets - 'Passwords - SYS/P'*
+KEY usr_code	char (20) KEY
+    descript	binary) 
+
+*ramp - 'Disabled Access Ramps - PM'*
+KEY occurrence	numeric (2) KEY
+KEY property_id	numeric (9) KEY
+    ramp_1_A	numeric (3)
+    ramp_1_B	numeric (3)
+    ramp_1_C	numeric (3)
+    ramp_1_h_rail	char (1)
+
+*ratings - 'Property Ratings - PM'*
+KEY property_id	numeric (9) KEY
+KEY valuation_list	char (15) KEY
+    building_age	char (4)
+    building_cond	char (1)
+    charity_rel	char (1)
+    class_listed	char (1)
+    college	text 
+    contractor	text 
+    county	char (25)
+    dfe_return	char (1)
+    estate_ref_1	char (8)
+    estate_ref_2	char (4)
+    estate_ref_3	char (10)
+    exit_area_f	numeric (9)
+    exit_area_m	numeric (9)
+    formula	text 
+    glh_cons_ref	char (12)
+    gross_val_1	numeric (6)
+    gross_val_2	numeric (6)
+    gross_val_3	numeric (6)
+    gross_val_4	numeric (6)
+    gross_val_5	numeric (6)
+    ind_ware_work	text 
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    lifts	char (1)
+    mkt_rent_prev	text 
+    modern_a_cond	text 
+    modern_c_heat	text 
+    net_int_code1_f	numeric (9)
+    net_int_code1_m	numeric (9)
+    net_int_code2_f	numeric (9)
+    net_int_code2_m	numeric (9)
+    net_int_code3_f	numeric (9)
+    net_int_code3_m	numeric (9)
+    net_val_1	numeric (6)
+    net_val_2	numeric (6)
+    net_val_3	numeric (6)
+    net_val_4	numeric (6)
+    net_val_5	numeric (6)
+    occupier_com	char (20)
+    occupier_ten	char (20)
+    office	text 
+    other	text 
+    other_use	text 
+    plant_machine_t	text 
+    play_f_tenn_c	text 
+    pool_use_excl	char (1)
+    pool_use_joint	char (19)
+    prime_1	numeric (4)
+    prime_2	numeric (4)
+    prime_3	numeric (4)
+    prime_4	numeric (4)
+    prime_5	numeric (4)
+    profits	text 
+    prop_owner	char (20)
+    property_type	char (3)
+    pup_onroll_1	amount (7)
+    pup_onroll_2	amount (7)
+    pup_onroll_3	amount (7)
+    pup_onroll_4	amount (7)
+    pup_onroll_5	amount (7)
+    pup_rec_1	numeric (4)
+    pup_rec_2	numeric (4)
+    pup_rec_3	numeric (4)
+    pup_rec_4	numeric (4)
+    pup_rec_5	numeric (4)
+    pup_stand_1	numeric (4)
+    pup_stand_2	numeric (4)
+    pup_stand_3	numeric (4)
+    pup_stand_4	numeric (4)
+    pup_stand_5	numeric (4)
+    pupils_recog	numeric (9)
+    pupils_stand	numeric (9)
+    rate_val_1993	amount (9)
+    rates_pay_1	huge amount
+    rates_pay_2	huge amount
+    rates_pay_3	huge amount
+    rates_pay_4	huge amount
+    rates_pay_5	huge amount
+    rating_author	char (12)
+    rca_area_f	numeric (9)
+    rca_area_m	numeric (9)
+    s_hall_use_excl	char (1)
+    s_hall_use_joint	char (20)
+    school_ref_no	char (4)
+    shop	text 
+    start_date_1	huge date
+    start_date_2	huge date
+    start_date_3	huge date
+    start_date_4	huge date
+    start_date_5	huge date
+    super_date_1	huge date
+    super_date_2	huge date
+    super_date_3	huge date
+    super_date_4	huge date
+    super_date_5	huge date
+    superfluity_1	amount (7)
+    superfluity_2	amount (7)
+    superfluity_3	amount (7)
+    superfluity_4	amount (7)
+    superfluity_5	amount (7)
+    victorian_desc	char (12)
+    year_1	char (5)
+    year_2	char (5)
+    year_3	char (5)
+    year_4	char (5)
+    year_5	char (5)
+
+*re_type - 'Reason type codes - AO'*
+KEY reason_for_delay	char (1) KEY
+    descript	char (24)
+
+*rep_cat - 'Reporting Categories - AO/P'*
+KEY reporting_cat_id	numeric (2) KEY
+    descript	char (24)
+
+*restr_dets - 'Restriction Details - PM'*
+KEY property_id	numeric (9) KEY
+    access_to_land	text 
+    add_details	text 
+    bound_type_resp	text 
+    disp_land_detail	text 
+    geo_min_wat_sew	text 
+    land_consrv_area	text 
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    oth_t_plan_info	text 
+    other_use_1	text 
+    other_use_2	text 
+    protected_specs	text 
+    puswa_not_iss_rec	text 
+    tree_pres_order	text 
+
+*rev_frlse - 'Review Freehold & Leasehold - PM'*
+KEY deed_packet_ref	char (12) KEY
+KEY property_id	numeric (9) KEY
+KEY seq_no_let	numeric (2) KEY
+KEY seq_no_this	numeric (2) KEY
+    agreed_rental	numeric (8)
+    interest	char (1)
+    live_flag	char (1)
+    live_flag_date	huge date
+    notice_due_date	huge date
+    notice_quit_date	huge date
+    rev_term_date	huge date
+    review_date	huge date
+    review_terminate	char (1)
+
+*rev_lsoth - 'Review Leasehold Licence Other - PM'*
+KEY deed_packet_ref	char (12) KEY
+KEY property_id	numeric (9) KEY
+KEY seq_no_this	numeric (2) KEY
+    agreed_rental	numeric (8)
+    live_flag	char (1)
+    live_flag_date	huge date
+    notice_due_date	huge date
+    notice_quit_date	huge date
+    record_type	char (1)
+    rev_term_date	huge date
+    review_date	huge date
+    review_terminate	char (1)
+
+*rgn_dets - 'returned goods notes - FC'*
+KEY return_number	numeric (6) KEY
+    account_code	char (15)
+    batch_number	numeric (6)
+    cost_centre	char (4)
+    credit_date	huge date
+    credit_note_no	char (12)
+    credit_period	numeric (2)
+    credit_qty	numeric (5)
+    credit_val_fld	amount (9)
+    credit_year	char (4)
+    document_number	numeric (6)
+    document_type	char (2)
+    entered_by	char (8)
+    entered_on	huge date
+    financial_period	numeric (2)
+    financial_year	char (4)
+    grn_number	char (10)
+    include_in_batch	char (1)
+    locat	numeric (2)
+    order_line_no	numeric (3)
+    order_number	numeric (8)
+    return_date	huge date
+    return_quantity	numeric (5)
+    return_val_fld	amount (9)
+    returned_from	char (8)
+    returned_to	char (8)
+    vat_val_fld	amount (9)
+
+*room_dets - 'Room Details Maintenance - PM'*
+KEY property_id	numeric (9) KEY
+    actual_use	huge amount
+    capacity	huge amount
+    comms	char (1)
+    electricity	char (1)
+    floor_area	huge amount
+    gas	char (1)
+    gross_vol	huge amount
+    heated_vol	huge amount
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    no_comms	numeric (5)
+    no_electricity	numeric (5)
+    no_gas	numeric (5)
+    no_other1	numeric (5)
+    no_other2	numeric (5)
+    no_other3	numeric (5)
+    no_other4	numeric (5)
+    no_other5	numeric (5)
+    no_other6	numeric (5)
+    no_other7	numeric (5)
+    no_other8	numeric (5)
+    no_other9	numeric (5)
+    other1	char (1)
+    other2	char (1)
+    other3	char (1)
+    other4	char (1)
+    other5	char (1)
+    other6	char (1)
+    other7	char (1)
+    other8	char (1)
+    other9	char (1)
+
+*scan_dckt - 'Scanned Dockets - AO'*
+KEY docket_no	char (6) KEY
+    batch_number	numeric (6)
+    delay_date_comp	huge date
+    detail_1	char (50)
+    detail_2	char (50)
+    detail_3	char (50)
+    detail_4	char (50)
+    detail_5	char (50)
+    detail_6	char (50)
+    detail_7	char (50)
+    trade	char (1)
+
+*scan_hrs - 'scanned hours worked - AO'*
+KEY uniquifier	numeric (6) KEY
+    batch_number	numeric (6)
+    clock_card_no	char (6)
+    date_recorded	huge date
+    docket_number	char (6)
+    hours	amount (5)
+    time_factor	amount (4)
+
+*schl_dets - 'School Details - PM'*
+KEY lfs_code	char (7) KEY
+    alt_tel_no	char (20)
+    cur_ft_pupils	numeric (4)
+    cur_pt_pupils	numeric (3)
+    current_ft_staff	numeric (6)
+    current_pt_staff	amount (5)
+    des_ref_no	char (5)
+    gen_tch_spce_sqm	numeric (6)
+    h_teacher_name	char (25)
+    hard_play_area	float (64)
+    hvy_prac_spce_sqm	numeric (5)
+    lgt_prac_spce_sqm	numeric (5)
+    live_flag	char (1)
+    live_flag_date	huge date
+    perm_acc_act_cap	amount (7)
+    perm_acc_class_no	numeric (3)
+    perm_acc_tch_area	numeric (5)
+    perm_acc_tot_area	amount (6)
+    play_field_hect	float (64)
+    rec_area_hect	float (64)
+    schl_actual_cap	amount (4)
+    schl_potent_cap	amount (4)
+    schl_std_add_lim	numeric (3)
+    school_category	char (1)
+    school_phone_no	char (20)
+    school_ref_no	char (4)
+    school_type	char (3)
+    sprt_pe_spce_sqm	numeric (5)
+    temp_acc_no_rooms	numeric (2)
+    temp_acc_tot_area	amount (6)
+    temp_act_tch_area	amount (6)
+    tot_eq_ft_pupils	amount (7)
+    tot_ft_eq_staff	amount (6)
+
+*schl_type - 'School Types - PM'*
+KEY schl_type	char (3) KEY
+    descript	char (30)
+
+*serv_deps - 'Service Department Descriptions - PM'*
+KEY serv_deps_code	char (5) KEY
+    serv_deps_descript	char (24)
+
+*setup - 'Set up file for Pharaoh 4 - SYS/P'*
+KEY dummy	char (1) KEY
+    err_message	text 
+    initialise	text 
+    usr	char (1)
+
+*si_dets - 'Site details - AO'*
+KEY site_code	char (3) KEY
+    descript	char (24)
+
+*sic_dets - 'Supply/Issue convrs ratio - FC'*
+KEY ratio_code	char (3) KEY
+    issue_uom	char (6)
+    ratio_val_fld	amount (9)
+    supply_uom	char (6)
+
+*site_dets - 'Site Details - PM'*
+KEY property_id	numeric (9) KEY
+    address_number	char (4)
+    county	char (20)
+    county_council	char (8)
+    d_council_ward	char (6)
+    district_council	char (8)
+    electoral_div1	char (3)
+    electoral_div2	char (3)
+    electoral_div3	char (3)
+    electoral_div4	char (3)
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    locality	char (30)
+    nat_grid_ref	char (12)
+    ord_survey_ref	char (10)
+    parish_council	char (8)
+    parl_constitncy	char (6)
+    post_code	char (8)
+    road	char (30)
+    s_serv_team_bnd1	char (1)
+    s_serv_team_bnd2	char (2)
+    s_serv_team_bnd3	char (1)
+    serv_del_flag	char (1)
+    site_desc	text 
+    site_name	char (40)
+    town	char (25)
+
+*sk_items - 'Stock Items - FC'*
+KEY stock_code	char (10) KEY
+    abc_class	char (1)
+    altern_stk_code	char (10)
+    consumable_flag	char (1)
+    date_loaded	huge date
+    descript_1	char (40)
+    descript_2	char (40)
+    end_date	huge date
+    live_flag	char (1)
+    ratio_code	char (3)
+    stock_class	char (2)
+    stock_type	char (1)
+    supp_1_preferred	char (1)
+    supp_2_preferred	char (1)
+    supp_3_preferred	char (1)
+    supplier_code_1	char (8)
+    supplier_code_2	char (8)
+    supplier_code_3	char (8)
+    supplier_ref_1	char (15)
+    supplier_ref_2	char (15)
+    supplier_ref_3	char (15)
+
+*skc_dets - 'Stock Class Details - FC'*
+KEY class_code	char (2) KEY
+    descript	char (24)
+
+*sla_dets - 'Service Level Agreements - AO'*
+KEY resp_or_down	char (1) KEY
+KEY serv_lev_code	char (2) KEY
+    descript	char (24)
+    elapse_or_work	char (1)
+    hours_or_days	char (1)
+    time_in_hours	amount (5)
+
+*soc_servs - 'Social Services Area Codes - PM'*
+KEY soc_serv1	char (1) KEY
+KEY soc_serv2	char (2) KEY
+KEY soc_serv3	char (1) KEY
+    soc_serv_descript	char (40)
+
+*sord_dets - 'Standard order details - FC'*
+KEY standard_code	char (12) KEY
+    descript_1	char (40)
+    descript_10	char (40)
+    descript_2	char (40)
+    descript_3	char (40)
+    descript_4	char (40)
+    descript_5	char (40)
+    descript_6	char (40)
+    descript_7	char (40)
+    descript_8	char (40)
+    descript_9	char (40)
+
+*sp_type - 'supplier type file - FC'*
+KEY supplier_type	char (2) KEY
+    descript	char (24)
+
+*spares - 'Spares used - AO'*
+KEY docket_number	char (6) KEY
+KEY locat_code	numeric (2) KEY
+KEY stock_number	char (10) KEY
+    cost	amount (8)
+    date_issued	huge date
+    ident_yn	char (1)
+    quantity_used	numeric (5)
+
+*ss_maint - 'Statutory Standards Maintenance - PM'*
+KEY property_id	numeric (9) KEY
+    date_of_survey	huge date
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    overall_fs	char (4)
+    overall_hs	char (4)
+    sc_alarm	char (4)
+    sc_alarm_up	numeric (9)
+    sc_bld	char (4)
+    sc_bld_up	numeric (9)
+    sc_esc	char (4)
+    sc_esc_up	numeric (9)
+    sc_food	char (4)
+    sc_food_up	numeric (9)
+    sc_other	char (4)
+    sc_other_up	numeric (9)
+    sc_std	char (4)
+    sc_std_up	numeric (9)
+    surv_name	char (8)
+    surveyor	char (30)
+
+*ss_type - 'Status type codes - AO/P'*
+KEY status_code	char (1) KEY
+    descript	char (24)
+
+*ssu_dets - 'Stock/Supplier Info - FC'*
+KEY stock_code	char (10) KEY
+KEY supplier_code	char (8) KEY
+    carr_del_charges	char (1)
+    last_inv_date	huge date
+    lead_time	numeric (3)
+    min_order_qty	numeric (5)
+    payment_indic	char (2)
+    text_line_1	char (40)
+    text_line_10	char (40)
+    text_line_2	char (40)
+    text_line_3	char (40)
+    text_line_4	char (40)
+    text_line_5	char (40)
+    text_line_6	char (40)
+    text_line_7	char (40)
+    text_line_8	char (40)
+    text_line_9	char (40)
+    u_price_last_inv	amount (9)
+    unit_of_supply	char (6)
+
+*stat_dets - 'Statutory Details - PM'*
+KEY stat_code	char (4) KEY
+    stat_descript	char (40)
+
+*std_jobs - 'Standard Job Descriptions - AO'*
+KEY standard_job_id	char (12) KEY
+    descript_1	char (50)
+    descript_2	char (50)
+    descript_3	char (50)
+    descript_4	char (50)
+    descript_5	char (50)
+    descript_6	char (50)
+    descript_7	char (50)
+    external_descript	char (11)
+    grade_1	char (3)
+    grade_2	char (3)
+    grade_3	char (3)
+    grade_4	char (3)
+    quantity_1	numeric (1)
+    quantity_2	numeric (1)
+    quantity_3	numeric (1)
+    quantity_4	numeric (1)
+    safety_permit	char (1)
+    standard_hours	amount (5)
+    trade_code	char (1)
+
+*stk_type - 'Stock Type - FC'*
+KEY stock_type_code	char (1) KEY
+    descript	char (24)
+    pur_account_code	char (15)
+
+*surv_dets - 'Survey Details - PM'*
+KEY element_code	char (10) KEY
+KEY element_counter	numeric (4) KEY
+KEY element_type	char (2) KEY
+KEY property_id	numeric (9) KEY
+KEY survey_seq_no	numeric (5) KEY
+    condition_code	char (4)
+    construct_type	char (5)
+    element_area	huge amount
+    element_height	huge amount
+    element_length	huge amount
+    element_quantity	numeric (6)
+    element_seq_no	char (4)
+    element_text	text 
+    element_width	huge amount
+    last_survey_date	huge date
+    last_upgrade	huge date
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    next_survey	huge date
+    plan	amount (8)
+    plan_text	text 
+    priority	char (1)
+    remaining_life	numeric (5)
+    repair_cost	amount (8)
+    servicable	amount (8)
+    upgrade_cost	amount (8)
+
+*surveys - 'Survey Information - PM'*
+KEY property_id	numeric (9) KEY
+KEY survey_seq_no	numeric (5) KEY
+    date_surveyed	huge date
+    level_1_code	char (20)
+    level_2_code	char (20)
+    level_3_code	char (20)
+    level_4_code	char (20)
+    level_5_code	char (20)
+    level_6_code	char (20)
+    level_7_code	char (20)
+    level_number	numeric (1)
+    nam_add_surveyor	char (8)
+    survey_descript	char (30)
+    survey_text	text 
+    surveyor	char (30)
+
+*sx_dets - 'Stock Transactions - FC'*
+KEY transaction_no	numeric (8) KEY
+    account_code	char (15)
+    cost_centre	char (4)
+    docket_number	numeric (6)
+    financial_period	numeric (2)
+    financial_year	char (4)
+    job_number	char (6)
+    movement_date	huge date
+    order_line_no	numeric (3)
+    order_number	numeric (8)
+    quantity	numeric (5)
+    ref_fld	char (12)
+    requisition_no	char (6)
+    stock_code	char (10)
+    stock_loc_code	numeric (2)
+    sx_date	huge date
+    sx_time	time 
+    trans_no_ref	numeric (8)
+    transaction_type	char (1)
+    trn_val_fld	amount (8)
+    usr	char (8)
+
+*tec_det - 'technical details - AO'*
+KEY asset_id	char (6) KEY
+    descript_1	char (50)
+    descript_2	char (50)
+    descript_3	char (50)
+    descript_4	char (50)
+    descript_5	char (50)
+    descript_6	char (50)
+    descript_7	char (50)
+
+*temp_plan - 'Current & Previous Temporary Planning - PM'*
+KEY property_id	numeric (9) KEY
+KEY temp_plan_perm	char (20) KEY
+    descript	text 
+    expired_date	huge date
+    granted_date	huge date
+    submit_date	huge date
+    temp_stat	char (1)
+
+*ten_docs - 'Tenancy Documentation Codes - PM'*
+KEY ten_doc_code	char (4) KEY
+    ten_doc_descript	char (60)
+
+*tenant - 'Tenancy Codes - PM'*
+KEY tenant	char (10) KEY
+    descript	char (24)
+
+*tenure - 'Tenure - PM'*
+KEY tenure	char (6) KEY
+    descrip	char (30)
+
+*tn_dets - 'Transaction Numbers - FC/P'*
+KEY transaction_type	char (2) KEY
+    transaction_no	numeric (8)
+
+*tr_type - 'Trade type codes - AO'*
+KEY trade_code	char (1) KEY
+    descript	char (24)
+
+*trans_acc - 'Transfer Account - PM'*
+KEY asset_group	char (3) KEY
+KEY detail_or_contra	char (1) KEY
+    account	char (4)
+
+*trans_log - 'Transfer Log Table - PM'*
+KEY capital_asset_code	char (21) KEY
+KEY capital_sub_asset_no	numeric (4) KEY
+KEY run_type	numeric (1) KEY
+    transfer_date	huge date
+
+*trans_srv - 'Transfer Service Code - PM'*
+KEY asset_group	char (3) KEY
+    serv_code	char (3)
+
+*trim_flds - 'Trim Fields - SYS/P'*
+KEY frm_name	char (10) KEY
+    title	char (50)
+    trim1	char (78)
+    trim10	char (78)
+    trim11	char (78)
+    trim12	char (78)
+    trim13	char (78)
+    trim14	char (78)
+    trim15	char (78)
+    trim16	char (78)
+    trim17	char (78)
+    trim18	char (78)
+    trim19	char (78)
+    trim2	char (78)
+    trim20	char (78)
+    trim21	char (78)
+    trim22	char (78)
+    trim23	char (78)
+    trim24	char (78)
+    trim25	char (78)
+    trim26	char (78)
+    trim27	char (78)
+    trim28	char (78)
+    trim29	char (78)
+    trim3	char (78)
+    trim30	char (78)
+    trim31	char (78)
+    trim32	char (78)
+    trim33	char (78)
+    trim34	char (78)
+    trim35	char (78)
+    trim36	char (78)
+    trim37	char (78)
+    trim38	char (78)
+    trim39	char (78)
+    trim4	char (78)
+    trim40	char (78)
+    trim41	char (78)
+    trim42	char (78)
+    trim43	char (78)
+    trim44	char (78)
+    trim45	char (78)
+    trim46	char (78)
+    trim47	char (78)
+    trim48	char (78)
+    trim49	char (78)
+    trim5	char (78)
+    trim50	char (78)
+    trim51	char (78)
+    trim52	char (78)
+    trim53	char (78)
+    trim54	char (78)
+    trim55	char (78)
+    trim56	char (78)
+    trim57	char (78)
+    trim58	char (78)
+    trim59	char (78)
+    trim6	char (78)
+    trim60	char (78)
+    trim7	char (78)
+    trim8	char (78)
+    trim9	char (78)
+
+*usr_acc - 'User Access - SYS/P'*
+KEY form_nam	char (10) KEY
+KEY menu_name	char (10) KEY
+KEY profile_code	char (2) KEY
+    allow_add	char (1)
+    allow_delete	char (1)
+    allow_find	char (1)
+    allow_update	char (1)
+
+*usr_pro - 'User Profile - SYS/P'*
+KEY profile_code	char (2) KEY
+    descript	char (24)
+
+*usrdef - 'User Definitions - SYS/P'*
+KEY usr_code	char (10) KEY
+    create_l_orders	char (1)
+    create_n_orders	char (1)
+    create_p_orders	char (1)
+    create_s_orders	char (1)
+    cw_del_allowed	char (1)
+    default_printer	char (10)
+    hlp_level	char (1)
+    locat_code	numeric (2)
+    ord_auth_limit	amount (9)
+    pm_del_allowed	char (1)
+    profile_code	char (2)
+    usr_auth_grade	char (3)
+    usr_name	char (24)
+    usr_title	char (24)
+
+*valuers - 'Valuer Code Maintenance - PM'*
+KEY valuer_code	char (4) KEY
+    valuer_desc	char (50)
+
+*walk_tmp - 'capital charging details - CC'*
+KEY sequence_number	numeric (6) KEY
+    account_code	char (4)
+    asset_group	char (3)
+    cap_chgs_account	char (10)
+    cap_chgs_centre	char (10)
+    capital_asset_code	char (21)
+    capital_sub_asset_no	numeric (4)
+    dep_int_this_per	huge amount
+    division	char (4)
+    indexed_replacement_cost	huge amount
+    new_val_fld	char (25)
+    notes	char (50)
+    old_val_fld	char (25)
+    purchase_price	huge amount
+    serv_code	char (3)
+    transaction_type	char (3)
+
+*wards - 'Wards Information - PM'*
+KEY ward	char (4) KEY
+    descript	char (40)
+
+*wk_done - 'Work Done Text - AO'*
+KEY work_done_job_id	char (6) KEY
+    detail_1	char (50)
+    detail_2	char (50)
+    detail_3	char (50)
+    detail_4	char (50)
+    detail_5	char (50)
+    detail_6	char (50)
+    detail_7	char (50)
+
+*wk_nums - 'Week Numbers - AO'*
+KEY week_number	numeric (2) KEY
+KEY year	char (4) KEY
+    week_end	huge date
+    week_start	huge date
+
+*wk_teams - 'Work Teams - AO'*
+KEY team_id	char (6) KEY
+    absence_target	amount (5)
+    actual_target	amount (5)
+    available_target	amount (5)
+    cost_target	amount (5)
+    descript	char (24)
+    divert_target	amount (5)
+    finalised_week	char (7)
+    leave_target	amount (5)
+    measured_target	amount (5)
+    missing_target	amount (5)
+    overtime_target	amount (5)
+    productivity_target	amount (5)
+    sick_target	amount (5)
+    spent_target	amount (5)
+    standard_target	amount (5)
+    travel_target	amount (5)
+    unassigned_target	amount (5)
+    wait_target	amount (5)
+
+*ws_type - 'Workshop codes - AO'*
+KEY workshop_code	char (3) KEY
+    descript	char (24)
+
+*yr_nums - 'Year Numbers - AO'*
+KEY year	char (4) KEY
+    number_of_weeks	numeric (2)
+

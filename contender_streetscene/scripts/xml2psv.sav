@@ -1,0 +1,49 @@
+#! /bin/sh
+
+# Procedure to convert an XML document instance to comma-separated
+# spreadsheet format.
+
+# Dependencies: requires a copy of the "nsgmls" validating parser
+# (www.jclark.com in the SP package) and a copy of the standard
+# GNU or Unix "awk", "sed", and "sort" programs.
+
+FILE="$1"
+
+if [ -z "$FILE" ]; then
+
+    echo xml2psv - converts an XML instance to a PSV file
+    echo
+    echo You must supply the name of an XML file to process
+    echo \(without the \".xml\" filetype, just the name\), eg
+    echo
+    echo \ \ \ \ \ xml2psv demo
+    echo
+    echo This procedure is GNU Copyleft 2000 by Silmaril Consultants.
+    echo You may freely copy and use it but you may not prevent anyone
+    echo else from doing the same. See http://www.fsf.org/copyleft/gpl.html
+else
+	cat  $FILE.xml | tee foo0|\
+
+	sed -e "s_<[^/]_\
+&_g" |\
+	sed -e "s_><_>\
+<_g" | tee foo1 |\
+	sed -e "/^$/d" | tee foo2 |\
+	sed -e "s/	/ /g" |\
+    xname |\
+    nsgmls -wxml 2>/dev/null |\
+	awk -f xml2psv.awk |\
+	sort -t, -k 1n -k 2n |\
+	sed -e "s+\^0,1+\#rec,\#cnt+" |\
+	sed -e "s/\>//g" |\
+	sed -e "s/\\\\n//g" > $FILE.psv
+
+	cp $FILE.psv /tmp/foo99
+
+    psvfill $FILE
+
+    echo `wc -l $FILE.psv | awk '{print $1}'` records written to $FILE.psv
+
+fi
+
+

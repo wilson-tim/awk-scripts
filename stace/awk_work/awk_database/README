@@ -1,0 +1,14 @@
+   The awk forms consists of the awk scripts forms.lib and database.lib, along with a <filename>.frm and a <filename>.scr. The *.frm is the form that will be displayed, and it's assciciated script file is *.scr. The form has a screen section, that includes fields, and a atribute section, at the end of the file, which includes attributes about the form.
+   The fields come in two flavours, ones which are form system use only and those that are for user interaction.
+   The system fields are specifed by a single numeric (0-9) digit followed by a colon, followed by hashes to show the field length e.g. 0:### The field name is included in the field length so the example would have a field length of 5. The smallest field size for a system field would therefore be 3. The maximum number of system fields is limited to 10 (0-9). 
+   The user interaction fields are specified by a single alphabetic character (a-zA-Z) either upper or lower case, followed by a colon, followed by hashes to show the field length e.g. a:### The field name i.e. 'a:' is case sensitive 'a:' is NOT the same as 'A:'. The field name is NOT included in the field length so the example would have a field length of 3. The field name is shown on the screen for user fields, but not for system fields. The maximum number of user fields is limited to 52 (a-z & A-Z).
+   The attribute section at the bottom of a form gives details about sepecific form related attributes. Some examples currently implemented are:
+
+@ field_order: <text string> 
+     The string contains the field name letters in the order to be visited by the user
+
+@ start_field: <a letter to indicate the starting field>
+
+The format of the attributes is as follows:
+
+@ <attribute>: <attributes arguments>

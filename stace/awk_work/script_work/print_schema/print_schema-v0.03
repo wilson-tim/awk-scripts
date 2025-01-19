@@ -1,0 +1,152 @@
+###############################################################################
+#                                                                             #
+# print_schema script VERSION 0.03                                            #
+# (c) William Wragg/Datapro Software Ltd. 2001                                #
+# BY WILLIAM WRAGG                                                            #
+# DATE 10/05/2001                                                             #
+#                                                                             #
+# Notes:                                                                      #
+#  Call with:                                                                 #
+#     print_schema [table1 table2 ...]                                        #
+#                                                                             #
+# All local variables are preceded with an underscore e.g. _local             #
+# All global variables are composed only of letters, and the first letter is  #
+# a capital. If the global variable is composed of two or more words, then    #
+# each of these words is capitalised, not just the first one e.g. Global,     #
+# GlobalVariable                                                              #
+#                                                                             #
+# This program creates a printable schema which it sends to standard out. The #
+# format it sends out for each table is as follows;                           #
+#                                                                             #
+# *table_name - 'description of table'*                                       #
+# field_name<TAB>type KEY                                                     #
+#             .                                                               #
+#             .                                                               #
+#             .                                                               #
+# field_name<TAB>type                                                         #
+#             .                                                               #
+#             .                                                               #
+#             .                                                               #
+# <RETURN>                                                                    #
+#                                                                             #
+# The stars around the header (table name and description) can be used to     #
+# denote bold.                                                                #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+# If no table names supplied, then do all the tables.
+if test $# = 0
+then
+    # The list of tables that are selected from.
+    TABLES=`tblstats -s PUBLIC | egrep "PUBLIC|Option" | sed -e "
+        /Option/s/\$//" | tr -d '\12' | tr '\1' '\12' | sed -e "
+        /Sql view/d
+        s/Option:.*//
+        s/^.*PUBLIC\.//
+        " | sort`
+else
+    TABLES=$*
+fi
+
+for TABLE in $TABLES
+do
+   dumpdd -t $TABLE | awk '
+      BEGIN {
+         Header = ""; Table = "false"
+      }
+      
+      # BEGIN FUNCTIONS
+      # ---------------
+      # Checks for the existence of a file.
+      function exists(_file,   _dummy, _ret) {
+         # File exist and can be read.
+         if ((getline _dummy < _file) > 0) { _ret = 1 }
+         else { _ret = 0 }
+         close(_file)
+         return _ret
+      }
+
+      # Takes the field number to clean.
+      function clean(_field) {
+         gsub(/"/,"",$_field)
+         gsub(/,/,"",$_field)
+         gsub(/;/,"",$_field)
+         gsub(/'"'"')/,"'"'"'",$_field)
+         gsub(/))/,")",$_field)
+      }
+      
+      # Retrieves the description from the description line.
+      function description(   _count, _description) {
+         for(_count = 2; _count <= NF; _count++) {
+            if(_count == NF) {
+               clean(_count)
+               _description = _description $_count
+            }
+            else {
+               _description = _description $_count " "
+            }
+         }
+         return _description
+      }
+      # -------------
+      # END FUNCTIONS
+      
+      # BEGIN PATTERNS
+      # --------------
+      # Table name and start of a table description.
+      $1 == "create" && $2 == "table" {
+         Table = "true"
+         clean(3)
+         Header = "*" $3 " - "
+         next
+      }
+      
+      # Retrieve descrition and place it after the table name.
+      /'"'"'.*'"'"'/ && $1 == "description"  && Table == "true" {
+         print Header description() "*"
+         Header = ""
+         next
+      }
+      
+      # Field and field type plus primary key identifier if required.
+      $1 ~ /".*"/ && Table == "true" {
+         clean(1); clean(2); clean(3)
+         if ($0 ~ /not null/) { print $1 "\t" $2, $3, "KEY" > "key.tmp" }
+         else { print $1 "\t" $2, $3 > "notkey.tmp" }
+         next
+      } 
+      
+      # End of table description, so skip rest of the lines until another table
+      # description comes along.
+      /commit work;/ && Table == "true" {
+         # Close the temp files which are being written too.
+         close("key.tmp")
+         close("notkey.tmp")
+      
+         # Sort and print the temp files.
+         if (exists("key.tmp")) {
+            while ( ("sort key.tmp" | getline) > 0) { print }
+            close("sort key.tmp")
+            close("key.tmp")
+         }
+
+         if (exists("notkey.tmp")) {
+            while ( ("sort notkey.tmp" | getline) > 0) { print }
+            close("sort notkey.tmp")
+            close("notkey.tmp")
+         }
+      
+         Header = ""; Table = "false"
+         print ""
+      }
+      # ------------
+      # END PATTERNS
+      
+      END {
+         # Remove the temporary files.
+         if (exists("key.tmp")) { system("rm key.tmp") }
+
+         if (exists("notkey.tmp")) { system("rm notkey.tmp") }
+      }'
+done

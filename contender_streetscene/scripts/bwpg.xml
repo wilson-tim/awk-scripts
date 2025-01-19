@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Transactions JobId="060404172314203">
+<Transaction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="G65442">
+  <TransactionType Id="106633" Process="106633" Category="A">Special Collection request</TransactionType>
+  <TransactionChannel Id="INTER">Customer Portal</TransactionChannel>
+  <TransactionAuthority Id="16" Division="StreetCare">Brent Council</TransactionAuthority>
+  <Location Id="118779" Reference="202136723">2 Agave Road
+London
+NW2 6XN</Location>
+  <Applicant1>
+    <Title>Mr.</Title>
+    <Forename1>Mike</Forename1>
+    <Forename2 xsi:nil="true" />
+    <Forename3 xsi:nil="true" />
+    <Name>Bloomfield</Name>
+    <AddressId>118779</AddressId>
+    <AddressReference>202136723</AddressReference>
+    <Address>2 Agave road</Address>
+    <Town>London</Town>
+    <County xsi:nil="true" />
+    <Postcode>NW2 6XN</Postcode>
+    <Email xsi:nil="true" />
+    <businessPhone xsi:nil="true" />
+    <homePhone xsi:nil="true" />
+    <mobilePhone xsi:nil="true" />
+    <Fax xsi:nil="true" />
+  </Applicant1>
+  <Location.Details>Front Garden
+DATAPRO SOFTWARE TEST</Location.Details>
+  <Bulky_Waste_Description>
+    <BulkyWaste.Type>Bed (not including mattress)</BulkyWaste.Type>
+    <BulkyWaste.Quantity>1</BulkyWaste.Quantity>
+    <BulkyWaste.Details xsi:nil="true" />
+  </Bulky_Waste_Description>
+  <Ethnic_Group>British</Ethnic_Group>
+  <Age>56-65</Age>
+  <Gender>M</Gender>
+  <Illness_Or_Disability xsi:nil="true" />
+  <Activities_Limited xsi:nil="true" />
+</Transaction></Transactions>

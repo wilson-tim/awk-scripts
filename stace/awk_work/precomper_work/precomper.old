@@ -1,0 +1,15 @@
+echo "    ACPLPP precomper"
+if test $# = 3
+then
+    shift
+fi
+if test $# = 2
+then
+    cat $1 | /opt/K/SKUNK98/Gcc/98q2/usr/local/lib/gcc-lib/i486-pc-sco3.2v5.0/2.7.2.3/cpp -P | split | sed "s/NULLDATE/str_to_date\$('**\/**\/**')/g" > $2
+
+#/opt/K/SKUNK98/Gcc/98q2/usr/local/lib/gcc-lib/i486-pc-sco3.2v5.0/2.7.2.3/cpp -P
+
+else
+    echo "ERROR: expecting 2 parameters, not $# !"
+fi
+

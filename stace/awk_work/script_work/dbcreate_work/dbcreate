@@ -1,0 +1,152 @@
+
+usage()
+{
+echo
+echo "Purpose: To create a empty Pharaoh database, typically"
+echo "         the blank database."
+echo
+echo "Usage:   $0 schema db_path"
+echo "where:   schema and db_path are full pathnames."
+echo
+echo "See also: dbload, dbdel, dbaddvol"
+echo "Author: William Wragg (27-02-2001)"
+echo "Change History:" 
+exit
+}
+
+if test "$1" = "-"
+then
+    usage
+fi
+
+
+# Check the PHABASE variable
+if test "$PHABASE" = ""
+then
+    echo "ERROR: The PHABASE shell variable is not set !\007"
+    echo "       This needs to be correctly set in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+# Check the PHABASE directory exists
+if test ! -d "$PHABASE"
+then
+    echo "ERROR: The PHABASE directory $PHABASE does not exist !\007"
+    echo "       This needs to be corrected in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+if test "$BINDIR" = ""
+then
+    echo "ERROR: The BINDIR shell variable is not set !\007"
+    echo "       This needs to be correctly set in the 'pharaoh' script."
+    sleep 3
+    exit 1
+fi
+
+# Check that the user is super
+ID=`id | sed -e "s/ .*//"`
+if test "$ID" != "uid=0(root)"
+then
+    echo "ERROR: You must be root or super-user to run this utility !"
+    exit
+fi
+
+# Check if the arguments have been supplied.
+if $# != 2
+then
+    echo "ERROR: There must be two arguments supplied !"
+    usage
+    sleep 3
+    exit 1
+else
+    # The database we are creating
+    DBPATH=$2; export DBPATH
+    echo $DBPATH
+
+    # The schema to create the database with.
+    SCHEMA=$1
+fi
+
+# Make sure that the database does not already exist
+if test -d "$DBPATH"
+then
+    echo "ERROR: $DBPATH is an existing directory/database !"
+    sleep 3
+    exit 1
+fi
+
+# Make sure that the database does not already exist
+if test ! -f "$SCHEMA"
+then
+    echo "ERROR: The schema $SCHEMA does not exist !"
+    sleep 3
+    exit 1
+fi
+
+
+echo "STARTING AT: \c"
+date
+echo "CREATING EMPTY DATABASE: "$DBPATH
+echo "================================================================================"
+echo
+
+# Move to the PHABASE directory, and create the database directory as dbadmin.
+cd $PHABASE
+su dbadmin -c "mkdir $DBPATH"
+cd $DBPATH
+
+# create the database structure by running the schema.
+echo "CREATING THE DATABASE FILE SYSTEM ... THIS MAY TAKE SOME TIME ..."
+
+# Create the database file system, ready for the schema.
+creatdb -dpharaoh -vvol0 -Ovollen=8388608 -Ofiletype=regular -Opreallocate -Odesc='Pharaoh Database'
+
+echo "CREATION OF THE DATABASE FILE SYSTEM IS COMPLETE."
+echo
+
+# Shut the database as it was opened when it was created.
+echo "SHUTTING THE DATABASE DOWN ... THIS MAY TAKE SOME TIME ..."
+shutdb
+echo "SHUTTING DOWN OF THE DATABASE IS COMPLETE."
+echo
+
+# Rememebr to change the SHMKEY value to a unique number, as in db_copy
+NEW_KEY=`date +"%M%H%d%m%y" | sed -e "s/\///g
+s/^0//"`
+sed -e "/^SHMKEY/s/=.*/=$NEW_KEY/" < $PHABASE/lib/file.cf > $DBPATH/file.cf
+
+# Create some new directories.
+su dbadmin -c "mkdir raw_data account_data archives_dir data_errors cris_data text_files walker_data"
+
+# Start the datbase ready to run the schema.
+echo "STARTING THE DATABASE UP ..."
+pharaoh startdb
+echo "STARTING OF THE DATABASE IS COMPLETE."
+echo
+
+# create the database structure by running the schema.
+echo
+echo "CREATING TABLE AND INDEX STRUCTURES ... THIS MAY TAKE SOME TIME ..."
+echo
+
+SQL $SCHEMA
+
+echo
+echo "CREATION OF TABLE AND INDEX STRUCTURES IS COMPLETE."
+echo
+
+echo "CREATING DISC INTEGRITY SYSTEM (DISC) ... THIS MAY TAKE SOME TIME ..."
+
+disc -Oinitialize
+disc $PHABASE/lib/source.dis
+
+echo "CREATION OF DISC INTEGRITY SYSTEM (DISC) IS COMPLETE."
+
+echo
+echo "================================================================================"
+echo "CREATION OF AN EMPTY DATABASE: "$DBPATH
+echo "FINISHED AT: \c"
+date

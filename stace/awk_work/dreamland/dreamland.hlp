@@ -1,0 +1,15 @@
+###############################################################################
+#                                                                             #
+# DREAMLAND VERSION 0.08  (c) William Wragg 2000                              #
+# BY WILLIAM WRAGG                                                            #
+# DATE 18/08/2000                                                             #
+#                                                                             #
+###############################################################################
+q|quit = exit from dreamland
+f|forward = move forward
+b|backward = move backward
+l|left = move left
+r|right = move right
+lk|look|<RETURN> = look around
+h|help = this help screen
+t|talk = talk to a character

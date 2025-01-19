@@ -1,0 +1,95 @@
+###############################################################################
+#                                                                             #
+# Form template VERSION 0.01                                                  #
+# (c) William Wragg/Datapro Software Ltd. 2000                                #
+# BY WILLIAM WRAGG                                                            #
+# DATE 02/10/2000                                                             #
+#                                                                             #
+# Notes:                                                                      #
+#  Call with:                                                                 #
+#     awk -f forms.lib -f database.lib -f template.scr                        #
+#                                                                             #
+#  All local variables are preceded with an underscore e.g. _local            #
+#  All global variables are composed only of letters, and the first letter is #
+# a capital. If the global variable is composed of two or more words, then    #
+# each of these words is capitalised, not just the first one e.g. Global,     #
+# GlobalVariable                                                              #
+#                                                                             #
+###############################################################################
+
+BEGIN {
+   Form("template") }
+
+
+# FUNCTION SECTION - START
+# ------------------------
+function BeforeForm() {
+   FieldValue["7:"]="03/10/2000"
+   FieldValue["8:"]="15:40"
+   FieldValue["1:"]="replace"
+   FieldValue["3:"]="find"
+   FieldValue["4:"]="zoom"
+   FieldValue["0:"]="F01-Prv Form|F02-Nxt Form|F03-Find    |F04-Help    |F05-Fld Help|F10-More Key" }
+
+
+# This is the section where the individual code goes.
+function OnForm() {
+      # This section is the user interaction section.
+      # All commands are preceded by a colon ":".
+      # Jump to the field specified.
+      if($0 ~ /^:[a-zA-Z]:/) {
+         CurrentField = substr($0,2) }
+      # Quit the application.
+      else if($1 == ":quit") {
+         print "Quitting..."
+         exit }
+      # If don't recognise the input or just return is pressed, move to the
+      # next field.
+      else if ($0 == "") {
+         NextField() }
+      else {
+         FieldValue[CurrentField] = $0 } }
+
+
+function AfterForm() {}
+
+
+function BeforeFind() {}
+
+
+function OnFind() {}
+
+
+function AfterFind() {}
+
+
+function BeforeUpdate() {}
+
+
+function OnUpdate() {}
+
+
+function AfterUpdate() {}
+
+
+function InitField() {}
+
+
+function BeforeField() {}
+
+
+function OnField() {}
+
+
+function WhenFieldChanges() {}
+
+
+function AfterField() {}
+
+
+# -----------------------
+# FUNCTION SECTION - END
+
+
+END {}
+

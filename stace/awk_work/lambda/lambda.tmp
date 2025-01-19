@@ -1,0 +1,7 @@
+function _(x){
+return (x<2? 1: x * _(--x))
+}
+
+BEGIN {
+  print _(100)
+}

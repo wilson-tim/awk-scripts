@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Transactions JobId="070504105905484">
+<Transaction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="G69644">
+  <TransactionType Id="106621" Process="106621" Category="A">Refuse Collection service request</TransactionType>
+  <TransactionChannel Id="INTER">Customer Portal</TransactionChannel>
+  <TransactionAuthority Id="16" Division="StreetCare">Brent Council</TransactionAuthority>
+  <Location Id="118779" Reference="202136723">2 Agave Road London NW2 6XN</Location>
+  <Agent>
+    <Title>Mr</Title>
+    <Forename1>ANDREW</Forename1>
+    <Forename2 />
+    <Forename3 />
+    <Name>JONES</Name>
+    <AddressId>118779</AddressId>
+    <AddressReference>202136723</AddressReference>
+    <Address>2 Agave road</Address>
+    <Town>London</Town>
+    <County />
+    <Postcode>NW2 6XN</Postcode>
+    <Email />
+  </Agent>
+  <Applicant1>
+    <Title>Mr</Title>
+    <Forename1>ANDREW</Forename1>
+    <Forename2 />
+    <Forename3 />
+    <Name>JONES</Name>
+    <AddressId>118779</AddressId>
+    <AddressReference>202136723</AddressReference>
+    <Address>2 Agave road</Address>
+    <Town>London</Town>
+    <County />
+    <Postcode>NW2 6XN</Postcode>
+    <Email />
+    <businessPhone />
+    <homePhone />
+    <mobilePhone />
+    <Fax />
+  </Applicant1>
+  <LocationDetails>SIDE ENTRANCE SPONDER</LocationDetails>
+  <EthnicGroup>Other Ethnic Group</EthnicGroup>
+  <Age>26 35</Age>
+  <Gender>M</Gender>
+  <IllnessOrDisability />
+  <ActivitiesLimited />
+</Transaction>
+</Transactions>

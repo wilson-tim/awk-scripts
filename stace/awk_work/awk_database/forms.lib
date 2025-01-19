@@ -1,0 +1,213 @@
+###############################################################################
+#                                                                             #
+# AWK FORMS VERSION 0.02  (c) William Wragg/Datapro Software Ltd. 2000        #
+# BY WILLIAM WRAGG                                                            #
+# DATE 02/10/2000                                                             #
+#                                                                             #
+# Notes:                                                                      #
+#  All local variables are preceded with an underscore e.g. _local            #
+#  All global variables are composed only of letters, and the first letter is #
+# a capital. If the global variable is composed of two or more words, then    #
+# each of these words is capitalised, not just the first one e.g. Global,     #
+# GlobalVariable                                                              #
+#                                                                             #
+###############################################################################
+
+# Global variables used:
+# CurrentField, FieldOrder, FieldValue[], FieldSize[]
+
+# FUNCTION SECTION - START
+# ------------------------
+# This function pads a string with additional characters, to make the string
+# upto a set size.
+function pad(_string, _pad_char, _size,   # Arguments
+   _count, _string_length) {   # Local variables
+   _string_length = length(_string)
+   if (_string_length < _size) {
+      for (_count = 1; _count <= (_size - _string_length); _count++) {
+         _string = _string _pad_char } }
+   return _string }
+
+
+function Message(_message,   # Arguments
+   _input ) {   # Local variables
+   # This function waits for a key to be pressed after printing out the message.
+   printf _message
+   getline _input }
+
+
+# Function to move to the next field. The field rap from last back to first.
+function NextField(   _field_index) { # Local variables
+   # Find the position in the field order string where the current field
+   # resides.
+   _field_index = index(FieldOrder,substr(CurrentField,1,1))
+
+   # If the current field is the last one in the field order then make the next
+   # field the first one in the field order string.
+   if (_field_index == length(FieldOrder) ) {
+      _field_index = 1 }
+   # Else make the next field the next one in the field order string.
+   else {
+      _field_index++ }
+
+   # Set the Global CurrentField variable to the next field in the field order
+   # string.
+   CurrentField = substr(FieldOrder,_field_index,1) ":" }
+
+
+# Function to move to the previous field. The field rap from first back to last.
+function PreviousField(   _field_index) { # Local variables
+   # Find the position in the field order string where the current field
+   # resides.
+   _field_index = index(FieldOrder,substr(CurrentField,1,1))
+
+   # If the current field is the first one in the field order then make the next
+   # field the last one in the field order string.
+   if (_field_index == 1 ) {
+      _field_index = length(FieldOrder) }
+   # Else make the next field the previous one in the field order string.
+   else {
+      _field_index-- }
+
+   # Set the Global CurrentField variable to the next field in the field order
+   # string.
+   CurrentField = substr(FieldOrder,_field_index,1) ":" }
+
+
+# This function shows the form on screen, replacing any fields with their
+# values if they have been entered.
+function ShowForm(_formname,   # Arguments
+   _filename, _count, _field, _name, _pad_char ) {   # Local Variables
+   # Set the file name of the form to the form name plus .frm
+   _filename = _formname ".frm" 
+  
+   # Go through the .frm file one line at a time replacing fields as they are
+   # found with there values. Ignore the "atrib" lines at the end of the file. 
+   while ( (getline < _filename) > 0) {
+      # Ignore the "@" - attribute - lines.
+      if ($1 != "@") {
+         # Go through each awk field on the line and see if it is form field.
+         for (_count=1; _count <= NF; _count++) {
+            # This awk field is a form field.
+            if ($_count ~ /^[0-9a-zA-Z]:/) {
+               # Get the name of the field
+               _name = substr($_count,1,2)
+               
+               # If the field is the current field then pad (if necessary) with
+               # "_" instead of "." .
+               if (_name == CurrentField) {
+                  _pad_char = "_" }
+               else {
+                  _pad_char = "." }
+    
+               # If the form field name is a numeric from 0-9, then when
+               # showing the field on screen DON'T show the name. 
+               if (_name ~ /^[0-9]:/) {
+                  # If the value for the field is not big enough to fit into
+                  # the field, pad the value so that it does fit.
+                  if (length(FieldValue[_name]) < FieldSize[_name]) {
+                     _field = pad(FieldValue[_name],_pad_char,FieldSize[_name]) } 
+                  # Field value is the same length as the field, so no need to
+                  # pad.
+                  else {
+                     _field = FieldValue[_name] } }
+               # If the form field name is a letter (lower or upper a-z or A-Z)
+               # then show the field name on screen.
+               else {
+                  # If the value for the field is not big enough to fit into
+                  # the field, pad the value so that it does fit.
+                  if (length(FieldValue[_name]) < FieldSize[_name]) {
+                     _field = _name pad(FieldValue[_name],_pad_char,FieldSize[_name]) }
+                  # Field value is the same length as the field, so no need to
+                  # pad.
+                  else {
+                     _field = _name FieldValue[_name] } }
+               
+               # Replace the form field from the form template with it's padded
+               # value.
+               gsub($_count,_field, $0) } }
+
+         # Print the adjusted line out to the screen
+         print $0 } }
+
+   # Close the file so that we can use it again. 
+   close(_filename) }
+
+
+# Initialises the array FileSize[] with the size of each field. It also
+# initialises the array FieldValue[] with a blank value for each field.
+function InitForm(_formname,   # Arguments
+   _filename, _count, _field, _name, _size ) {   # Local variables
+   # Set the file name of the form to the form name plus .frm
+   _filename = _formname ".frm"
+
+   # Go through the .frm file one line at a time replacing fields as they are
+   # found with there values. Take account of the "atrib" lines at the end of
+   # the file.
+   while ( (getline < _filename) > 0) {
+      # Ignore the "@" - attribute - lines.
+      if ($1 != "@") {
+         # Go through each awk field on the line and see if it is form field.
+         for (_count=1; _count <= NF; _count++) {
+            # This awk field is a form field.
+            if ($_count ~ /^[0-9a-zA-Z]:/) {
+               # Get the name of the field
+               _name = substr($_count,1,2)
+
+               # If the form field name is a numeric from 0-9, then it's length
+               # is the field length plus the name.
+               if (_name ~ /^[0-9]:/) {
+                  _size = length($_count) }
+               # If the form field name is a letter (lower or upper a-z or A-Z)
+               # then it's length is the field length.
+               else {
+                  _size = length($_count) - 2}
+
+               # Set up the arrays with their default values.
+               FieldSize[_name] = _size
+               FieldValue[_name] = "" } } }
+      # Take account of the "@" - attribute - lines at the end of the file.
+      else if ($1 == "@") {
+         # If there is a field_order attribute then set the Global FieldOrder
+         # variable with the field_order string.
+         if ($2 == "field_order:") {
+            FieldOrder = $3 }
+         # If there is a start_field attribute then set the Global CurrentField
+         # variable with the start_field string.
+         else if ($2 == "start_field:") {
+            CurrentField = $3 ":"} } }
+
+   # Close the file so that we can use it again.
+   close(_filename) }
+
+
+# This is the main function and is where all the interaction happens. This
+# shows a basic setup.
+# Should be placed in the BEGIN section of an awk script.
+function Form(_formname) {
+   InitForm(_formname)
+   BeforeForm()
+   # Loops forever until the :quit command is typed. 
+   while ( "true" ) {
+
+      # Show the form on screen. 
+      ShowForm(_formname)
+      
+      # Print the prompt - this is the current field followed by a ">" symbol.
+      # The getline statement after the printf statement gets the next input
+      # from scripts current input, i.e. stdin.
+      printf " " CurrentField "> "
+      # If ^D is pressed must exit as getline has been terminated and will
+      # nolonger accept input.
+      if ( (getline) <= 0 ) {
+         AfterForm()
+         print "Quitting..."
+         exit }
+
+      # This is the user interaction section and the place to place bespoke 
+      # code.
+      OnForm() } }
+
+
+# -----------------------
+# FUNCTION SECTION - END

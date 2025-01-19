@@ -1,0 +1,11 @@
+PIPEDIR=/tmp
+# run the first instance in the background
+# then wait for any new incoming requests
+if [ "$FGLSERVER" = "" ]
+then
+	echo FGLSERVER must be set to run this program
+	exit 1
+fi
+# C_PIPE=$PIPEDIR/`echo $FGLSERVER | sed -e  "s/:.*$//"`
+C_PIPE=$PIPEDIR/`echo $FGLSERVER | tr ".:" "_."`
+echo $PREV_PARMS > $C_PIPE

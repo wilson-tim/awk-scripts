@@ -1,0 +1,129 @@
+10|TASK|4Front Services
+11|TASK|4Front Software (Basingstoke)
+12|TASK|4Front Software (Watford)
+13|TASK|4Front Workshop (Hove)
+14|TASK|4Js Software Development
+15|TASK|A J Walters
+16|TASK|Aero Fabrications
+17|TASK|Agathos Systems Limited
+AINTRE|TASK|Aintree Hospitals NHS TRUST
+ALL|TASK|ALL SITES
+20|TASK|Army Catering
+BARTS|TASK|Barts and London NHS Trust
+22|TASK|Basingstoke & Dean Council
+23|TASK|Bernshaws
+24|TASK|Bexley (Caxton)
+25|TASK|Borland
+26|TASK|Brighton Health Care NHS Trust
+27|TASK|Brighton Health Care NHS Trust (Capital)
+28|TASK|Bytech Systems
+29|TASK|Cambridge City Council
+30|TASK|Cliveden Recruitment
+31|TASK|Computability
+32|TASK|Corby (Keir)
+33|TASK|Croydon ARC
+34|TASK|DataPro Software (Basingstoke)
+35|TASK|DataPro Software (Brighton) - for mainly in-house administrative hours
+36|TASK|Deneys Reitz
+37|TASK|e
+EKENT|TASK|East Kent NHS and Social Care Partnership Trust
+EBOURN|TASK|Eastbourne General District Hospital
+40|TASK|Easynet
+41|TASK|FGH
+42|TASK|Focus Training
+43|TASK|Fredrick Hiam Ltd
+44|TASK|Future Micros
+45|TASK|GAH (Refridgeration) Limited
+46|TASK|Geac
+47|TASK|General Maintenance
+48|TASK|Geographers A - Z
+GLENFD|TASK|Glenfield Hospital
+50|TASK|Gold
+GLASGW|TASK|Greater Glasgow Primary Care NHS Trust
+52|TASK|Guys & St Thomas Hospital
+53|TASK|Hamiltone
+54|TASK|Harris Tobias Limited
+55|TASK|Heatherwood and Wexham NHS Trust
+56|TASK|Hillingdon Borough Council
+57|TASK|Howden & Wade
+58|TASK|Howden Air Control
+59|TASK|Howden Airscrew
+60|TASK|Informix (IBM)
+61|TASK|Interlink Express
+62|TASK|IQ
+63|TASK|Islington
+64|TASK|IT Solutions
+65|TASK|James Paget Hospital NHS Trust
+66|TASK|Kendall
+67|TASK|Lewisham NHS Trust
+68|TASK|Leyton Hosptial
+69|TASK|Logicline
+70|TASK|London Borough of Brent
+71|TASK|London Borough of Camden
+72|TASK|London Borough of Croydon
+73|TASK|London Borough of Hillingdon
+74|TASK|London Fire Brigade & Civil Def.
+75|TASK|Medoc
+76|TASK|Microsoft
+MCHESH|TASK|Mid-Cheshire Hospitals
+MKENT|TASK|Mid-Kent Healthcare NHS Trust
+79|TASK|Minden Industrial
+80|TASK|Mitchell & Cooper Ltd.
+81|TASK|NCR
+NEVILH|TASK|Nevill Hall Hospital
+NEWHOM|TASK|Newholme Hospital
+NDERBY|TASK|North Derby CHCS
+NHAMPT|TASK|Northampton Community Healthcare NHS Trust
+86|TASK|Oadby & Wigston
+87|TASK|Open Computing Ltd.
+88|TASK|Open Systems
+89|TASK|Openlink Software (UK) Ltd
+90|TASK|Orchid
+91|TASK|Orings Limited
+PWD|TASK|Parliamentary Works Directorate
+PERTH|TASK|Perth Royal Infirmary
+94|TASK|Price & Co.
+PRCSAL|TASK|Princess Alexandra Hospital
+96|TASK|Psion Corp
+97|TASK|Ramsdens
+98|TASK|Rational Software
+99|TASK|Reading University Student Union
+REDBRG|TASK|Redbridge Healthcare NHS Trust
+101|TASK|Rouse Davis
+102|TASK|Royal Blue
+RDE|TASK|Royal Devon & Exeter Healthcare NHS Trust
+LIFF|TASK|Royal Dundee Liff Hospital
+RHAMPS|TASK|Royal Hampshire County Hospital
+106|TASK|Sir William Halcrow
+107|TASK|Sofa Project (FRN)
+108|TASK|Solihull Hospital
+109|TASK|South Lakeland District Council
+110|TASK|Southern Communications
+111|TASK|SSVC Chalfont
+112|TASK|SSVC Germany
+113|TASK|Stearn Electrical
+114|TASK|Stonecray
+115|TASK|Strategic Reporting System
+116|TASK|Switch Networks Ltd
+117|TASK|Symonds Group (Birmingham)
+118|TASK|Symonds Group (Bootle)
+119|TASK|Symonds Group (Cardiff)
+TAYSID|TASK|Tayside University Hospitals NHS Trust
+121|TASK|Thames Electrical Controls
+122|TASK|Thames Gateway NHS Trust
+123|TASK|The Network (Kidderminster)
+124|TASK|t-mobile
+THAMLT|TASK|Tower Hamlets Healthcare Trust
+126|TASK|Towry Law
+127|TASK|Trafalgar House Facilities Services
+128|TASK|Tyco Healthcare Ltd.
+129|TASK|UCCF
+UNIFY|TASK|Unify (UK)
+131|TASK|University of Plymouth
+132|TASK|Wallchart International Ltd
+133|TASK|Wandsworth Borough Council
+134|TASK|Wandsworth Streets
+135|TASK|Westminster City Council
+136|TASK|Wycombe
+137|TASK|Yorkhill
+138|TASK|Skanska

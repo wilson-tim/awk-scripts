@@ -1,0 +1,18 @@
+term vt220|vt100|vt100-am|vt100|dec vt100
+Va \E[m
+Vb \E[m\E[5m
+Vc \E[m\E[2m
+Vd \E[m\E[2;5m
+Ve \E[m\E[4m
+Vf \E[m\E[4;5m
+Vg \E[m\E[2;4m
+Vh \E[m\E[4m
+Vi \E[m\E[2;7m
+Vj \E[m\E[m
+Vk \E[m\E[2;7m
+Vl \E[m\E[2;5;7m
+Vm \E[m\E[4;7m
+Vn \E[m\E[m
+Vo \E[m\E[2;4;7m
+Vp \E[m\E[2;4;5;7m
+

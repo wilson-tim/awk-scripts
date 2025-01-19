@@ -1,0 +1,25 @@
+#!/bin/sh
+#       Temporary wrapper for sms client
+#
+#       First parameter is ignored 2nd is mobile number
+#
+SMTPSERVER=mailhost.pavilion.net
+FROMADDRESS=root@odin.datapro.co.uk
+MAILTYPE=$1
+RECIPIENT=mailstripper@datapro.co.uk
+MOBILE=$2
+SUBJECT=SMS_Message_From_Contender
+echo $MAILTYPE
+echo $MOBILE
+shift; shift
+if [ $MAILTYPE = "F" ]
+then
+#       cat $* | smtpclient -v -S $SMTPSERVER -f $MOBILE -r $FROMADDRESS -s "\"$
+       cat $*
+       SUBJECT\"" $RECIPIENT
+       else
+               echo $* | smtpclient -v -S $SMTPSERVER -f $MOBILE -r $FROMADDRES
+S -s "\"
+               $SUBJECT\"" $RECIPIENT
+               fi
+

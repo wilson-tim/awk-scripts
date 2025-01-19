@@ -1,0 +1,23 @@
+#!/usr/bin/awk -f
+
+BEGIN { FS="|"; OFS="|"; button=""}
+
+$5 == 1  { button="A--"}
+$5 == 2  { button="B--"}
+$5 == 3  { button="C--"}
+$5 == 4  { button="D--"}
+$5 == 5  { button="E--"}
+$5 == 6  { button="F--"}
+$5 == 7  { button="G--"}
+$5 == 8  { button="H--"}
+$5 == 9  { button="I--"}
+$5 == 10 { button="J--"}
+$5 == 11 { button="K--"}
+$5 == 12 { button="L--"}
+$5 == 13 { button="M--"}
+$5 == 14 { button="N--"}
+$5 == 15 { button="O--"}
+$5 == 16 { button="P--"}
+
+{print $1,$2,$3,button $4,$5
+ button=""}

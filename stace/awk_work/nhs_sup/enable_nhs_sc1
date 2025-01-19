@@ -1,0 +1,105 @@
+#! /usr/bin/awk -f
+
+###############################################################################
+#                                                                             #
+# enable_nhs_sc script VERSION 0.01                                           #
+# (c) William Wragg/Datapro Software Ltd. 2001                                #
+# BY WILLIAM WRAGG                                                            #
+# DATE 21/03/2001                                                             #
+#                                                                             #
+# Notes:                                                                      #
+#  Call with:                                                                 #
+#  enable_nhs_sup                                                             #
+#                                                                             #
+# All local variables are preceded with an underscore e.g. _local             #
+# All global variables are composed only of letters, and the first letter is  #
+# a capital. If the global variable is composed of two or more words, then    #
+# each of these words is capitalised, not just the first one e.g. Global,     #
+# GlobalVariable                                                              #
+#                                                                             #
+# This script sets up a pharaoh database to use the NHS Supplies stock        #
+# system.                                                                     #
+#                                                                             #
+###############################################################################
+
+BEGIN {
+
+   # Set up the nhs supplies stock usr_acc (User Access) table
+   sql("insert into usr_acc (allow_add, allow_delete, allow_find, allow_update, form_nam, menu_name, profile_code) values ('Y', 'Y', 'Y', 'Y', 'nhs_sc_iss', 'menu_sc_1', 'SU'); commit work;")
+
+   # Set up the nhs supplies stock formdef (Form Definitions) table
+   sql("insert into formdef (available, form_nam, menu_name, menu_text, position) values ('Y', 'nhs_sc_iss', 'menu_sc_1', 'NHS Supplies Issues', '1'); commit work;")
+
+   # Set up the additional tables required by the form nhs_sc_iss when it
+   # inserts an sk_items record.
+   sql("insert into stk_type (stock_type_code, descript, pur_account_code) values ('A', 'Stock Inventory', 'NHS-SUP'); commit work;")
+
+   sql("update control set control_acc_code = 'NHS-SUP', invy_stock_type = 'A'; commit work;")
+
+   sql("insert into skc_dets (class_code, descript) values ('NS', 'NHS Supplies'); commit work;")
+ 
+   sql("insert into sic_dets (ratio_code, supply_uom, issue_uom, ratio_val_fld) values ('NHS', 'NHSSUP', 'NHSSUP', 1.00); commit work;")
+
+   sql("insert into lo_dets (stock_loc_code, address_code, b_fwd_grn_qty, b_fwd_grn_val_fld, cost_centre, decript) values (1,'NHS-SUP',0,0.00,'','NHS Supplies'); commit work;")
+
+   sql("insert into nam_adds (name_and_address, discount, name, address_line_1, address_line_2, address_line_3, address_line_4, telephone_no, telex_no, fax_number, contact_name, delivery_charge, lead_time, buyer_text_1, buyer_text_2, buyer_text_3, buyer_text_4, buyer_text_5, buyer_text_6, buyer_text_7, buyer_text_8, extension, payment_indic, apprv_contractor, on_cg_apprv_list, min_order_val_fld, max_order_val_fld, post_code, supplier_type, supplier_type2, supplier_type3, supplier_type4, supplier_type5, supplier_type6) values ('NHS-SUP', '', 'NHS Supplies', '', '', '', '', '', '', '', '', 'N', 0, '', '', '', '', '', '', '', '', '', '', 'N', 'N', 0, 0, '', '', '', '', '', ''); commit work;")
+
+}
+
+
+# FUNCTION SECTION.
+# -----------------
+function sql( _sql_statement,   # Arguments
+   _nr, _cmd ) {   # Local variables
+
+   carray(SqlOutput)
+   SqlOutSz = 0
+   _nr = 0
+   _cmd = "echo \"" _sql_statement "\" | SQL 2>&1"
+
+   # Starting SQL.
+   while ( (_cmd | getline) > 0) {
+      _nr++
+      SqlOutput[_nr] = $0
+   }
+
+   SqlOutSz = _nr
+   close(_cmd)
+}
+
+# This function creates an empty array.
+function carray( _array) {   # Arguments
+   _array[1] = "create"
+   darray(_array)
+   return
+}
+
+# This function deletes all elements from an array.
+function darray( _array,   # Arguments
+   _item ) {   # Local variables
+
+   if ( ! is_empty(_array) ) {
+      for (_item in _array) { delete _array[_item] }
+   }
+}
+
+# This function checks whether an array is empty or not. Returns 1 if empty and
+# 0 if their is any data.
+function is_empty( _array,   # Arguments
+   _item ) {   # Local variables
+
+   # If finds any items then array is not blank
+   for (_item in _array) { return 0 }
+
+   # Array is blank
+   return 1
+}
+
+# This function chops off leading, and trailing, spaces from a string.
+function truncate( _string ) {   # Arguments
+   sub(/^ +/,"",_string)
+   sub(/ *$/,"",_string)
+   return _string
+}
+# ------------------------
+# END OF FUNCTION SECTION.

@@ -1,0 +1,7 @@
+FILE=$1
+sort -r $FILE.psv > $FILE.rvs
+awk -f psvfill.awk  < $FILE.rvs > $FILE.tmp
+sort $FILE.tmp > $FILE.rvs
+awk -f psvfill.awk < $FILE.rvs > $FILE.psv
+rm $FILE.tmp $FILE.rvs
+

@@ -1,0 +1,3 @@
+# Test Brent Web
+
+web_load_import.sh /startrek/databases/v6/BRENT/web_import /startrek/databases/v6/BRENT/web_import/ARCHIVE

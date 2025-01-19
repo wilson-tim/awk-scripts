@@ -1,0 +1,49 @@
+PIPEDIR=/tmp
+# run the first instance in the background
+# then wait for any new incoming requests
+if [ "$FGLSERVER" = "" ]
+then
+	echo FGLSERVER must be set to run this program
+	exit 1
+fi
+C_PIPE=`echo $PIPEDIR/$FGLSERVER | tr ".:" "_."`
+rm -f $C_PIPE
+mkfifo $C_PIPE
+chmod 666 $C_PIPE
+PREV_PARMS=$*
+export PREV_PARMS
+echo $PREV_PARMS > $C_PIPE &
+while true
+do
+	CPARMS=`cat  $C_PIPE | sed -e "s///"`
+	if [ "$CPARMS" = "Done" ]
+	then
+		# as each one finishes check to see if its the last one
+		if ps | grep fglrun > /dev/null 2>&1
+		then
+			continue
+		else
+			echo End of CONTENDER session
+			rm -f $C_PIPE
+			kill 0
+			exit
+		fi
+	else
+		if [ "$CPARMS" = "foreground" ]
+		then
+			echo Running foreground $PREV_PARMS
+			rundev $PREV_PARMS
+		else
+			if [ "$CPARMS" = "umenu" -o "$CPARMS" = "pmenu" ]
+			then
+				$CPARMS
+			else
+				echo Running $CPARMS
+				wrapper2 $C_PIPE $CPARMS &
+			fi
+		fi
+	fi
+done
+
+
+

@@ -1,0 +1,2 @@
+lines 0;
+select * from hlp_info2 INTO  '/usr1/will/work_in_progress/script_work/hlp_info2.asc';

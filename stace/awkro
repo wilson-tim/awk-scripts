@@ -1,0 +1,30 @@
+BEGIN{ 	FS=","
+	i=1
+	while( (getline spec < "species04.csv") > 0 ){
+		gsub( /[ ]+$/, "", spec )		
+		specData[i] = spec
+		print i " -> ", spec
+		++i
+	}
+	print i
+	print specData[5]
+}
+
+{
+
+	#print "This is record ", NR, " :", $1
+	if (!$1){
+		print "No value in field!", "|", $1, "|"
+	}else{
+		for (j=1; j<i; j++){
+			if( specData[j] == $1 ){
+				print "|", specData[j], "|", $1, "|", j
+			}
+		}
+	}
+
+}
+
+
+
+

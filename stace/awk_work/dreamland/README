@@ -1,0 +1,5 @@
+forward and backward can be represented by increasing and decreasing the number of turns.
+
+left and right can be represented by increasing and decreasing the seed number.
+
+At the start of dreamland the number of turns = 1, and the seed = 1.

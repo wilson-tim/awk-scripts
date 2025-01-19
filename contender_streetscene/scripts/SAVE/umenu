@@ -1,0 +1,2 @@
+echo "\033[0y\c"
+su root -c /usr/universe/bin/umenu2

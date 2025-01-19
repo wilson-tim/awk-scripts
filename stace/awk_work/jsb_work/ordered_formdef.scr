@@ -1,0 +1,36 @@
+# Make a backup of the original formdef, by dumping it into dump_dir.
+dbdump formdef
+
+
+# Dump an ordered formdef. Ordered by menu_name, position.
+echo "lines 0;" > $PHABASE/tmp/menu_level.tmp3
+echo "select * from formdef order by menu_name, position into '"$PHABASE"/tmp/menu_level.tmp4';" >> $PHABASE/tmp/menu_level.tmp3
+
+SQL $PHABASE/tmp/menu_level.tmp3
+rm $PHABASE/tmp/menu_level.tmp3
+
+
+# Order the formdef correctly
+awk '
+BEGIN {FS="|"; OFS="|"; first_record=true; counter=1; old_menu_name=""}
+
+{if(first_record) {first_record=false}
+ else if(old_menu_name != $1) {counter=1}}
+
+{print $1,$2,counter,$4,$5
+ counter++
+ old_menu_name=$1}' $PHABASE/tmp/menu_level.tmp4 > $PHABASE/tmp/menu_level.tmp5
+
+rm $PHABASE/tmp/menu_level.tmp4
+
+
+# Delete the old formdef
+dbdel formdef
+
+
+# Load in the ordered formdef
+echo "insert into formdef values from '"$PHABASE"/tmp/menu_level.tmp5';" > $PHABASE/tmp/menu_level.tmp3
+
+SQL $PHABASE/tmp/menu_level.tmp3
+rm $PHABASE/tmp/menu_level.tmp3 $PHABASE/tmp/menu_level.tmp5
+ 

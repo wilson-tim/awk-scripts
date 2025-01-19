@@ -1,0 +1,11 @@
+fgl2p fix_comp.4gl
+fgl2p -o fix_comp.42r \
+fix_comp.42m \
+../CRM/crm_utils.42m \
+../UTILS/putils.42m
+
+fgl2p fix_comp_andy.4gl
+fgl2p -o fix_comp_andy.42r \
+fix_comp_andy.42m \
+../CRM/crm_utils.42m \
+../UTILS/putils.42m

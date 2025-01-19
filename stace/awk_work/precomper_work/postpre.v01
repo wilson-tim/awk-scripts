@@ -1,0 +1,42 @@
+#!/usr/bin/awk -f
+
+BEGIN {gsubbed = "no"; last_line = ""; last_line_flag = "no"}
+
+/^ / && gsubbed == "yes" {
+    gsub(/^ /,"")
+    last_line_flag = "yes"
+    gsubbed = "no"}
+
+/##_P_## / {
+    gsub(/##_P_## /,"")
+    gsubbed = "no"}
+
+/##_P_##$/ {
+    gsub(/##_P_##/,"")
+    gsubbed = "yes"}
+
+{if (NR != 1) {
+    if(last_line_flag == "yes"){
+        if (NF == 1) {
+            last_line = last_line $1
+            last_line_flag = "no"}
+        else {
+            print last_line $1
+            sub($1,"")
+            last_line = $0
+            last_line_flag = "no"}}
+    else {
+        print last_line
+        last_line = $0}}
+ else {
+    last_line = $0}
+ last_line_flag = "no"}
+
+END {
+     if(last_line_flag == "yes"){
+         print last_line $1
+         last_line = $0}
+     else {
+         print last_line
+         last_line = $0}
+    }

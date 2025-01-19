@@ -1,0 +1,53 @@
+BEGIN {
+   FS="|"
+   OFS="|"   
+   count=1 }
+
+
+function column_no(_table, _column,   # Arguments
+   _table_file, _count ) {   # Local variables
+   _table_file = _table ".spe"
+
+   while ( (getline < _table_file ) > 0) {
+      for (_count=1; _count <= NF; _count++) {
+         if ( ($_count == _column) && (NR == 1) ) {
+            close(_table_file)
+            return _count } } } }
+
+
+function find(_table, _string, _column,   # Arguments
+   _count, _table_file ) {   # Local variables
+   _count = 1
+   _table_file = _table ".asc"
+   _column_no = column_no(_table, _column)
+
+   if (_column_no != 0) { 
+      while ( (getline < _table_file ) > 0) {
+         if ($_column_no ~ _string) {
+            print _count " " $0
+            _count ++ } }
+
+      close(_table_file) } }
+
+
+function total(_table,   # Arguments
+   _count, _table_file ) {   # Local variables
+   _count = 1
+   _table_file = _table ".asc"
+
+   while ( (getline < _table_file ) > 0) {
+         _count ++ } 
+   print _count
+   close(_table_file) }
+
+
+{  
+   print column_no("fx_dets", "account_code")
+   print "Starting find ..."
+#   find("ph_hist", "CLE", "contract_type")
+#   find("fx_dets", "HOC045-552395", "account_code")
+   total("ph_hist")
+   print "Finished find." }   
+
+
+END {}

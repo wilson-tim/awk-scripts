@@ -1,0 +1,93 @@
+addauser()
+{
+clear
+echo "Enter username to be added : \\c"
+read temp_uname
+if [ "$temp_uname" = "" -o "$temp_uname" = "q" ]
+then
+echo "No action taken"
+else
+echo "\n\nAdding user : $temp_uname - please wait"
+useradd -m -c "Contender User" -d /usr/home/$temp_uname -g informix -s ksh $temp_uname
+fi
+passwd $temp_uname
+echo "Press Enter to continue..\\c"
+read foo
+}
+
+delauser()
+{
+clear
+echo "Enter username to be deleted : \\c"
+read temp_uname
+if [ "$temp_uname" = "" -o "$temp_uname" = "q" ]
+then
+echo "No action taken"
+else
+echo "\n\nDeleting user : $temp_uname - please wait"
+userdel $temp_uname
+echo "\n\nRemoving home directory for $temp_uname ? Enter Y to confirm : \\c"
+read foo
+if [ "$foo" = "Y" -o "$foo" = "y" ]
+then
+rm -rf /usr/home/$temp_uname
+fi
+
+fi
+echo "Press Enter to continue..\\c"
+read foo
+}
+
+modauser()
+{
+clear
+echo "Enter username for revised password : \\c"
+read temp_uname
+if [ "$temp_uname" = "" -o "$temp_uname" = "q" ]
+then
+echo "No action taken"
+else
+passwd $temp_uname
+fi
+echo "Press Enter to continue..\\c"
+read foo
+}
+
+while true
+do
+{
+tput clear
+echo
+echo "			    User Maintenance Menu"
+echo "			    ====================="
+echo
+echo "			1. Add a new User"
+echo "			2. Delete a User"
+echo "			3. Change a User's Password"
+echo
+echo "			q. Quit."
+echo
+echo "			Select 1, 2, 3 or q: \c"
+read ans
+
+	case $ans in
+		1) # Add user
+		   addauser
+		;;
+		2) # Delete user
+		   delauser
+		;;
+		3) # Change pasword
+		   modauser
+		;;
+		q|Q) echo "\033[1y\c"; exit
+		;;
+		*) echo "\n\nInvalid Selection - please try again"
+		   sleep 2
+		;;
+	esac
+}
+
+done
+
+exit

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Transactions JobId="060404171241468">
+<Transaction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="G65430">
+  <TransactionType Id="106506" Process="106506" Category="A">Abandoned Vehicle</TransactionType>
+  <TransactionChannel Id="INTER">Customer Portal</TransactionChannel>
+  <TransactionAuthority Id="16" Division="StreetCare">Brent Council</TransactionAuthority>
+  <Location Id="118779" Reference="202136723">2 Agave Road
+London
+NW2 6XN</Location>
+  <Applicant1>
+    <Name>Bloomfield</Name>
+    <Forename1>Mike</Forename1>
+    <Email>mike@datapro.co.uk</Email>
+    <businessPhone>01273886003</businessPhone>
+    <homePhone xsi:nil="true" />
+    <mobilePhone xsi:nil="true" />
+  </Applicant1>
+  <Location.Details>DATAPRO SOFTWARE TEST
+OUTSIDE</Location.Details>
+  <Observed.Number>2</Observed.Number>
+  <Observed.Units>Weeks</Observed.Units>
+  <Observed.Since xsi:nil="true" />
+  <Vehicle_Details>
+    <Vehicle.Make>VW</Vehicle.Make>
+    <Vehicle.Model>GOLF</Vehicle.Model>
+    <Vehicle.Colour>SILVER GREY</Vehicle.Colour>
+    <Vehicle.RegistrationNumber>GJ 51 YMV</Vehicle.RegistrationNumber>
+    <Vehicle.Details xsi:nil="true" />
+  </Vehicle_Details>
+  <Ethnic_Group>British</Ethnic_Group>
+  <Age>56-65</Age>
+  <Gender>M</Gender>
+  <Illness_Or_Disability xsi:nil="true" />
+  <Activities_Limited xsi:nil="true" />
+</Transaction></Transactions>

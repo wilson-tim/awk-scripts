@@ -1,0 +1,9 @@
+function test( _string,   _var) {
+   print _string
+}
+
+{ 
+   test("hello there" \
+   $1 \
+   "everyone" )
+}

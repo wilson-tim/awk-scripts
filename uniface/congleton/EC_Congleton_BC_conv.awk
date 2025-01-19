@@ -1,0 +1,1 @@
+awk "/^\*/ || /^\//  {print $0 }" ec_congleton_bc_conv.sql  > test.txt

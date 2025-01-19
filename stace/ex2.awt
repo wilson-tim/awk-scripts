@@ -1,0 +1,13 @@
+BEGIN {}
+
+#comment
+
+$4 == "<DIR>" {next} #this is a comment
+
+/File.*bytes/ {exit}
+
+NR > 5  {
+	print $5 " " $4
+}
+
+END{}

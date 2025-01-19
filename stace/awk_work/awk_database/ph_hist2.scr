@@ -1,0 +1,205 @@
+###############################################################################
+#                                                                             #
+# Form ph_hist VERSION 0.02                                                   #
+# (c) William Wragg/Datapro Software Ltd. 2000                                #
+# BY WILLIAM WRAGG                                                            #
+# DATE 02/10/2000                                                             #
+#                                                                             #
+# Notes:                                                                      #
+#  Call with:                                                                 #
+#     awk -f forms.lib -f database.lib -f ph_hist2.scr                         #
+#                                                                             #
+#  All local variables are preceded with an underscore e.g. _local            #
+#  All global variables are composed only of letters, and the first letter is #
+# a capital. If the global variable is composed of two or more words, then    #
+# each of these words is capitalised, not just the first one e.g. Global,     #
+# GlobalVariable                                                              #
+#                                                                             #
+###############################################################################
+
+BEGIN {
+   Form("ph_hist2") }
+
+
+# FUNCTION SECTION - START
+# ------------------------
+function BeforeForm() {
+   FieldValue["7:"]="03/10/2000"
+   FieldValue["8:"]="15:40"
+   FieldValue["1:"]="replace"
+   FieldValue["3:"]="find"
+   FieldValue["4:"]="zoom"
+   FieldValue["0:"]="F01-Prv Form|F02-Nxt Form|F03-Find    |F04-Help    |F05-Fld Help|F10-More Key" }
+
+
+# This is the section where the individual code goes.
+function OnForm() {
+      # If not a command then must be on a field so run BeforeField for the
+      # current field
+      if ($0 !~ /^:/) {
+         BeforeField() }
+
+      # This section is the user interaction section.
+      # All commands are preceded by a colon ":".
+      # Jump to the field specified.
+      if ($0 ~ /^:[a-zA-Z]:/) {
+         CurrentField = substr($0,2) }
+      # Quit the application.
+      else if ($1 == ":quit") {
+         print "Quitting..."
+         exit }
+      # Delete Field
+      else if ($0 == ":df") {
+         FieldValue[CurrentField] = "" }
+      # Next Field
+      else if ($0 == ":nf") {
+         OnField()
+         CheckField()
+         AfterField()
+         NextField() }
+      # Previous Field
+      else if ($0 == ":pf") {
+         OnField()
+         CheckField()
+         AfterField()
+         PreviousField() }
+      # Previous forM
+      else if ($0 == ":pm") {
+         AfterForm()
+         exit }
+      # Next forM
+      else if ($0 == ":nm") {
+         NextForm()
+         OnFormReturn() }
+      # If don't recognise the input or just return is pressed, move to the
+      # next field.
+      else if ($0 == "") {
+         OnField()
+         CheckField()
+         AfterField()
+         NextField() }
+      else if ($0 !~ /^:/) {
+         OnField()
+         WhenFieldChanges()
+         FieldValue[CurrentField] = $0 } }
+
+
+function NextForm() {}
+
+
+function AfterForm() {}
+
+
+function OnFormReturn() {}
+
+
+function BeforeFind() {}
+
+
+function OnFind() {}
+
+
+function AfterFind() {}
+
+
+function BeforeUpdate() {}
+
+
+function OnUpdate() {}
+
+
+function AfterUpdate() {}
+
+
+function InitField() {}
+
+
+function BeforeField() {}
+
+
+function OnField() {}
+
+
+function WhenFieldChanges() {}
+
+
+function CheckField(_fieldnames,   # Arguments
+   _count, _on_field ) {   # Local Variables
+   # If no argument is given then set the _fieldnames to check to the 
+   # CurrentField. The _fieldnames variable is a list of the field names with
+   # out the colon, e.g. "abcde"
+   if (_fieldnames == "") {
+      _fieldnames = substr(CurrentField,1,1) }
+
+   _no_of_fields = length(_fieldnames)
+
+   for ( _count = 1; _count <= _no_of_fields; _count++ ) {
+      # Set the field which we are currently checking.
+      _on_field = substr(_fieldnames, _count, 1)
+
+      # This section executes for all fields being checked.
+
+      # This is the section where the code checking for each field goes.
+      if (_on_field = "a") {}
+      else if (_on_field = "b") {}
+      else if (_on_field = "c") {}
+      else if (_on_field = "d") {}
+      else if (_on_field = "e") {}
+      else if (_on_field = "f") {}
+      else if (_on_field = "g") {}
+      else if (_on_field = "h") {}
+      else if (_on_field = "i") {}
+      else if (_on_field = "j") {}
+      else if (_on_field = "k") {}
+      else if (_on_field = "l") {}
+      else if (_on_field = "m") {}
+      else if (_on_field = "n") {}
+      else if (_on_field = "o") {}
+      else if (_on_field = "p") {}
+      else if (_on_field = "q") {}
+      else if (_on_field = "r") {}
+      else if (_on_field = "s") {}
+      else if (_on_field = "t") {}
+      else if (_on_field = "u") {}
+      else if (_on_field = "v") {}
+      else if (_on_field = "w") {}
+      else if (_on_field = "x") {}
+      else if (_on_field = "y") {}
+      else if (_on_field = "z") {}
+      else if (_on_field = "A") {}
+      else if (_on_field = "B") {}
+      else if (_on_field = "C") {}
+      else if (_on_field = "D") {}
+      else if (_on_field = "E") {}
+      else if (_on_field = "F") {}
+      else if (_on_field = "G") {}
+      else if (_on_field = "H") {}
+      else if (_on_field = "I") {}
+      else if (_on_field = "J") {}
+      else if (_on_field = "K") {}
+      else if (_on_field = "L") {}
+      else if (_on_field = "M") {}
+      else if (_on_field = "N") {}
+      else if (_on_field = "O") {}
+      else if (_on_field = "P") {}
+      else if (_on_field = "Q") {}
+      else if (_on_field = "R") {}
+      else if (_on_field = "S") {}
+      else if (_on_field = "T") {}
+      else if (_on_field = "U") {}
+      else if (_on_field = "V") {}
+      else if (_on_field = "W") {}
+      else if (_on_field = "X") {}
+      else if (_on_field = "Y") {}
+      else if (_on_field = "Z") {} } }
+
+
+function AfterField() {}
+
+
+# -----------------------
+# FUNCTION SECTION - END
+
+
+END {}
+

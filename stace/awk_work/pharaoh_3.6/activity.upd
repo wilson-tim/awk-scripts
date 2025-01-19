@@ -1,0 +1,16 @@
+#!/usr/bin/awk -f
+
+# PHARAOH 3.6 UPDATE SCRIPT
+# This script updates the activity table purging account_codes and cost_centres
+# for records with the attached_to_job flag set to 'Y'.
+
+BEGIN {
+   cmd = "SQL"
+
+   print "select count(*) from activity;" | cmd 
+   print "update activity set cost_centre = '', account_code = '' where attached_to_job = 'Y';" | cmd
+
+   close(cmd)
+}
+
+END {}

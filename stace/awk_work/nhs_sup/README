@@ -1,0 +1,5 @@
+I might have to test to see if the files batch number has already been inserted
+into the nhs_sup table, and make sure that I do not add it again. DONE.
+
+The nhs_sup7.awk has been copied to $BINDIR/nhs_sup.awk ready to be used by the
+nhs_sc_iss.fs ACCELL/SQL form. 

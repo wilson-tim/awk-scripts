@@ -1,0 +1,594 @@
+
+
+
+
+
+
+
+
+
+                 A LISP interpreter in Awk
+
+
+                       Roger Rohrbach
+
+                    1592 Union St.,  #94
+                  San Francisco,  CA 94123
+                      January 3,  1989
+
+
+                          _A_B_S_T_R_A_C_T
+
+
+          This note describes a simple interpreter  for
+     the  LISP  programming  language,  written in awk.
+     It provides intrinsic versions of the basic  func-
+     tions  on  s-expressions,  and many others written
+     in LISP.   It  is  compatible  with  the  commonly
+     available  version  of  awk  that is supplied with
+     most UNIX  systems.   The  interpreter  serves  to
+     illustrate  the  use  of  awk  for  prototyping or
+     implementing language  translators,   as  well  as
+     providing  a simple example of LISP implementation
+     techniques.
+
+
+
+_I_n_t_r_i_n_s_i_c _f_u_n_c_t_i_o_n_s.
+
+     The interpreter has thirteen built-in functions.  These
+include  the  five  elementary  functions  on  s-expressions
+defined by McCarthy [1];  some conditional expression opera-
+tors;   an  assignment operator,  and some functions to con-
+trol the evaluation process.
+
+     The intrinsic functions are  summarized  below.   Fami-
+liarity  with  existing  LISP  systems  is  assumed  in  the
+descriptions of these functions.
+
+(car _l)
+     Returns the first element of  the  list  _l.   An  error
+     occurs if _l is atomic.
+
+(cdr _l)
+     Returns the remainder of the list _l,  _i._e., the sublist
+     containing  the second through the last elements.  If _l
+     has only one element,  nil is returned.  cdr  is  unde-
+     fined on atoms.
+
+
+
+
+
+
+
+
+
+
+
+
+                           - 2 -
+
+
+(cons _e _l)
+     Constructs a new list whose car is _e and whose  cdr  is
+     _l.
+
+(eq _x _y)
+     Returns t if _x and _y are the same LISP  object,   _i._e.,
+     are  either  atomic  and  have the same print name,  or
+     evaluate to the same list  cell.   Otherwise,   nil  is
+     returned.
+
+(atom _s)
+     Returns t if _s is an atom,  otherwise nil.
+
+(set _x _y)
+     Assigns the value _y to _x and  returns  _y.   _x  must  be
+     atomic,  and may not be a constant or name an intrinsic
+     function.
+
+(eval _s)
+     Evaluates _s and returns the result.
+
+(error _s)
+     Halts evaluation  and  returns  nil.   The  atom  _s  is
+     printed.
+
+(quote _s)
+     Returns _s,  unevaluated.  The form
+
+             '_e_x_p_r
+
+     is an abbreviation for
+
+             (quote _e_x_p_r)
+
+
+(cond (_p_1 [_e_1]) ... (_p_N [_e_N]))
+     Evaluates each _p from left to right.  If  any  evaluate
+     to  a  value  other  than  nil,  the corresponding _e is
+     evaluated and the result is returned.  If there  is  no
+     corresponding _e,  the value of the _p itself is returned
+     instead.  If  no  _p  has  a  non-null  value,   nil  is
+     returned.
+
+(and _e_1 ...  _e_N)
+     Evaluates each _e and returns nil  if  any  evaluate  to
+     nil.  Otherwise  the value of the last _e is returned.
+
+(or _e_1 ...  _e_N)
+     Evaluates each _e and returns the first whose  value  is
+     non-null.  If no such _e is found,  nil is returned.
+
+(list _e_1 ...  _e_N)
+     Constructs  a  new  list  with  elements  _e_1  ...   _e_N.
+     Equivalent to
+
+
+
+
+
+
+
+
+
+                           - 3 -
+
+
+     (cons _e_1 (cons ... (cons _e_N nil).
+
+_L_a_m_b_d_a _f_u_n_c_t_i_o_n_s.
+
+     The following functions are written  in  LISP  and  are
+defined in the file walk.w.  Most of these are commonly sup-
+plied with LISP systems.
+
+(cadr _s)
+
+(cddr _s)
+
+(caar _s)
+
+(cdar _s)
+
+(cadar _s)
+
+(caddr _s)
+
+(cddar _s)
+
+(cdadr _s)
+     These correspond to various  compositions  of  car  and
+     cdr,  _e._g.,
+     (cadr _s) -> (car (cdr _s)).
+
+(null _s)
+     Equivalent to (eq _s nil).
+
+(not _s)
+     Same as null.
+
+(ff _s)
+     Returns the first atomic symbol in _s.
+
+(subst _x _y _z)
+     Substitutes _x for all occurrences of the atom _y  in  _z.
+     _x and _z are arbitrary s-expressions.
+
+(equal _x _y)
+     Returns t if _x and _y are the same s-expression,  other-
+     wise nil.
+
+(append _x _y)
+     Creates a new list containing the elements of x and  y,
+     which must both be lists.
+
+(member _x _y)
+     Returns t if _x is an element of the list  _y,  otherwise
+     nil.
+
+
+
+
+
+
+
+
+
+
+
+
+                           - 4 -
+
+
+(pair _x _y)
+     Pairs each element of the lists _x and _y, and returns  a
+     list  of  the  resulting pairs.  The number of pairs in
+     the result will equal the length of the shorter of  the
+     two input lists.
+
+(assoc _x _y)
+     Association list selector function.  _y is a list of the
+     form  ((_u_1  _v_1)  ... (_u_N _v_N)) where the _u's are atomic.
+     If _x is one of these,  the corresponding pair (_u _v)  is
+     returned,  otherwise nil.
+
+(sublis _x _y)
+     _x is an association list.  Substitutes the values in  _x
+     for the keys in _y.
+
+(last _l)
+     Returns the last element of _l.
+
+(reverse _l)
+     Returns a list that contains  the  elements  in  _l,  in
+     reverse order.
+
+(remove _e _l)
+     Returns a copy of _l with all occurrences of the element
+     _e removed.
+
+(succ _x _y)
+     Returns the element that immediately follows the atom _x
+     in the list _y.  If _x does not occur in _y or is the last
+     element,  nil is returned.
+
+(pred _x _y)
+     Returns the element that immediately precedes the  atom
+     _x  in  the  list _y.  If _x does not occur in _y or is the
+     first element,  nil is returned.
+
+(before _x _y)
+     Returns the list of elements occurring before y  in  x.
+     If  _y does not occur in _x or is the first element,  nil
+     is returned.
+
+(after _x _y)
+     Returns the list of elements occurring after  y  in  x.
+     If  _y  does not occur in _x or is the last element,  nil
+     is returned.
+
+(plist _x)
+     Returns the property list for the atom _x.
+
+(get _x _i)
+     Returns the value stored on _x's property list under the
+     indicator _i.
+
+
+
+
+
+
+
+
+
+
+                           - 5 -
+
+
+(putprop _x _v _i)
+     Stores the value _v on _x's property list under the indi-
+     cator _i.
+
+(remprop _x _i)
+     Remove the indicator _i and any  associated  value  from
+     _x's property list.
+
+(mapcar _f _l)
+     Applies the function _f to each element of _l and returns
+     the list of results.
+
+(apply _f _a_r_g_s)
+     Calls _f with the arguments _a_r_g_s,  _e._g.,
+
+             (apply 'cons '(a (b)))
+
+     is equivalent to
+
+             (cons 'a '(b))
+
+
+_S_y_n_t_a_c_t_i_c _c_o_n_v_e_n_t_i_o_n_s.
+
+Atoms take the following forms:
+
+_R_e_g_u_l_a_r _i_d_e_n_t_i_f_i_e_r_s
+     Atoms matching the regular expression
+
+         [_A-Za-z][-A-Za-z_0-9]*
+
+     The initial value of an identifier is nil.
+
+_I_n_t_e_g_e_r_s
+     Atoms  matching  the  regular  expression  [0-9][0-9]*.
+     Integers are constants,  _i._e.,  evaluate to themselves.
+
+_W_e_i_r_d _a_t_o_m_s
+     Identifiers  matching  the  regular  expression   ".*".
+     Weird atoms are not constants.
+
+A semicolon introduces a comment,  which continues  for  the
+rest of the line.
+
+_U_s_a_g_e.
+
+The command for running the interpreter is
+
+        walk [ _f_i_l_e_s ]
+
+on BSD UNIX and derivative systems,  or
+
+        awk -f walk [ _f_i_l_e_s ]
+
+
+
+
+
+
+
+
+
+
+                           - 6 -
+
+
+on UNIX System V.  The file name - represents  the  standard
+input.  This can be omitted if no other files are being read
+in,  or if the interpreter is being run non-interactively.
+
+     Normally,  the interpreter is used interactively,  aug-
+mented with the functions defined in walk.w,  and,  perhaps,
+other files.  The command line to use for this purpose is
+
+        walk walk.w [ _o_t_h_e_r _f_i_l_e_s ] p -
+
+The  interpreter  will  first  read  walk.w,   printing  the
+results  of  evaluating  the  function  definitions therein.
+Then it will read p.  This file  contains  no  LISP  defini-
+tions;   the  interpreter recognizes it by name and prints a
+prompt to signal the user that all  the  prerequisite  files
+have  been  read  and  that  the  interpreter is waiting for
+input.  (This is the only way to get awk to do  this;   this
+can  be  hidden  from  the  user  with  a shell program that
+invokes the interpreter if desired.)  Thereafter,   it  will
+evaluate  expressions  typed  in  by  the  user,  printing a
+prompt after each one.  Normally  the  prompt  is  ->;   the
+first character of the prompt changes when appropriate to an
+integer  that  represents  the  number  of  unmatched   left
+parentheses read in so far.
+
+     The interpreter exits when it encounters the end of its
+last  input  file.  If this file is the standard input,  the
+number of LISP objects created is reported.
+
+     Several files defining  auxiliary  functions  are  pro-
+vided.
+
+_I_m_p_l_e_m_e_n_t_a_t_i_o_n.
+
+     So that it can run on any UNIX system,  The LISP inter-
+preter  has  been  written using the UNIX V7 version of awk,
+which predates the version described in _T_h_e _A_w_k  _P_r_o_g_r_a_m_m_i_n_g
+_L_a_n_g_u_a_g_e  [2].   The only complex data type provided by this
+language is the array.  Data that in C might  be  stored  in
+structures   is   represented,   therefore,  using  multiple
+arrays,  one for each field.  For example,  the C code
+
+                p = allocate_cell();
+                p->car = s;
+                p->cdr = NIL;
+
+can be approximated with:
+
+                p = ++cell;
+                car[p] = s;
+                cdr[p] = nil;
+
+Lists (using nested array references) and  stacks  are  also
+simulated  with  arrays.  The most important data structures
+
+
+
+
+
+
+
+
+
+                           - 7 -
+
+
+are explained in the program and in the  following  descrip-
+tion.
+
+     As is usual for LISP implementations,  the  interpreter
+is constructed as a loop that reads an s-expression,  evalu-
+ates it,  and prints the result.  The reader collects an  s-
+expression,   reading  multiple  input  lines  if necessary.
+Like the other two phases of the  interpreter,   this  is  a
+recursive  procedure  and in awk this must be managed expli-
+citly.   When  an  s-expression  is  read,    its   internal
+representation  in  list structure is formed using the stack
+read[].  Atoms and cons operators are pushed onto  the  read
+stack and periodically `reduced' or replaced with list cells
+when a complete list has been read;  the reader  returns  an
+atom  or  list  on the top of the stack.  The reader must be
+able to return an s-expression in the  middle  of  an  input
+line,   so the entire interpreter is enclosed in a loop that
+allows the current  input  line  to  be  completely  scanned
+before  the  next input record is read.  The general outline
+is:
+
+        BEGIN {
+                _i_n_i_t_i_a_l_i_z_e _i_n_t_e_r_p_r_e_t_e_r
+                _s_a_y _h_e_l_l_o _i_f _i_n_t_e_r_a_c_t_i_v_e
+        }
+
+        {
+                _i_n_i_t_i_a_l_i_z_e _r_e_a_d_e_r _v_a_r_i_a_b_l_e_s
+
+                while (_c_h_a_r_s _l_e_f_t _o_n _t_h_i_s _l_i_n_e)
+                {
+                        _r_e_a_d
+
+                        if (_h_a_v_e _r_e_a_d _a_n _s-_e_x_p_r_e_s_s_i_o_n)
+                        {
+                                _e_v_a_l
+
+                                _p_r_i_n_t
+                        }
+                }
+
+                _p_r_o_m_p_t _i_f _i_n_t_e_r_a_c_t_i_v_e
+        }
+
+        END {
+                _s_a_y _g_o_o_d_b_y_e _i_f _i_n_t_e_r_a_c_t_i_v_e
+                _e_x_i_t
+        }
+
+
+     The evaluator maintains two stacks,  one for input  and
+one for output.  The result returned by the reader is copied
+onto the input stack (eval[]),  and evaluated  according  to
+the usual LISP rules.  Evaluated s-expressions are placed on
+
+
+
+
+
+
+
+
+
+                           - 8 -
+
+
+the output stack,  arg[].  When an intrinsic  function  that
+takes  evaluated arguments appears on the top of the evalua-
+tion stack,  its arguments  are  popped  from  the  argument
+stack.   Functions  (like  cond) that take unevaluated argu-
+ments are handled as special forms  before  their  arguments
+have  been  pushed  onto  eval[].  The arguments are handled
+differently depending on  the  semantics  of  the  function.
+Lambda (user-defined) functions are evaluated by temporarily
+binding the formal parameters in the function definition  to
+the  results  of  evaluating the actual arguments with which
+the function was called,  and then evaluating  the  body  of
+the function.  Temporary bindings only are kept on a special
+pushdown list (the _a_l_i_s_t).  Atoms have a global  value  that
+is stored separately;  this keeps the alist small.
+
+The evaluation procedure is sketched below:
+
+        _a_t_o_m?
+                _l_a_m_b_d_a
+                        restore previous environment (lambda function
+                        body has been evaluated already)
+                _c_o_n_s_t_a_n_t?
+                        return
+                _b_o_u_n_d?
+                        look up local value
+                _o_t_h_e_r_w_i_s_e
+                        return global value
+
+        _i_n_t_r_i_n_s_i_c _f_u_n_c_t_i_o_n?
+                apply to already evaluated arguments
+
+        _l_a_m_b_d_a _f_u_n_c_t_i_o_n?
+                bind formal parameters to already evaluated arguments
+                evaluate function body
+
+        _f_o_r_m?
+                _i_n_t_r_i_n_s_i_c _f_u_n_c_t_i_o_n _a_p_p_l_i_c_a_t_i_o_n?
+                        quote
+                                return unevaluated argument
+                        cond
+                        and
+                        or
+                                begin evaluating arguments according to operator semantics
+                        list
+                                expand to repeated applications of cons
+                _o_t_h_e_r?
+                        push function variable,  arguments
+
+        _l_a_m_b_d_a _f_u_n_c_t_i_o_n _a_p_p_l_i_c_a_t_i_o_n?
+                push lambda function,  body
+        _o_t_h_e_r?
+                eval car,  cdr
+
+
+
+
+
+
+
+
+
+
+
+                           - 9 -
+
+
+     When the evaluation stack is emptied,   the  result  is
+popped  from  the  argument  stack  and printed.  A stack is
+again used to manage recursion.
+
+_C_o_n_c_l_u_s_i_o_n.
+
+     The goal  of  writing  a  small  LISP  interpreter  and
+extending  it  in LISP has been realized.  Though it was not
+my original intention,  it would be easy to incorporate  the
+LISP  functions  as  intrinsics,   and many other extensions
+(such as numeric functions) could be made,   in  which  case
+the  interpreter  might  fulfill more than a pedagogic func-
+tion.  Even so,  it can be used as is for an introduction to
+LISP  programming  and  implementation  concepts.  I hope it
+also inspires more of us to learn how to program in awk!
+
+_R_e_f_e_r_e_n_c_e_s.
+
+[1]
+     McCarthy, J.  Recursive Functions of  Symbolic  Expres-
+     sions and their Computation by Machine,  Part I.  _C_o_m_m.
+     _A_C_M,  3,  4,  pp. 185-195 April 1960
+
+[2]
+     Aho, A.,  Weinberger,  P.,  & Kernighan,  B.W.  _T_h_e _A_w_k
+     _P_r_o_g_r_a_m_m_i_n_g  _L_a_n_g_u_a_g_e.   Addison-Wesley,   Reading,  MA
+     1988
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

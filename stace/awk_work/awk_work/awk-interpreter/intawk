@@ -1,0 +1,26 @@
+echo "################################################################################"
+echo "#                                                                              #"
+echo "#                   THE AWK INTERPRETER VERSION 0.01                           #"
+echo "#                                                                              #"
+echo "################################################################################"
+
+read INTAWK_SCRATCH
+
+CONTINUE="y"
+
+until test $CONTINUE = "n"
+do
+   echo "SCRIPT> \c"
+   read INTAWK_SRATCH
+   vi intawk.script
+   echo "DATA> \c"
+   read INTAWK_SCRATCH
+   vi intawk.data
+   echo "OUTPUT> \c"
+   read INTAWK_SCRATCH
+   echo
+   nawk -f intawk.script intawk.data
+   echo 
+   echo "CONTINUE? [y/n] \c"
+   read CONTINUE
+done
