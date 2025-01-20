@@ -6,11 +6,13 @@
 
 BEGIN {
 	RS="";
-	ORS="\r\n";
-	OFS="|";
 }
 
-$1=$1 {
+{
 #	print NF, $0;
-	print $0;
+	delim_count = gsub(/\n/, "|");
+	suffix_count = 8 - (delim_count + 1);
+	suffix_string = "";
+	while (suffix_count-->0) suffix_string = suffix_string "|";
+	print $0 suffix_string;
 }
