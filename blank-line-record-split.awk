@@ -3,13 +3,14 @@
 # https://www.gnu.org/software/gawk/manual/html_node/awk-split-records.html#:~:text=The%20empty%20string%20%22%22%20(a,Line%20Records%20for%20more%20details.
 
 # $ awk -f blank-line-record-split.awk blank-line-record-split.txt
+# $ awk -f blank-line-record-split.awk blank-line-record-split.txt | column -t -s"|"
 
 BEGIN {
 	RS="";
+	print "Acol|Bcol|Ccol|Dcol|Ecol|Fcol|Gcol|Hcol";
 }
 
 {
-#	print NF, $0;
 	delim_count = gsub(/\n/, "|");
 	suffix_count = 8 - (delim_count + 1);
 	suffix_string = "";
